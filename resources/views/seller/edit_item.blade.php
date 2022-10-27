@@ -4,11 +4,11 @@
     <section class="section">
         <div class="row justify-content-center">
 
-            <div class="col-lg-6">
+            <div class="col-lg-6" >
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Product Details</h5>
+                        <h5 class="card-title">Edit Product Details</h5>
 
                         <!-- Product Details Form -->
                         <form class="row g-3">
@@ -34,6 +34,22 @@
                                             <option value="3">Lightly Used</option>
                                             <option value="4">Well Used</option>
                                             <option value="5">Heavily Used</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label">Category</label>
+                                    <div class="col-sm-12">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option value="1">Computer & Technology</option>
+                                            <option value="2">Furniture</option>
+                                            <option value="3">Home & Living</option>
+                                            <option value="4">Hobbies</option>
+                                            <option value="5">Sport Equipment</option>
+                                            <option value="6">Book & Article</option>
                                         </select>
                                     </div>
                                 </div>

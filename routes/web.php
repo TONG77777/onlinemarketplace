@@ -37,8 +37,12 @@ Route::get('/like', function () {
     return view('like');
 });
 
-Route::get('/add_item', function () {
-    return view('add_item');
+Route::get('seller/add_item', function () {
+    return view('seller/add_item');
+});
+
+Route::get('seller/edit_item', function () {
+    return view('seller/edit_item');
 });
 
 Route::get('/address', function () {
@@ -47,4 +51,8 @@ Route::get('/address', function () {
 
 Route::get('/chat', function () {
     return view('chat');
+});
+
+Route::get('/seller_view', function () {
+    return view('seller_view');
 });
