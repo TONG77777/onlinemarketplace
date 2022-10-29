@@ -11,16 +11,17 @@
                         <h5 class="card-title">Product Details</h5>
 
                         <!-- Product Details Form -->
-                        <form class="row g-3">
+                        <form class="row g-3" action="/products" enctype="multipart/form-data"  method="POST">
+                            @csrf
                             <div class="col-12">
                                 <label for="prodName" class="form-label">Product Name</label>
-                                <input type="text" class="form-control" id="name">
+                                <input type="text" class="form-control" id="name" name="name">
                             </div>
 
                             <div class="col-12">
-                                <label for="inputNumber" class="col-sm-2 col-form-label">File Upload</label>
+                                <label for="prodImage" class="col-sm-2 col-form-label">File Upload</label>
                                 <div class="col-sm-12">
-                                    <input class="form-control" type="file" id="formFile">
+                                    <input class="form-control" type="file" id="image" name="image">
                                 </div>
                             </div>
 
@@ -28,12 +29,12 @@
                                 <div class="row mb-3">
                                     <label class="col-sm-2 col-form-label">Condition</label>
                                     <div class="col-sm-12">
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option value="1">Never Used</option>
-                                            <option value="2">Like New</option>
-                                            <option value="3">Lightly Used</option>
-                                            <option value="4">Well Used</option>
-                                            <option value="5">Heavily Used</option>
+                                        <select id="condition" name="condition" class="form-select" >
+                                            <option value="Never Used">Never Used</option>
+                                            <option value="Like New">Like New</option>
+                                            <option value="Lightly Used">Lightly Used</option>
+                                            <option value="Well Used">Well Used</option>
+                                            <option value="Heavily Used">Heavily Used</option>
                                         </select>
                                     </div>
                                 </div>
@@ -43,7 +44,7 @@
                                 <div class="row mb-3">
                                     <label class="col-sm-2 col-form-label">Category</label>
                                     <div class="col-sm-12">
-                                        <select class="form-select" aria-label="Default select example">
+                                        <select id="category" name="category" class="form-select" aria-label="Default select example">
                                             <option value="1">Computer & Technology</option>
                                             <option value="2">Furniture</option>
                                             <option value="3">Home & Living</option>
@@ -59,14 +60,14 @@
                                 <label for="price" class="form-label">Price</label>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">RM</span>
-                                    <input type="number" min="1" class="form-control">
+                                    <input type="number" name="price" min="1" class="form-control" id="price">
                                 </div>
                             </div>
 
                             <div class="col-12">
                                 <label for="description" class="form-label">Description</label>
                                 <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Address" id="floatingTextarea" style="height: 100px;"></textarea>
+                                    <textarea class="form-control" placeholder="desc" id="description" style="height: 100px;" name="description" ></textarea>
                                     <label for="floatingTextarea">Description for the product</label>
                                 </div>
                             </div>

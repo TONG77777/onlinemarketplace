@@ -24,10 +24,10 @@
 
                 <div class="col-xl-4 col-md-6 portfolio-item filter-app">
                     <div class="portfolio-wrap">
-                        <a href="#"><img src="img/p1.png" class="img-fluid" alt=""></a>
+                        {{-- <a href="#"><img src="{{$product->image}}" class="img-fluid" alt=""></a> --}}
                         <div class="portfolio-info">
-                            <h4><a href="/detail" title="More Details">Product Name</a></h4>
-                            <p>RM 100</p>
+                            {{-- <h4><a href="/detail" title="More Details">{{$products->name}}</a></h4> --}}
+                            {{-- <p>{{$products->price}}</p> --}}
                             <button type="button" class="btn btn-light btn-rounded float-end active"><i class="bi bi-heart"
                                     style="color:red"></i></button>
                         </div>
@@ -36,11 +36,12 @@
 
                 <div class="col-xl-4 col-md-6 portfolio-item filter-product">
                     <div class="portfolio-wrap">
-                        <a href="assets/img/portfolio/product-1.jpg" data-gallery="portfolio-gallery-app"
-                            class="glightbox"><img src="assets/img/portfolio/product-1.jpg" class="img-fluid"
+                        <a href="img/p3.jpg" data-gallery="portfolio-gallery-app"
+                            class="glightbox"><img src="img/p3.jpg" class="img-fluid"
                                 alt=""></a>
                         <div class="portfolio-info">
                             <h4><a href="portfolio-details.html" title="More Details">Product 1</a></h4>
+                            <p>RM 150</p>
                             <p>Lorem ipsum, dolor sit amet consectetur</p>
                         </div>
                     </div>
@@ -48,11 +49,12 @@
 
                 <div class="col-xl-4 col-md-6 portfolio-item filter-branding">
                     <div class="portfolio-wrap">
-                        <a href="assets/img/portfolio/branding-1.jpg" data-gallery="portfolio-gallery-app"
-                            class="glightbox"><img src="assets/img/portfolio/branding-1.jpg" class="img-fluid"
+                        <a href="img/p4.jpg" data-gallery="portfolio-gallery-app"
+                            class="glightbox"><img src="img/p4.jpg" class="img-fluid"
                                 alt=""></a>
                         <div class="portfolio-info">
                             <h4><a href="portfolio-details.html" title="More Details">Branding 1</a></h4>
+                            <p>RM 345</p>
                             <p>Lorem ipsum, dolor sit amet consectetur</p>
                         </div>
                     </div>
@@ -61,7 +63,7 @@
                 <div class="col-xl-4 col-md-6 portfolio-item filter-books">
                     <div class="portfolio-wrap">
                         <a href="assets/img/portfolio/books-1.jpg" data-gallery="portfolio-gallery-app"
-                            class="glightbox"><img src="assets/img/portfolio/books-1.jpg" class="img-fluid"
+                            class="glightbox"><img src="img/p1.png" class="img-fluid"
                                 alt=""></a>
                         <div class="portfolio-info">
                             <h4><a href="portfolio-details.html" title="More Details">Books 1</a></h4>

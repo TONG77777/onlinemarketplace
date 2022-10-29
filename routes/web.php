@@ -25,21 +25,29 @@ Route::get('/register', function () {
     return view('register');
 });
 
-Route::get('/product', function () {
-    return view('product');
-});
+// Route::get('/product/{id}', function ($id) {
+//     return view('detail', ['id'=>$id]);
+// });
 
-Route::get('/detail', function () {
-    return view('detail');
-});
+// Route::get('/product', function () {
+//     return view('product');
+// });
+
+// Route::get('/detail', function () {
+//     return view('detail');
+// });
+
+Route::get('/products','ProductController@index');
+Route::get('/products/create','ProductController@create');
+Route::post('/products', 'ProductController@store');
+Route::get('/products/{id}', 'ProductController@show');
+
 
 Route::get('/like', function () {
     return view('like');
 });
 
-Route::get('seller/add_item', function () {
-    return view('seller/add_item');
-});
+
 
 Route::get('seller/edit_item', function () {
     return view('seller/edit_item');

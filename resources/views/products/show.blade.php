@@ -105,8 +105,8 @@
                             <ul>
                                 <li><strong>Category</strong> <span>Hobbies</span></li>
                                 <li><strong>Publish date</strong> <span>01 March, 2020</span></li>
-                                <li><a href="#" class="btn-contact">Contact Seller</a></li>
-                                <li><a href="#" class="btn-buy">Buy Now<i class="bi bi-cart-check-fill"></i></a></li>
+                                <li><a href="#" class="btn-contact"> Contact &nbsp&nbsp<i class="bi bi-person-lines-fill"></i></a></li>
+                                <li><a href="#" class="btn-buy"> Buy Now <i class="bi bi-cart-check-fill"></i></a></li>
                             </ul>
                         </div>
                     </div>
