@@ -24,7 +24,14 @@
 
                 <div class="col-xl-4 col-md-6 portfolio-item filter-app">
                     <div class="portfolio-wrap">
-                        {{-- <a href="#"><img src="{{$product->image}}" class="img-fluid" alt=""></a> --}}
+                        {{$products->name}}
+                        {{$products->image}}
+                        {{$products->condition}}
+                        {{$products->category}}
+                        {{$products->price}}
+                        {{$products->description}}
+
+                        {{-- <a href="#"><img src="img/{{$products->image}}" class="img-fluid" alt=""></a> --}}
                         <div class="portfolio-info">
                             {{-- <h4><a href="/detail" title="More Details">{{$products->name}}</a></h4> --}}
                             {{-- <p>{{$products->price}}</p> --}}

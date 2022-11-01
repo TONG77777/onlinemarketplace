@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,30 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/login', function () {
-    return view('login');
-});
+//Authentication
+Auth::routes();
 
-Route::get('/register', function () {
-    return view('register');
-});
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Route::get('/product/{id}', function ($id) {
-//     return view('detail', ['id'=>$id]);
-// });
 
-// Route::get('/product', function () {
-//     return view('product');
-// });
 
-// Route::get('/detail', function () {
-//     return view('detail');
-// });
-
+//products
 Route::get('/products','ProductController@index');
 Route::get('/products/create','ProductController@create');
 Route::post('/products', 'ProductController@store');
@@ -46,7 +32,6 @@ Route::get('/products/{id}', 'ProductController@show');
 Route::get('/like', function () {
     return view('like');
 });
-
 
 
 Route::get('seller/edit_item', function () {

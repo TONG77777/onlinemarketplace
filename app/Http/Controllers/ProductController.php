@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Http\UploadedFile;
 
-// use App\Product;
+//use App\Product;
 
 class ProductController extends Controller
 {
