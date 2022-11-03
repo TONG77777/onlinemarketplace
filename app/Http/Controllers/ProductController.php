@@ -19,8 +19,8 @@ class ProductController extends Controller
     }
 
     public function show($id){
-        $product = Product::find($id);
-        return view('products.show',['product'=>$product]);
+        $products = Product::find($id);
+        return view('products.show',['products'=>$products]);
     }
 
     public function create(){
@@ -37,7 +37,7 @@ class ProductController extends Controller
             $file = $request->file('image');
             $extention = $file->getClientOriginalExtension();
             $filename = time().'.'.$extention;
-            $file->move('uploads/products',$filename);
+            $file->move('img/products',$filename);
             $product->image = $filename;
         }
        
@@ -46,10 +46,14 @@ class ProductController extends Controller
         $product->price = request('price');
         $product->description = request('description');
 
-        // error_log($product);
-
         $product->save();
     
-        return redirect('/');
+        return redirect('/')->with('success','Product Added');
+    }
+
+    public function destroy($id){
+        $product = Product::find($id);
+        $product->delete();
+        return redirect('/products');
     }
 }

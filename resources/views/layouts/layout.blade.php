@@ -38,24 +38,24 @@
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
             <a href="{{route('home')}}" class="logo d-flex align-items-center">
 
-                <h1>Online Marketplace to sell and buy Used Item<span>.</span></h1>
+                <h1>{{ __('Online Marketplace to sell and buy Used Item') }}<span>.</span></h1>
             </a>
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a href="#home">Home<i class="bi bi-house"></i></a></li>
-                    <li class="dropdown"><a href="#"><span>Category</span> <i
+                    <li><a href="{{ route('home') }}">{{ __('Home') }}<i class="bi bi-house"></i></a></li>
+                    <li class="dropdown"><a href="#"><span>{{ __('Category') }}</span> <i
                                 class="bi bi-chevron-down dropdown-indicator"></i></a>
                         <ul>
-                            <li><a href="#">Computer &amp; technology</a></li>
-                            <li><a href="#">Furniture</a></li>
-                            <li><a href="#">Home &amp; living</a></li>
-                            <li><a href="#">Hobbies</a></li>
-                            <li><a href="#">Sport Equipment</a></li>
-                            <li><a href="#">Book &amp; Article</a></li>
+                            <li><a href="#">{{ __('Computer &amp; technology') }}</a></li>
+                            <li><a href="#">{{ __('Furniture') }}</a></li>
+                            <li><a href="#">{{ __('Home &amp; living') }}</a></li>
+                            <li><a href="#">{{ __('Hobbies') }}</a></li>
+                            <li><a href="#">{{ __('Sport Equipment') }}</a></li>
+                            <li><a href="#">{{ __('Book &amp; Article') }}</a></li>
                         </ul>
                     </li>
-                    <li><a href="#like">Like<i class="bi bi-heart"></i></a></li>
-                    <li><a href="#chat">Chat<i class="bi bi-chat"></i></a></li>
+                    <li><a href="#like">{{ __('Like') }}<i class="bi bi-heart"></i></a></li>
+                    <li><a href="#chat">{{ __('Chat') }}<i class="bi bi-chat"></i></a></li>
                     @guest
                         @if (Route::has('login'))
                             <li class="nav-item">
@@ -79,7 +79,7 @@
                                     </a></li>
                             </ul>
                         </li>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    <form id="logout-form" action="{{ route('logout') }}{{route('home')}}" method="POST" class="d-none">
                         @csrf
                     </form>
             </div>

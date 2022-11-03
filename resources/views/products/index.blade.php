@@ -5,7 +5,7 @@
         <!-- ======= product Section ======= -->
 
         <div class="section-header">
-            <h2>Used Item</h2>
+            <h2>{{__('Used Item')}}</h2>
 
             <div class="input-group mb-3 mx-auto" style="width: 750px">
                 <input type="text" class="form-control" placeholder="Search Product Name...">
@@ -24,73 +24,34 @@
 
                 <div class="col-xl-4 col-md-6 portfolio-item filter-app">
                     <div class="portfolio-wrap">
-                        {{$products->name}}
-                        {{$products->image}}
-                        {{$products->condition}}
-                        {{$products->category}}
-                        {{$products->price}}
-                        {{$products->description}}
-
-                        {{-- <a href="#"><img src="img/{{$products->image}}" class="img-fluid" alt=""></a> --}}
-                        <div class="portfolio-info">
-                            {{-- <h4><a href="/detail" title="More Details">{{$products->name}}</a></h4> --}}
-                            {{-- <p>{{$products->price}}</p> --}}
-                            <button type="button" class="btn btn-light btn-rounded float-end active"><i class="bi bi-heart"
-                                    style="color:red"></i></button>
-                        </div>
+                        @foreach ($products as $product)
+                            <a href=""><img src="img/products/{{ $product->image }}" class="img-fluid"
+                                    alt="image"></a>
+                            <div class="portfolio-info">
+                                <h4><a href="products/show?{{ $product->id }}"
+                                        title="More Details">{{ $product->name }}</a></h4>
+                                <p>{{ __('RM') }} {{ $product->price }}</p>
+                                <p>{{ $product->description }}</p>
+                                <button type="button" class="btn btn-light btn-rounded float-end active"><i
+                                        class="bi bi-heart" style="color:red"></i></button>
+                            </div>
+                        @endforeach
                     </div>
                 </div><!-- End product Item -->
 
-                <div class="col-xl-4 col-md-6 portfolio-item filter-product">
-                    <div class="portfolio-wrap">
-                        <a href="img/p3.jpg" data-gallery="portfolio-gallery-app"
-                            class="glightbox"><img src="img/p3.jpg" class="img-fluid"
-                                alt=""></a>
-                        <div class="portfolio-info">
-                            <h4><a href="portfolio-details.html" title="More Details">Product 1</a></h4>
-                            <p>RM 150</p>
-                            <p>Lorem ipsum, dolor sit amet consectetur</p>
-                        </div>
-                    </div>
-                </div><!-- End product Item -->
-
-                <div class="col-xl-4 col-md-6 portfolio-item filter-branding">
-                    <div class="portfolio-wrap">
-                        <a href="img/p4.jpg" data-gallery="portfolio-gallery-app"
-                            class="glightbox"><img src="img/p4.jpg" class="img-fluid"
-                                alt=""></a>
-                        <div class="portfolio-info">
-                            <h4><a href="portfolio-details.html" title="More Details">Branding 1</a></h4>
-                            <p>RM 345</p>
-                            <p>Lorem ipsum, dolor sit amet consectetur</p>
-                        </div>
-                    </div>
-                </div><!-- End product Item -->
-
-                <div class="col-xl-4 col-md-6 portfolio-item filter-books">
-                    <div class="portfolio-wrap">
-                        <a href="assets/img/portfolio/books-1.jpg" data-gallery="portfolio-gallery-app"
-                            class="glightbox"><img src="img/p1.png" class="img-fluid"
-                                alt=""></a>
-                        <div class="portfolio-info">
-                            <h4><a href="portfolio-details.html" title="More Details">Books 1</a></h4>
-                            <p>Lorem ipsum, dolor sit amet consectetur</p>
-                        </div>
-                    </div>
-                </div><!-- End product Item -->
-
+            </div>
+        </div><!-- End Product -->
+        <section id="blog" class="blog">
+            <div class="blog-pagination">
+                <ul class="justify-content-center">
+                    <li><a href="#">1</a></li>
+                    <li class="active"><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                </ul>
             </div><!-- End Product -->
-            <section id="blog" class="blog">
-                <div class="blog-pagination">
-                    <ul class="justify-content-center">
-                        <li><a href="#">1</a></li>
-                        <li class="active"><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                    </ul>
-                </div><!-- End Product -->
 
-            </section><!-- End Product -->
-        </div>
-        </section><!-- End product Section -->
+        </section><!-- End Product -->
+    </div>
+    </section><!-- End product Section -->
     </div>
 @endsection
