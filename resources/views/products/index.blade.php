@@ -28,7 +28,7 @@
                             <a href=""><img src="img/products/{{ $product->image }}" class="img-fluid"
                                     alt="image"></a>
                             <div class="portfolio-info">
-                                <h4><a href="products/show?{{ $product->id }}"
+                                <h4><a href="products/{{ $product->id }}"
                                         title="More Details">{{ $product->name }}</a></h4>
                                 <p>{{ __('RM') }} {{ $product->price }}</p>
                                 <p>{{ $product->description }}</p>

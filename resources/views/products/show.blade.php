@@ -8,6 +8,7 @@
                 <div class="container position-relative">
                     <div class="row d-flex justify-content-center">
                         <div class="col-lg-6 text-center">
+                            
                             <h2>{{__('Product Details')}}</h2>
                             <p>{{__('Some description about the product')}}</p>
                         </div>
@@ -31,70 +32,66 @@
                     <div class="card-body">
 
                         <!-- Slides with controls -->
-                        <div id="carouselExampleControls" class="carousel slide pointer-event" data-bs-ride="carousel">
+                        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
-                                {{-- <div class="carousel-item">
-                                    <img src="img/products/{{ $product->image }}" class="d-block w-100" alt="...">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="/img/products/{{ $product->image }}" class="d-block w-100" alt="...">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="/img/products/{{ $product->image }}" class="d-block w-100" alt="...">
-                                </div> --}}
+                              <div class="carousel-item active">
+                                <img src="/img/products/{{$product->image}}" class="d-block w-100" alt="image1">
+                              </div>
+                              <div class="carousel-item">
+                                <img src="/img/products/{{$product->image}}" class="d-block w-100" alt="image2">
+                              </div>
+                              <div class="carousel-item">
+                                <img src="/img/products/{{$product->image}}" class="d-block w-100" alt="image3">
+                              </div>
                             </div>
-                            
-                            {{ $products->id }}
-                            
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-                                data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                              <span class="visually-hidden">Previous</span>
                             </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                                data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                              <span class="visually-hidden">Next</span>
                             </button>
-
-                        </div><!-- End Slides with controls -->
-
+                          </div>
+                        
                     </div>
-                    {{-- <img src="/img/p1.png" alt=""> --}}
+                    
                 </div>
+                
 
                 <div class="row justify-content-between gy-4 mt-4">
 
                     <div class="col-lg-8">
                         <div class="portfolio-description">
-                            <h2>Product Name</h2>
-                            <h3>RM 100</h3>
+                            <h2>{{$product->name}}</h2>
+                            <h3>{{__('RM')}} {{$product->price}}</h3>
                             <p>
-                                Posted : 12 Ogus 2022
+                                {{__('Posted :')}} {{$product->created_at->format('d M Y')}}
                             </p>
                             <P>
-                                Size : M
+                                {{__('Category  :')}} {{$product->category}}
                             </P>
                             <P>
-                                Condition : normal
+                                {{__('Condition  :')}} {{$product->condition}}
                             </P>
 
                             </p>
+                            <h4>{{__('Description :')}} </h4>
                             <p>
-                                khaki short pants
+                                 {{$product->description}}
                             </p>
 
                             <div class="testimonial-item">
                                 <div>
                                     <img src="/img/p1.png" class="testimonial-img" alt="">
-                                    <h3>User Name</h3>
-                                    <h4>Designer</h4>
+                                    <h3>{{__('User Name')}}</h3>
+                                    <h4>{{Auth::user()->name}}</h4>
                                 </div>
                             </div>
 
-                            <h3>Delivery</h3>
-                            <p>Option 1</p>
-                            <p>Option 1</p>
+                            <h3>{{__('Delivery  :')}}</h3>
+                            <p>{{__('Option 1')}}</p>
+                            <p>{{__('Option 2')}}</p>
                             </p>
 
                         </div>
@@ -102,12 +99,12 @@
 
                     <div class="col-lg-3">
                         <div class="portfolio-info">
-                            <h3>Product information</h3>
+                            <h3>{{__('Product Infromation')}}</h3>
                             <ul>
-                                <li><strong>Category</strong> <span>Hobbies</span></li>
-                                <li><strong>Publish date</strong> <span>01 March, 2020</span></li>
-                                <li><a href="#" class="btn-contact"> Contact &nbsp&nbsp<i class="bi bi-person-lines-fill"></i></a></li>
-                                <li><a href="#" class="btn-buy"> Buy Now <i class="bi bi-cart-check-fill"></i></a></li>
+                                <li><strong>{{__('Category')}}</strong> <span>{{$product->category}}</span></li>
+                                <li><strong>{{__('Publish Date')}}</strong> <span>{{$product->created_at->format('d M Y')}}</span></li>
+                                <li><a href="#" class="btn-contact"> {{__('Contact ')}}<i class="bi bi-person-lines-fill"></i></a></li>
+                                <li><a href="#" class="btn-buy"> {{__('Buy Now ')}}<i class="bi bi-cart-check-fill"></i></a></li>
                             </ul>
                         </div>
                     </div>
