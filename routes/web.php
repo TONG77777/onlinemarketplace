@@ -26,7 +26,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/products','ProductController@index');
 Route::get('/products/create','ProductController@create');
 Route::post('/products', 'ProductController@store');
+Route::get('/products/edit/{id}', 'ProductController@edit');
+Route::put('/products/update/{id}', 'ProductController@update');
+
 Route::get('/products/{id}', 'ProductController@show');
+
+Route::delete('/products/{id}', 'ProductController@destroy');
 
 
 Route::get('/like', function () {
@@ -48,4 +53,8 @@ Route::get('/chat', function () {
 
 Route::get('/seller_view', function () {
     return view('seller_view');
+});
+
+Route::get('payment', function () {
+    return view('payment');
 });

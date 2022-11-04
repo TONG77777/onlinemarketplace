@@ -25,7 +25,7 @@
                 <div class="col-xl-4 col-md-6 portfolio-item filter-app">
                     <div class="portfolio-wrap">
                         @foreach ($products as $product)
-                            <a href=""><img src="img/products/{{ $product->image }}" class="img-fluid"
+                            <a href="products/{{ $product->id }}"><img src="img/products/{{ $product->image }}" class="img-fluid"
                                     alt="image"></a>
                             <div class="portfolio-info">
                                 <h4><a href="products/{{ $product->id }}"

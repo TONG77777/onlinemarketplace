@@ -23,6 +23,35 @@ class ProductController extends Controller
         return view('products.show',['product'=>$product]);
     }
 
+    public function edit($id){
+        $product = Product::find($id);
+        return view('products.edit',['product'=>$product]);
+    }
+
+    public function update(Request $request, $id){
+     
+        $product = Product::findOrFail($id);
+        $product->name = request('name');
+
+        if($request->hasfile('image')){
+            $file = $request->file('image');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extention;
+            $file->move('img/products',$filename);
+            $product->image = $filename;
+        }
+       
+        $product->condition = request('condition');
+        $product->category = request('category');
+        $product->price = request('price');
+        $product->description = request('description');
+
+        $product->update();
+        $product->save();
+    
+        return redirect('/products')->with('success','Product Edit Successful');
+    }
+
     public function create(){
         return view('products.create');
     }
@@ -56,4 +85,9 @@ class ProductController extends Controller
         $product->delete();
         return redirect('/products');
     }
+
+    // public function search($name)
+    // {
+    //     return Product::where('name','like','%'.$name.'%')->get();
+    // }
 }
