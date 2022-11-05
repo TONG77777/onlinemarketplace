@@ -12,11 +12,11 @@
                         <h5 class="card-title">Edit Product Details</h5>
 
                         <!-- Edit Details Form -->
-                        <form class="row g-3" action="/products/update/{{$product->id}}" method="put">
+                        <form class="row g-3" action="{{url('products/update/'.$product->id)}}" method="put" enctype="multipart/form-data">
                             @csrf
                             <div class="col-12">
                                 <label for="prodName" class="form-label">Product Name</label>
-                                <input type="text" class="form-control" id="name" value="{{$product->name}}">
+                                <input type="text" class="form-control" id="name" value="{{old($product->name)}}">
                             </div>
 
                             <div class="col-12">
