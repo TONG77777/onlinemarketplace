@@ -17,7 +17,7 @@
                             <input type="hidden" name="_method" value="PUT">
                             <div class="col-12">
                                 <label for="prodName" class="form-label">Product Name</label>
-                                <input type="text" class="form-control" name="name" id="name" value="">
+                                <input type="text" class="form-control" name="name" id="name" value="{{old('name') ?? $product->name }}" placeholder="Product Name">
                             </div>
 
                             <div class="col-12">
@@ -31,7 +31,7 @@
                                 <div class="row mb-3">
                                     <label class="col-sm-2 col-form-label">Condition</label>
                                     <div class="col-sm-12">
-                                        <select class="form-select" name="condition">
+                                        <select class="form-select" name="condition" >
                                             <option value="Never Used">Never Used</option>
                                             <option value="Like New">Like New</option>
                                             <option value="Lightly Used">Lightly Used</option>
@@ -62,14 +62,14 @@
                                 <label for="price" class="form-label">Price</label>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">RM</span>
-                                    <input type="number" min="1" class="form-control" value="" name="price">
+                                    <input type="number" min="1" class="form-control" value="{{old('name') ?? $product->price }}" name="price" placeholder="XX.XX">
                                 </div>
                             </div>
 
                             <div class="col-12">
                                 <label for="description" class="form-label">Description</label>
                                 <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Address" id="floatingTextarea" style="height: 100px;" name="description">{{$product->description}}</textarea>
+                                    <textarea class="form-control" placeholder="Something description about the product..." id="floatingTextarea" style="height: 100px;" name="description">{{old('name') ?? $product->description }}</textarea>
                                 </div>
                             </div>
                             <div class="text-center">

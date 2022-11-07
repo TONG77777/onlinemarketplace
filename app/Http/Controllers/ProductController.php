@@ -29,8 +29,17 @@ class ProductController extends Controller
     }
 
     public function update(Request $request, Product $product, $id){
-       
+
         $product = Product::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required|max:100',
+            'condition' => 'required',
+            'category' => 'required',
+            'price' => 'required|numeric|between:0,99999.99',
+            'description' => 'required|max:1000',
+        ]);
+       
         $product->name = request('name');
 
         if($request->hasfile('image')){
@@ -49,7 +58,7 @@ class ProductController extends Controller
         $product->update();
         $product->save();
     
-        return redirect('/products')->with('success','Product Edit Successful');
+        return redirect('/products/')->with('success','Product Edit Successful');
     }
 
     public function create(){
@@ -57,6 +66,13 @@ class ProductController extends Controller
     }
 
     public function store(Request $request){
+        // $request->validate([
+        //     'name' => 'required|max:100',
+        //     'condition' => 'required',
+        //     'category' => 'required',
+        //     'price' => 'required|numeric|between:0,99999.99',
+        //     'description' => 'required|max:1000',
+        // ]);
 
         $product = new Product();
 
@@ -77,7 +93,7 @@ class ProductController extends Controller
 
         $product->save();
     
-        return redirect('/')->with('success','Product Added');
+        return redirect('/products')->with('success','Product Added');
     }
 
     public function destroy($id){

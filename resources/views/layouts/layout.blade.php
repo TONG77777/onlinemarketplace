@@ -46,12 +46,12 @@
                     <li class="dropdown"><a href="#"><span>{{ __('Category') }}</span> <i
                                 class="bi bi-chevron-down dropdown-indicator"></i></a>
                         <ul>
-                            <li><a href="#">{{ __('Computer &amp; technology') }}</a></li>
+                            <li><a href="#">{{ __('Computer & technology') }}</a></li>
                             <li><a href="#">{{ __('Furniture') }}</a></li>
-                            <li><a href="#">{{ __('Home &amp; living') }}</a></li>
+                            <li><a href="#">{{ __('Home & living') }}</a></li>
                             <li><a href="#">{{ __('Hobbies') }}</a></li>
                             <li><a href="#">{{ __('Sport Equipment') }}</a></li>
-                            <li><a href="#">{{ __('Book &amp; Article') }}</a></li>
+                            <li><a href="#">{{ __('Book & Article') }}</a></li>
                         </ul>
                     </li>
                     <li><a href="#like">{{ __('Like') }}<i class="bi bi-heart"></i></a></li>

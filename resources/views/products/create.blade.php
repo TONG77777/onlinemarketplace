@@ -15,7 +15,7 @@
                             @csrf
                             <div class="col-12">
                                 <label for="prodName" class="form-label">Product Name</label>
-                                <input type="text" class="form-control" id="name" name="name">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Product Name">
                             </div>
 
                             <div class="col-12">
@@ -60,14 +60,14 @@
                                 <label for="price" class="form-label">Price</label>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">RM</span>
-                                    <input type="number" name="price" min="1" class="form-control" id="price">
+                                    <input type="number" name="price" min="1" class="form-control" id="price" placeholder="XX.XX">
                                 </div>
                             </div>
 
                             <div class="col-12">
                                 <label for="description" class="form-label">Description</label>
                                 <div class="form-floating">
-                                    <textarea class="form-control" placeholder="desc" id="description" style="height: 100px;" name="description" ></textarea>
+                                    <textarea class="form-control" placeholder="Description for the product..." id="description" style="height: 100px;" name="description" ></textarea>
                                     <label for="floatingTextarea">Description for the product</label>
                                 </div>
                             </div>

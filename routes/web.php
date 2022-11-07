@@ -22,13 +22,13 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 
 //products
-Route::get('/products','ProductController@index')->middleware('auth');
-Route::get('/products/create','ProductController@create');
+Route::get('/products','ProductController@index');
+Route::get('/products/create','ProductController@create')->middleware('auth');
 Route::post('/products', 'ProductController@store');
-Route::get('/products/edit/{id}', 'ProductController@edit')->name('seller.products.edit');
-Route::put('/products/update/{id}', 'ProductController@update')->name('seller.products.update');
+Route::get('/products/edit/{id}', 'ProductController@edit')->name('seller.products.edit')->middleware('auth');
+Route::put('/products/update/{id}', 'ProductController@update')->name('seller.products.update')->middleware('auth');
 Route::get('/products/{id}', 'ProductController@show');
-Route::delete('/products/{id}', 'ProductController@destroy');
+Route::delete('/products/{id}', 'ProductController@destroy')->middleware('auth');
 
 
 Route::get('/like', function () {
