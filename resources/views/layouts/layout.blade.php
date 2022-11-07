@@ -36,7 +36,7 @@
 
     <header id="header" class="header d-flex align-items-center">
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-            <a href="{{route('home')}}" class="logo d-flex align-items-center">
+            <a href="{{ route('home') }}" class="logo d-flex align-items-center">
 
                 <h1>{{ __('Online Marketplace to sell and buy Used Item') }}<span>.</span></h1>
             </a>
@@ -79,9 +79,10 @@
                                     </a></li>
                             </ul>
                         </li>
-                    <form id="logout-form" action="{{ route('logout') }}{{route('home')}}" method="POST" class="d-none">
-                        @csrf
-                    </form>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
             </div>
             </li>
         @endguest
