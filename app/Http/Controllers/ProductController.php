@@ -23,13 +23,13 @@ class ProductController extends Controller
         return view('products.show',['product'=>$product]);
     }
 
-    public function edit($id){
+    public function edit(Product $product, $id){
         $product = Product::find($id);
         return view('products.edit',['product'=>$product]);
     }
 
-    public function update(Request $request, $id){
-     
+    public function update(Request $request, Product $product, $id){
+       
         $product = Product::findOrFail($id);
         $product->name = request('name');
 

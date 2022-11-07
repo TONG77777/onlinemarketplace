@@ -106,7 +106,7 @@
                                 <li><a href="#" class="btn-contact"> {{__('Contact ')}}<i class="bi bi-person-lines-fill"></i></a></li>
                                 <li><a href="#" class="btn-buy"> {{__('Buy Now ')}}<i class="bi bi-cart-check-fill"></i></a></li>
                                 <ul> 
-                                    <u><li><a href="/products/edit/{{$product->id}}" class="btn-"> Edit Product <i class="bi bi-pencil-square"></i></a></li></u>
+                                    <u><li><a href="{{route('seller.products.edit', $product->id)}}" class="btn-"> Edit Product <i class="bi bi-pencil-square"></i></a></li></u>
                                     <u><li><a href="#" class="btn-"> Mask as Sold <i class="bi bi-check-square-fill"></i></a></li></u>
                                     <u><li>
                                     <form action="/products/{{$product->id}}" method="POST">
