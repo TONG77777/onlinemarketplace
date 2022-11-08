@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\UploadedFile;
 
 //use App\Product;
@@ -29,6 +30,8 @@ class ProductController extends Controller
     }
 
     public function update(Request $request, Product $product, $id){
+
+        $request->user();
 
         $product = Product::findOrFail($id);
 
@@ -58,7 +61,7 @@ class ProductController extends Controller
         $product->update();
         $product->save();
     
-        return redirect('/products/')->with('success','Product Edit Successful');
+        return redirect('/products/')->with('success','Product Edit Successful!');
     }
 
     public function create(){
@@ -66,6 +69,8 @@ class ProductController extends Controller
     }
 
     public function store(Request $request){
+
+       
         // $request->validate([
         //     'name' => 'required|max:100',
         //     'condition' => 'required',
@@ -99,7 +104,7 @@ class ProductController extends Controller
     public function destroy($id){
         $product = Product::find($id);
         $product->delete();
-        return redirect('/products');
+        return redirect('/products')->with('success','Product Deleted');;
     }
 
     // public function search($name)

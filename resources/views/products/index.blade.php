@@ -5,15 +5,20 @@
         <!-- ======= product Section ======= -->
 
         <div class="section-header">
-            <h2>{{__('Used Item')}}</h2>
+            <h2>{{ __('Used Item') }}</h2>
 
             <div class="input-group mb-3 mx-auto" style="width: 750px">
                 <input type="text" class="form-control" placeholder="Search Product Name...">
                 <div class="input-group-append">
                     <button class="btn btn-submit-secondary" type="submit"><i class="bi bi-search"></i></button>
                 </div>
-            </div>
 
+            </div>
+            @if (session()->get('success'))
+                <div class="alert alert-success">
+                    {{ session()->get('success') }}
+                </div>
+            @endif
         </div>
 
         <div class="portfolio-isotope" data-portfolio-filter="*" data-portfolio-layout="masonry"
@@ -25,11 +30,11 @@
                 <div class="col-xl-4 col-md-6 portfolio-item filter-app">
                     <div class="portfolio-wrap">
                         @foreach ($products as $product)
-                            <a href="products/{{ $product->id }}"><img src="img/products/{{ $product->image }}" class="img-fluid"
-                                    alt="image"></a>
+                            <a href="products/{{ $product->id }}"><img src="img/products/{{ $product->image }}"
+                                    class="img-fluid" alt="image"></a>
                             <div class="portfolio-info">
-                                <h4><a href="products/{{ $product->id }}"
-                                        title="More Details">{{ $product->name }}</a></h4>
+                                <h4><a href="products/{{ $product->id }}" title="More Details">{{ $product->name }}</a>
+                                </h4>
                                 <p>{{ __('RM') }} {{ $product->price }}</p>
                                 <p>{{ $product->description }}</p>
                                 <button type="button" class="btn btn-light btn-rounded float-end active"><i

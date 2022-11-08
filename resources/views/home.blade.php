@@ -10,8 +10,8 @@
                     <p>This online marketplace is to avoid wasting materials and use the way of buying and selling to let
                         people put their Used Item to sell.</p>
                     <div class="d-flex justify-content-center justify-content-lg-start">
-                        <a href="#seller" class="btn-get-seller">SELLER</a>
-                        <a href="#buyer" class="btn-get-buyer">BUYER</a>
+                        <a href="/products/create" class="btn-get-seller">SELLER</a>
+                        <a href="/products" class="btn-get-buyer">BUYER</a>
                     </div>
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2">
