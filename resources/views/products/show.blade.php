@@ -128,3 +128,25 @@
 
     </main><!-- End #main -->
 @endsection
+{{-- @section('script')
+$(document).ready(function() {
+    var i = 0;    
+  $('.add-new-product').on('click', function() {
+
+    // here just clone the product when chick on (.add-new-product) button
+    // every thing is fine with clone 
+
+    var $clone = $('#new-product-content > div').clone();
+    $clone.appendTo('#products-div');
+
+      i++;  
+      // here I try to put id in each product
+      $('#new-product-content > div').attr('id', 'row'+ i);
+
+      // here to put id in 
+      $('.delete-product > a').attr('id',i);
+
+    });
+
+  });  
+@endsection --}}

@@ -43,7 +43,10 @@
                         @endforeach
                     </div>
                 </div><!-- End product Item -->
-
+                <div class="col-xl-4 col-md-6 portfolio-item filter-app">
+                    <div class="portfolio-wrap">
+                    </div>
+                </div>
             </div>
         </div><!-- End Product -->
         <section id="blog" class="blog">

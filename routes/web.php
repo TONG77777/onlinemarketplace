@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ProductController;
+use App\Models\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,16 +25,18 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 //products
 Route::get('/products','ProductController@index');
-Route::get('/products/create','ProductController@create')->middleware('auth');
+Route::get('/products/create','ProductController@create')->name('seller.products.create')->middleware('auth');
 Route::post('/products', 'ProductController@store');
 Route::get('/products/edit/{id}', 'ProductController@edit')->name('seller.products.edit')->middleware('auth');
 Route::put('/products/update/{id}', 'ProductController@update')->name('seller.products.update')->middleware('auth');
 Route::get('/products/{id}', 'ProductController@show');
 Route::delete('/products/{id}', 'ProductController@destroy')->middleware('auth');
 
+// Route::get('/like','ProductController@index');
 
-Route::get('/like', function () {
-    return view('like');
+Route::get('/dashbroad', function (Product $product) {
+    $products = Product::all();
+        return view('dashbroad', ['products' => $products]);
 });
 
 

@@ -42,7 +42,8 @@
             </a>
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a href="{{ route('home') }}">{{ __('Home') }}<i class="bi bi-house"></i></a></li>
+                    {{-- <li><a href="{{ route('home') }}">{{ __('Home') }}<i class="bi bi-house"></i></a></li> --}}
+                    <li><a href="/dashbroad">{{ __('Dashbroad') }}</a></li>
                     <li class="dropdown"><a href="#"><span>{{ __('Category') }}</span> <i
                                 class="bi bi-chevron-down dropdown-indicator"></i></a>
                         <ul>

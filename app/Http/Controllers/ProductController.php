@@ -18,7 +18,7 @@ class ProductController extends Controller
         // $products = Product::orderBy('image','name', 'price')->get();
         return view('products.index', ['products' => $products]);
     }
-
+    
     public function show($id){
         $product = Product::find($id);
         return view('products.show',['product'=>$product]);
