@@ -11,8 +11,7 @@ class DashbroadController extends Controller
 {
     public function index()
     {
-        $products = Product::with('users')->where('user_id','=',Auth::user()->id)->get();
+        $products = Product::with('users')->where('user_id', '=', Auth::user()->id)->get();
         return view('dashbroad', ['products' => $products]);
     }
-    
 }

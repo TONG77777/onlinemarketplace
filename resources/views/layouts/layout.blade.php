@@ -55,7 +55,7 @@
                             <li><a href="#">{{ __('Book & Article') }}</a></li>
                         </ul>
                     </li>
-                    <li><a href="#like">{{ __('Like') }}<i class="bi bi-heart"></i></a></li>
+                    <li><a href="/like">{{ __('Like') }}<i class="bi bi-heart"></i></a></li>
                     <li><a href="#chat">{{ __('Chat') }}<i class="bi bi-chat"></i></a></li>
                     @guest
                         @if (Route::has('login'))
@@ -127,7 +127,10 @@
     <script src="/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="/vendor/isotope-layout/isotope.pkgd.min.js"></script>
     <script src="/vendor/php-email-form/validate.js"></script>
-
+    <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+    @stack('javascript')
     <!-- Template Main JS File -->
     <script src="/js/main.js"></script>
 
