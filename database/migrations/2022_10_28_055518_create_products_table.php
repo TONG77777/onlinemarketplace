@@ -21,7 +21,8 @@ class CreateProductsTable extends Migration
             $table->string('category');
             $table->decimal('price',10,2);
             $table->text('description');
-            $table->boolean('is_visible')->default(true);
+            $table->boolean('mask_as_sold')->default(true);
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
     }

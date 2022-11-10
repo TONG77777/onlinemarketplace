@@ -95,6 +95,7 @@ class ProductController extends Controller
         $product->category = request('category');
         $product->price = request('price');
         $product->description = request('description');
+        $product->user_id = auth()->user()->id;
 
         $product->save();
     
@@ -111,4 +112,10 @@ class ProductController extends Controller
     // {
     //     return Product::where('name','like','%'.$name.'%')->get();
     // }
+
+    public function users(){
+
+        return $this->belongsTo(User::class, 'id');
+
+    }
 }

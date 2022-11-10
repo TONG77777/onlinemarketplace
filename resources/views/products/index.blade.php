@@ -37,8 +37,10 @@
                                 </h4>
                                 <p>{{ __('RM') }} {{ $product->price }}</p>
                                 <p>{{ $product->description }}</p>
+                                <form action="{{}}"></form>
                                 <button type="button" class="btn btn-light btn-rounded float-end active"><i
                                         class="bi bi-heart" style="color:red"></i></button>
+                                        {{-- bi bi-heart-fill --}}
                             </div>
                         @endforeach
                     </div>

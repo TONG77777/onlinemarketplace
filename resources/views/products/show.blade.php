@@ -105,7 +105,7 @@
                                 <li><strong>{{__('Publish Date')}}</strong> <span>{{$product->created_at->format('d M Y')}}</span></li>
                                 <li><a href="#" class="btn-contact"> {{__('Contact ')}}<i class="bi bi-person-lines-fill"></i></a></li>
                                 <li><a href="#" class="btn-buy"> {{__('Buy Now ')}}<i class="bi bi-cart-check-fill"></i></a></li>
-                                <ul> 
+                                {{-- <ul> 
                                     <u><li><a href="{{route('seller.products.edit', $product->id)}}" class="btn-"> Edit Product <i class="bi bi-pencil-square"></i></a></li></u>
                                     <u><li><a href="#" class="btn-"> Mask as Sold <i class="bi bi-check-square-fill"></i></a></li></u>
                                     <u><li>
@@ -115,7 +115,7 @@
                                         <button><i class="bi bi-trash-fill" style="color:red">Delete Product </i></button>
                                     </form>
                                 </li></u>
-                                </ul>
+                                </ul> --}}
                             </ul>
                         </div>
                     </div>

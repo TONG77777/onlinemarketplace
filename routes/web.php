@@ -23,7 +23,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 
-//products
+//Products
 Route::get('/products','ProductController@index');
 Route::get('/products/create','ProductController@create')->name('seller.products.create')->middleware('auth');
 Route::post('/products', 'ProductController@store');
@@ -34,15 +34,14 @@ Route::delete('/products/{id}', 'ProductController@destroy')->middleware('auth')
 
 // Route::get('/like','ProductController@index');
 
-Route::get('/dashbroad', function (Product $product) {
+//Dashbroad
+Route::get('/dashbroad', 'DashbroadController@index');
+
+Route::get('/like', function (Product $product) {
     $products = Product::all();
-        return view('dashbroad', ['products' => $products]);
+        return view('like', ['products' => $products]);
 });
 
-
-Route::get('seller/edit_item', function () {
-    return view('seller/edit_item');
-});
 
 Route::get('/address', function () {
     return view('address');
