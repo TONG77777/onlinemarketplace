@@ -69,7 +69,10 @@
                                 {{__('Posted :')}} {{$product->created_at->format('d M Y')}}
                             </p>
                             <P>
-                                {{__('Category  :')}} {{$product->category}}
+                                {{__('Category  :')}} 
+                                @foreach ($categories as $category)
+                                    {{$category->name}}
+                                @endforeach
                             </P>
                             <P>
                                 {{__('Condition  :')}} {{$product->condition}}
