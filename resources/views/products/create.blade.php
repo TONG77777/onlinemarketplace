@@ -54,7 +54,7 @@
                                 <div class="row mb-3">
                                     <label class="col-sm-2 col-form-label">Category</label>
                                     <div class="col-sm-12">
-                                        <select id="categories" name="categories[]" class="form-select" required>
+                                        <select id="category" name="category" class="form-select" required>
                                             @foreach ($categories as $category)
                                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                                             @endforeach

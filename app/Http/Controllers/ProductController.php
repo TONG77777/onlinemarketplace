@@ -94,7 +94,8 @@ class ProductController extends Controller
         }
        
         $product->condition = request('condition');
-        // $product->category = request('category');
+        // $product->categories()->attach(request('categories'));
+        $product->category = request('category');
         $product->price = request('price');
         $product->description = request('description');
         $product->user_id = auth()->user()->id;
