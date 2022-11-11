@@ -22,7 +22,7 @@ class ProductController extends Controller
     
     public function show($id){
         $product = Product::find($id);
-        $data['categories'] = Category::find($id)->get();
+        $data['categories'] = Category::find($id)->get()->where('id', $id);
 
         return view('products.show',['product'=>$product], $data);
     }
