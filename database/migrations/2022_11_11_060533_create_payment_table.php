@@ -18,7 +18,6 @@ class CreatePaymentTable extends Migration
             $table->string('status');
             $table->double('amount');
             $table->unsignedBigInteger('order_id');
-            $table->timestamps('paid_at');
             $table->timestamps();
         });
     }

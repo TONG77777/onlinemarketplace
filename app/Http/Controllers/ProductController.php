@@ -17,7 +17,7 @@ class ProductController extends Controller
     {
         $products = Product::all();
         $data['categories'] = Category::all();
-        return view('products.index', ['products' => $products]);
+        return view('products.index', ['products' => $products], $data);
     }
     
     public function show($id){
@@ -39,7 +39,7 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required|max:100',
             'condition' => 'required',
-            'category' => 'required',
+            // 'category' => 'required',
             'price' => 'required|numeric|between:0,99999.99',
             'description' => 'required|max:1000',
         ]);
@@ -55,7 +55,7 @@ class ProductController extends Controller
         }
        
         $product->condition = request('condition');
-        $product->category = request('category');
+        // $product->category = request('category');
         $product->price = request('price');
         $product->description = request('description');
 
@@ -66,7 +66,8 @@ class ProductController extends Controller
     }
 
     public function create(){
-        return view('products.create');
+        $data['categories'] = Category::all();
+        return view('products.create', $data);
     }
 
     public function store(Request $request){
@@ -93,7 +94,7 @@ class ProductController extends Controller
         }
        
         $product->condition = request('condition');
-        $product->category = request('category');
+        // $product->category = request('category');
         $product->price = request('price');
         $product->description = request('description');
         $product->user_id = auth()->user()->id;

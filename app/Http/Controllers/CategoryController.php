@@ -10,12 +10,12 @@ class CategoryController extends Controller
     public function index()
     {
         $category = Category::all();
-        return view('category.index', ['category' => $category]);
+        return view('admin/category.index', ['category' => $category]);
     }
 
     public function create()
     {
-        return view('category.create');
+        return view('admin.category.create');
     }
     public function store(Request $request){
 
@@ -26,8 +26,8 @@ class CategoryController extends Controller
 
         $category->save();
 
-        //$product->user_id = auth()->user()->id;
-        return redirect('admin.category')->with('success','Category Added');
+        $category->user_id = auth()->user()->id;
+        return redirect('admin/category')->with('success','Category Added');
     }
 
     public function edit(Category $category, $id){
@@ -52,12 +52,12 @@ class CategoryController extends Controller
         $category->update();
         $category->save();
 
-        return redirect('/admin/category')->with('success','Category Update Successful!');
+        return redirect('admin/category')->with('success','Category Update Successful!');
     }
 
     public function destroy(Category $category, $id){
         $category = Category::find($id);
         $category->delete();
-        return redirect('/admin/category')->with('success','Category Deleted');
+        return redirect('admin/category')->with('success','Category Deleted');
     }
 }

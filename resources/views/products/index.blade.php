@@ -24,12 +24,12 @@
         <div class="portfolio-isotope" data-portfolio-filter="*" data-portfolio-layout="masonry"
             data-portfolio-sort="original-order" data-aos="fade-up" data-aos-delay="100">
 
-
             <div class="row gy-4 portfolio-container">
 
-                <div class="col-xl-4 col-md-6 portfolio-item filter-app">
-                    <div class="portfolio-wrap">
-                        @foreach ($products as $product)
+                @foreach ($products as $product)
+                    <div class="col-xl-4 col-md-6 portfolio-item filter-app">
+
+                        <div class="portfolio-wrap">
                             <a href="products/{{ $product->id }}"><img src="img/products/{{ $product->image }}"
                                     class="img-fluid" alt="image"></a>
                             <div class="portfolio-info">
@@ -42,9 +42,10 @@
                                         class="bi bi-heart" style="color:red"></i></button>
                                 {{-- bi bi-heart-fill --}}
                             </div>
-                        @endforeach
-                    </div>
-                </div><!-- End product Item -->
+                        </div>
+                    </div><!-- End product Item -->
+                @endforeach
+
                 <div class="col-xl-4 col-md-6 portfolio-item filter-app">
                     <div class="portfolio-wrap">
                     </div>

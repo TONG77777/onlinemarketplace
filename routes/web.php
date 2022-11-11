@@ -32,7 +32,13 @@ Route::put('/products/update/{id}', 'ProductController@update')->name('seller.pr
 Route::get('/products/{id}', 'ProductController@show');
 Route::delete('/products/{id}', 'ProductController@destroy')->middleware('auth');
 
-// Route::get('/like','ProductController@index');
+//category
+Route::get('admin/category', 'CategoryController@index');
+Route::get('admin/category/create', 'CategoryController@create')->name('admin.category.create')->middleware('auth');
+Route::post('admin/category', 'CategoryController@store');
+Route::get('admin/category/edit/{id}', 'CategoryController@edit')->name('admin.category.edit')->middleware('auth');
+Route::put('admin/category/update/{id}', 'CategoryController@update')->name('admin.category.update')->middleware('auth');
+Route::delete('admin/category/{id}', 'CategoryController@destroy')->middleware('auth');
 
 //Dashbroad
 Route::get('/dashbroad', 'DashbroadController@index');
@@ -47,8 +53,9 @@ Route::get('/address', function () {
     return view('address');
 });
 
-Route::get('/order', function () {
-    return view('order');
+//admin
+Route::get('admin/order', function () {
+    return view('/admin/order/index');
 });
 
 Route::get('/chat', function () {
@@ -63,6 +70,8 @@ Route::get('payment', function () {
     return view('payment');
 });
 
-Route::get('category', function () {
-    return view('category');
+
+
+Route::get('admin', function () {
+    return view('admin.index');
 });

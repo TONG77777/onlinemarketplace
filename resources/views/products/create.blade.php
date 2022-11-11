@@ -54,14 +54,10 @@
                                 <div class="row mb-3">
                                     <label class="col-sm-2 col-form-label">Category</label>
                                     <div class="col-sm-12">
-                                        <select id="category" name="category" class="form-select" required
-                                            aria-label="Default select example">
-                                            <option value="1">Computer & Technology</option>
-                                            <option value="2">Furniture</option>
-                                            <option value="3">Home & Living</option>
-                                            <option value="4">Hobbies</option>
-                                            <option value="5">Sport Equipment</option>
-                                            <option value="6">Book & Article</option>
+                                        <select id="categories" name="categories[]" class="form-select" required>
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
