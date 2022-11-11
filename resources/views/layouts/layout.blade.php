@@ -55,7 +55,7 @@
                             <li><a href="#">{{ __('Book & Article') }}</a></li>
                         </ul>
                     </li>
-                    <li><a href="/like">{{ __('Like') }}<i class="bi bi-heart"></i></a></li>
+                    <li><a href="/wishlist">{{ __('Wishlist') }}<i class="bi bi-heart"></i></a></li>
                     <li><a href="#chat">{{ __('Chat') }}<i class="bi bi-chat"></i></a></li>
                     @guest
                         @if (Route::has('login'))

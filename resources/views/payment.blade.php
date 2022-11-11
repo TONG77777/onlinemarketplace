@@ -18,7 +18,7 @@
                                     <div class="row mb-4">
                                         <div class="col">
                                             <div class="form-outline">
-                                                <label class="form-label" for="form6Example1">Name</label>
+                                                <label class="form-label" for="form6Example1">{{ __('Receiver Name') }}</label>
                                                 <input type="text" id="form6Example1" class="form-control"
                                                     placeholder="Full Name" />
 
@@ -27,9 +27,9 @@
                                         <div class="col">
                                             <div class="form-outline">
 
-                                                <label class="form-label" for="form6Example2">Company</label>
+                                                <label class="form-label" for="form6Example2">{{ __('Label') }}</label>
                                                 <input type="text" id="form6Example2" class="form-control"
-                                                    placeholder="Company Name" />
+                                                    placeholder="Company Name/Home" />
                                             </div>
                                         </div>
                                     </div>
@@ -37,7 +37,7 @@
                                     <div class="row mb-4">
                                         <div class="col">
                                             <div class="form-outline">
-                                                <label class="form-label" for="form6Example1">Email Address</label>
+                                                <label class="form-label" for="form6Example1">{{ __('Email Address') }}</label>
                                                 <input type="text" id="form6Example1" class="form-control"
                                                     placeholder="exmaple@gmail.com" />
 
@@ -46,7 +46,7 @@
                                         <div class="col">
                                             <div class="form-outline">
 
-                                                <label class="form-label" for="form6Example2">Phone Number</label>
+                                                <label class="form-label" for="form6Example2">{{ __('Contact Number') }}</label>
                                                 <input type="text" id="form6Example2" class="form-control"
                                                     placeholder="01X-XXXXXXXX" />
                                             </div>
@@ -74,7 +74,7 @@
                                             <div class="form-outline">
 
                                                 <label class="form-label"
-                                                    for="formCardNumber">{{ __('State Code') }}</label>
+                                                    for="formCardNumber">{{ __('Postal Code') }}</label>
                                                 <input type="text" id="formCardNumber" class="form-control"
                                                     placeholder="XXXXX" />
                                             </div>

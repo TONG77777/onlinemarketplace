@@ -71,8 +71,8 @@
                                 <label for="price" class="form-label">Price</label>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">RM</span>
-                                    <input type="number" name="price" min="1" class="form-control" id="price" required
-                                        placeholder="XX.XX">
+                                    <input type="number" name="price" min="1" class="form-control" id="price"
+                                        required placeholder="XX.XX">
                                 </div>
                             </div>
 
@@ -84,16 +84,32 @@
                                     <label for="floatingTextarea">Description for the product</label>
                                 </div>
                             </div>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-submit">Submit</button>
-                                <button type="reset" class="btn btn-reset">Reset</button>
+
+                            <div class="col-12">
+                                <label for="delivery_method" class="form-label">Delivery Method :</label>
+                                <div class="col-sm-10">
+                                    <div class="form-check"> <input class="form-check-input" type="checkbox"
+                                            id="gridCheck1" checked=""> <label class="form-check-label" for="gridCheck1" > Delivery
+                                        </label></div>
+                                    <div class="form-check"> <input class="form-check-input" type="checkbox" id="gridCheck2"
+                                            checked=""> <label class="form-check-label" for="gridCheck2"> Meet Up
+                                        </label></div>
+                                </div>
+                                <div class="form-check"> <input class="form-check-input" type="checkbox" id="gridCheck2"
+                                        checked=""> <label class="form-check-label" for="gridCheck2"> Cash On
+                                        Delivery</label></div>
                             </div>
-                        </form><!-- Product Details Form -->
-
                     </div>
-                </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-submit">Submit</button>
+                        <button type="reset" class="btn btn-reset">Reset</button>
+                    </div>
+                    </form><!-- Product Details Form -->
 
+                </div>
             </div>
+
+        </div>
         </div>
     </section>
 @endsection

@@ -37,14 +37,18 @@ Route::delete('/products/{id}', 'ProductController@destroy')->middleware('auth')
 //Dashbroad
 Route::get('/dashbroad', 'DashbroadController@index');
 
-Route::get('/like', function (Product $product) {
+Route::get('/wishlist', function (Product $product) {
     $products = Product::all();
-    return view('like', ['products' => $products]);
+    return view('wishlist', ['products' => $products]);
 });
 
 
 Route::get('/address', function () {
     return view('address');
+});
+
+Route::get('/order', function () {
+    return view('order');
 });
 
 Route::get('/chat', function () {
@@ -57,4 +61,8 @@ Route::get('/seller_view', function () {
 
 Route::get('payment', function () {
     return view('payment');
+});
+
+Route::get('category', function () {
+    return view('category');
 });

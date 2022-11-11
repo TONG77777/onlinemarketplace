@@ -5,7 +5,7 @@
             <div class="container">
                 <ol>
                     <li><a href="{{ route('home') }}">{{ __('Home') }}</a></li>
-                    <li>{{ __('Like') }}</li>
+                    <li>{{ __('Your Wishlist') }}</li>
                 </ol>
             </div>
         </nav>

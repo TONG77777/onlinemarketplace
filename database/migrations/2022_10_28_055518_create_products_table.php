@@ -18,7 +18,6 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('image')->nullable();
             $table->string('condition');
-            $table->string('category');
             $table->decimal('price',10,2);
             $table->text('description');
             $table->boolean('mask_as_sold')->default(true);

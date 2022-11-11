@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\UploadedFile;
+use App\Models\Category;
 
 //use App\Product;
 
@@ -15,7 +16,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        // $products = Product::orderBy('image','name', 'price')->get();
+        $data['categories'] = Category::all();
         return view('products.index', ['products' => $products]);
     }
     

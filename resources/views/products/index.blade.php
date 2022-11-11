@@ -40,7 +40,7 @@
                                 <form action="{{}}"></form>
                                 <button type="button" class="btn btn-light btn-rounded float-end active"><i
                                         class="bi bi-heart" style="color:red"></i></button>
-                                        {{-- bi bi-heart-fill --}}
+                                {{-- bi bi-heart-fill --}}
                             </div>
                         @endforeach
                     </div>
@@ -54,13 +54,24 @@
         <section id="blog" class="blog">
             <div class="blog-pagination">
                 <ul class="justify-content-center">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
                     <li><a href="#">1</a></li>
                     <li class="active"><a href="#">2</a></li>
                     <li><a href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
                 </ul>
             </div><!-- End Product -->
 
         </section><!-- End Product -->
+
     </div>
     </section><!-- End product Section -->
     </div>
