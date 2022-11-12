@@ -10,13 +10,18 @@
             </div>
         </nav>
     </div><!-- End Breadcrumbs -->
-    <div class="container pt-5 my-5" style="height: 450px">
-
-        <button style="submit" class="float-end"><a
-                href="/admin/category/create">{{ __('Add New Category') }}</a></button>
+    <div class="container pt-5 my-5" style="height: auto">
+        @if (session()->get('success'))
+            <div class="alert alert-success">
+                {{ session()->get('success') }}
+            </div>
+        @endif
+        <button style="submit" class="float-end"><a href="/admin/category/create">{{ __('Add New Category') }}</a></button>
         <table class="table">
 
+
             <thead>
+
                 <tr>
                     <th scope="col">{{ __('#') }}</th>
                     <th scope="col">{{ __('Category Name') }}</th>
@@ -33,15 +38,15 @@
                         <td>{{ $category->name }}</td>
                         <td>{{ $category->description }}</td>
                         <td scope="row">{{ $category->updated_at }}</td>
-                        <td><a href="{{route('admin.category.edit',$category->id)}}">{{ __('Edit') }}</a></td>
+                        <td><a href="{{ route('admin.category.edit', $category->id) }}">{{ __('Edit') }}</a></td>
                         <td>
-                            <form action="/admin/category/{{ $category->id}}" method="POST">
+                            <form action="/admin/category/{{ $category->id }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">{{ __('Delete') }}</button>
                             </form>
                         <td>
-                          
+
                 </tr>
                 @endforeach
             </tbody>

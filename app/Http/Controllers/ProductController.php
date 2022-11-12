@@ -22,14 +22,14 @@ class ProductController extends Controller
     
     public function show($id){
         $product = Product::find($id);
-        $data['categories'] = Category::find($id)->get()->where('id', $id);
-
+        $data['categories'] = Category::find($id)->get()->where('id', $product->category);
         return view('products.show',['product'=>$product], $data);
     }
 
     public function edit(Product $product, $id){
+        $data['categories'] = Category::all();
         $product = Product::find($id);
-        return view('products.edit',['product'=>$product]);
+        return view('products.edit',['product'=>$product], $data);
     }
 
     public function update(Request $request, Product $product, $id){
@@ -41,7 +41,7 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required|max:100',
             'condition' => 'required',
-            // 'category' => 'required',
+            'category' => 'required',
             'price' => 'required|numeric|between:0,99999.99',
             'description' => 'required|max:1000',
         ]);
@@ -57,7 +57,7 @@ class ProductController extends Controller
         }
        
         $product->condition = request('condition');
-        // $product->category = request('category');
+        $product->category = request('category');
         $product->price = request('price');
         $product->description = request('description');
 
@@ -96,7 +96,6 @@ class ProductController extends Controller
         }
        
         $product->condition = request('condition');
-        // $product->categories()->attach(request('categories'));
         $product->category = request('category');
         $product->price = request('price');
         $product->description = request('description');

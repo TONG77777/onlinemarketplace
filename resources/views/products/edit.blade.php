@@ -34,7 +34,8 @@
                             <div class="col-12">
                                 <label for="inputNumber" class="col-sm-2 col-form-label">File Upload</label>
                                 <div class="col-sm-12">
-                                    <input class="form-control" type="file" id="formFile" name="image">
+                                    <input class="form-control" type="file" id="formFile" name="image"
+                                        value="{{ old('image') ?? $product->image }}">
                                 </div>
                             </div>
 
@@ -57,14 +58,14 @@
                                 <div class="row mb-3">
                                     <label class="col-sm-2 col-form-label">Category</label>
                                     <div class="col-sm-12">
-                                        <select class="form-select" aria-valuetext="" aria-label="Default select example"
-                                            name="category">
-                                            <option value="1">Computer & Technology</option>
-                                            <option value="2">Furniture</option>
-                                            <option value="3">Home & Living</option>
-                                            <option value="4">Hobbies</option>
-                                            <option value="5">Sport Equipment</option>
-                                            <option value="6">Book & Article</option>
+                                        <select id="category" name="category" class="form-select" required>
+                                            @foreach ($categories as $category)
+                                                @if ($product->category == $category->id)
+                                                    <option value="{{ $category->id }}" selected>{{ $category->name }}</>
+                                                    @else
+                                                    <option value="{{ $category->id }}">{{ $category->name }}</>
+                                                @endif
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -75,7 +76,7 @@
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">RM</span>
                                     <input type="number" min="1" class="form-control"
-                                        value="{{ old('name') ?? $product->price }}" name="price" placeholder="XX.XX">
+                                        value="{{ old('price') ?? $product->price }}" name="price" placeholder="XX.XX">
                                 </div>
                             </div>
 
@@ -83,7 +84,7 @@
                                 <label for="description" class="form-label">Description</label>
                                 <div class="form-floating">
                                     <textarea class="form-control" placeholder="Something description about the product..." id="floatingTextarea"
-                                        style="height: 100px;" name="description">{{ old('name') ?? $product->description }}</textarea>
+                                        style="height: 100px;" name="description">{{ old('description') ?? $product->description }}</textarea>
                                 </div>
                             </div>
                             <div class="text-center">
