@@ -41,7 +41,13 @@
                         <td>{{ __('RM') }} {{ $product->price }}</td>
                         <td scope="row">{{ $product->updated_at }}</td>
                         <td>{{ $product->condition }}</td>
-                        <td>{{ $product->category }}</td>
+                        <td>
+                            @foreach ($categories as $category)
+                                @if ($category->id == $product->category)
+                                    {{ $category->name }}
+                                @endif
+                            @endforeach
+                            </td>
                         <td>
                             <div class="btn-"><a href="{{ route('seller.products.edit', $product->id) }}"
                                     class=""><i class="bi bi-pen"></i></a></div>
