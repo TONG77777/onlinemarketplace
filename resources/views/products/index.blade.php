@@ -37,9 +37,12 @@
                                 </h4>
                                 <p>{{ __('RM') }} {{ $product->price }}</p>
                                 <p>{{ $product->description }}</p>
-                                <form action="{{}}"></form>
-                                <button type="button" class="btn btn-light btn-rounded float-end active"><i
-                                        class="bi bi-heart" style="color:red"></i></button>
+
+                                <form action="{{route('wishlist.store', $product->id)}}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn .btn-light btn-rounded float-end active"><i
+                                            class="bi bi-heart" style="color:red"></i></button>
+                                </form>
                                 {{-- bi bi-heart-fill --}}
                             </div>
                         </div>

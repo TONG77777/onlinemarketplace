@@ -122,4 +122,8 @@ class ProductController extends Controller
         return $this->belongsTo(User::class, 'id');
 
     }
+
+    public function wishlist(){
+        return $this->hasMany(Wishlist::class);
+    }
 }

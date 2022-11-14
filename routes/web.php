@@ -43,10 +43,10 @@ Route::delete('admin/category/{id}', 'CategoryController@destroy')->middleware('
 //Dashbroad
 Route::get('/dashbroad', 'DashbroadController@index');
 
-Route::get('/wishlist', function (Product $product) {
-    $products = Product::all();
-    return view('wishlist', ['products' => $products]);
-});
+//Wishlist
+Route::get('/wishlist', 'WishlistController@index');
+Route::post('/wishlist/store/{id}', 'WishlistController@store')->name('wishlist.store')->middleware('auth');
+Route::delete('/wishlist/{id}', 'WishlistController@destroy')->middleware('auth')->name('wishlist.destroy');
 
 
 Route::get('/address', function () {
@@ -62,9 +62,7 @@ Route::get('/chat', function () {
     return view('chat');
 });
 
-Route::get('/seller_view', function () {
-    return view('seller_view');
-});
+
 
 Route::get('payment', function () {
     return view('payment');
