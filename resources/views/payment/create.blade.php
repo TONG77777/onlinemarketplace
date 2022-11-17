@@ -13,14 +13,15 @@
                                 <h5 class="mb-0">Address details</h5>
                             </div>
                             <div class="card-body">
-                                <form>
+                                <form action="/payment/create" enctype="multipart/form-data" method="post">
                                     <!-- 2 column grid layout with text inputs for the first and last names -->
+                                    @csrf
                                     <div class="row mb-4">
                                         <div class="col">
                                             <div class="form-outline">
                                                 <label class="form-label" for="form6Example1">{{ __('Receiver Name') }}</label>
                                                 <input type="text" id="form6Example1" class="form-control"
-                                                    placeholder="Full Name" />
+                                                    placeholder="Full Name" name="receiver_name"/>
 
                                             </div>
                                         </div>
@@ -29,7 +30,7 @@
 
                                                 <label class="form-label" for="form6Example2">{{ __('Label') }}</label>
                                                 <input type="text" id="form6Example2" class="form-control"
-                                                    placeholder="Company Name/Home" />
+                                                    placeholder="Company Name/Home" name="title"/>
                                             </div>
                                         </div>
                                     </div>
@@ -39,7 +40,7 @@
                                             <div class="form-outline">
                                                 <label class="form-label" for="form6Example1">{{ __('Email Address') }}</label>
                                                 <input type="text" id="form6Example1" class="form-control"
-                                                    placeholder="exmaple@gmail.com" />
+                                                    placeholder="exmaple@gmail.com" name="email"/>
 
                                             </div>
                                         </div>
@@ -48,7 +49,20 @@
 
                                                 <label class="form-label" for="form6Example2">{{ __('Contact Number') }}</label>
                                                 <input type="text" id="form6Example2" class="form-control"
-                                                    placeholder="01X-XXXXXXXX" />
+                                                    placeholder="01X-XXXXXXXX" name="receiver_contact"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-4">
+                                        <div class="col">
+                                            <div class="form-outline">
+                                                <label for="address" class="form-label">{{__('Address')}}</label>
+                                                <div class="form-floating">
+                                                    <textarea class="form-control" placeholder="Description for the product..." id="description" style="height: 100px;"
+                                                        name="address" required></textarea>
+                                                    <label for="floatingTextarea"></label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -59,7 +73,7 @@
 
                                                 <label class="form-label" for="formExpiration">{{ __('City') }}</label>
                                                 <input type="text" id="formExpiration" class="form-control"
-                                                    placeholder="" />
+                                                    placeholder="" name="city"/>
                                             </div>
                                         </div>
                                         {{ __(' / ') }}
@@ -67,7 +81,7 @@
                                             <div class="form-outline">
 
                                                 <label class="form-label" for="formCVV">{{ __('State') }}</label>
-                                                <input type="text" id="formCVV" class="form-control" placeholder="" />
+                                                <input type="text" id="formCVV" class="form-control" placeholder="" name="state"/>
                                             </div>
                                         </div>
                                         <div class="col">
@@ -75,7 +89,7 @@
 
                                                 <label class="form-label"
                                                     for="formCardNumber">{{ __('Postal Code') }}</label>
-                                                <input type="text" id="formCardNumber" class="form-control"
+                                                <input type="text" id="formCardNumber" class="form-control" name="postal_code"
                                                     placeholder="XXXXX" />
                                             </div>
                                         </div>
@@ -158,7 +172,7 @@
                                     <li
                                         class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                                         {{ __('Products') }}
-                                        <span>{{ __('RM XX.XX') }}</span>
+                                        <span></span>
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between align-items-center px-0">
                                         {{ __('Shipping fees') }}

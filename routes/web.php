@@ -48,24 +48,19 @@ Route::get('/wishlist', 'WishlistController@index');
 Route::post('/wishlist/store/{id}', 'WishlistController@store')->name('wishlist.store')->middleware('auth');
 Route::delete('/wishlist/{id}', 'WishlistController@destroy')->middleware('auth')->name('wishlist.destroy');
 
+//Payment & Checkout
+Route::get('/payment/create', 'AddressController@create')->name('payment.create')->middleware('auth');
+Route::post('/payment/create', 'AddressController@store');
 
-Route::get('/address', function () {
-    return view('address');
-});
 
-//admin
+//Order 
 Route::get('admin/order', function () {
     return view('/admin/order/index');
 });
 
+//Chat
 Route::get('/chat', function () {
     return view('chat');
-});
-
-
-
-Route::get('payment', function () {
-    return view('payment');
 });
 
 

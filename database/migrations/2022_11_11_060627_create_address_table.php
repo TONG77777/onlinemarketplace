@@ -13,14 +13,17 @@ class CreateAddressTable extends Migration
      */
     public function up()
     {
-        Schema::create('address', function (Blueprint $table) {
+        Schema::create('addresses', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->string('receiver_name');
             $table->string('receiver_contact');
-            $table->string('address');
+            $table->string('email');
+            $table->text('address');
             $table->string('city');
             $table->string('state');
+            $table->integer('postal_code');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
     }
@@ -32,6 +35,6 @@ class CreateAddressTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('address');
+        Schema::dropIfExists('addresses');
     }
 }
