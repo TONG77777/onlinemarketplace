@@ -52,7 +52,9 @@ Route::delete('/wishlist/{id}', 'WishlistController@destroy')->middleware('auth'
 Route::get('/payment/create', 'AddressController@create')->name('payment.create')->middleware('auth');
 Route::post('/payment/create', 'AddressController@store');
 
-
+//Payment
+Route::get('/payment/form', 'StripePaymentController@form')->name('payment.form');
+Route::post('/payment/form', 'StripePaymentController@makePayment')->name('make.payment');
 //Order 
 Route::get('admin/order', function () {
     return view('/admin/order/index');
@@ -68,3 +70,9 @@ Route::get('/chat', function () {
 Route::get('admin', function () {
     return view('admin.index');
 });
+
+Route::get('payment/button', function () {
+    return view('payment.button');
+});
+
+

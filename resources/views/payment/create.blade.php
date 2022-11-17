@@ -1,6 +1,7 @@
 @extends('layouts.layout')
 
 @section('content')
+
     <!-- Credit card form -->
     <div class="container">
         <div class="portfolio-isotope" data-portfolio-filter="*" data-portfolio-layout="masonry"
@@ -60,7 +61,7 @@
                                                 <label for="address" class="form-label">{{__('Address')}}</label>
                                                 <div class="form-floating">
                                                     <textarea class="form-control" placeholder="Description for the product..." id="description" style="height: 100px;"
-                                                        name="address" required></textarea>
+                                                        name="address" ></textarea>
                                                     <label for="floatingTextarea"></label>
                                                 </div>
                                             </div>
@@ -103,58 +104,9 @@
                                         </label>
                                     </div>
 
-                                    <h5 class="mb-4">{{ __('Card Details') }}</h5>
-
-                                    <div class="row mb-4">
-                                        <div class="col">
-                                            <div class="form-outline">
-                                                <label class="form-label" for="formNameOnCard">{{ __('Full Name') }}</label>
-                                                <input type="text" id="formNameOnCard" class="form-control"
-                                                    placeholder="Name" />
-
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="form-outline">
-
-                                                <label class="form-label"
-                                                    for="formCardNumber">{{ __('Credit card number') }}</label>
-                                                <input type="text" id="formCardNumber" class="form-control"
-                                                    placeholder="XXXX-XXXX-XXXX-XXXX" />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-4">
-                                        <div class="col-3">
-                                            <div class="form-outline">
-
-                                                <label class="form-label" for="formExpiration">{{ __('MM') }}</label>
-                                                <input type="text" id="formExpiration" class="form-control"
-                                                    placeholder="XX" />
-                                            </div>
-                                        </div>
-                                        {{ __(' / ') }}
-                                        <div class="col-3">
-                                            <div class="form-outline">
-
-                                                <label class="form-label" for="formCVV">{{ __('YY') }}</label>
-                                                <input type="text" id="formCVV" class="form-control"
-                                                    placeholder="XX" />
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="form-outline">
-
-                                                <label class="form-label"
-                                                    for="formCardNumber">{{ __('CVV') }}</label>
-                                                <input type="text" id="formCardNumber" class="form-control"
-                                                    placeholder="XXX" />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <button class="btn btn-login btn-lg btn-block" type="submit">
+                                    
+                                    <form>
+                                    <button class="btn btn-login btn-lg btn-block" type="submit" id="checkout-button">
                                         {{ __('Continue to checkout') }}
                                     </button>
                                 </form>
@@ -194,4 +146,5 @@
             <!-- Credit card form -->
         </div>
     </div>
+
 @endsection
