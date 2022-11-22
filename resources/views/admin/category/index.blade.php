@@ -16,7 +16,8 @@
                 {{ session()->get('success') }}
             </div>
         @endif
-        <button style="submit" class="float-end"><a href="/admin/category/create">{{ __('Add New Category') }}</a></button>
+        <button type="submit" class="float-end btn" style="background: #00b6a1"><a href="/admin/category/create"
+                style="color: azure">{{ __('+ Add New Category') }}</a></button>
         <table class="table">
 
 

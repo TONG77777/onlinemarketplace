@@ -40,11 +40,19 @@ Route::get('admin/category/edit/{id}', 'CategoryController@edit')->name('admin.c
 Route::put('admin/category/update/{id}', 'CategoryController@update')->name('admin.category.update')->middleware('auth');
 Route::delete('admin/category/{id}', 'CategoryController@destroy')->middleware('auth');
 
+//Order 
+Route::get('/admin/order', 'OrderController@index')->name('admin.order.index')->middleware('auth');
+Route::get('/admin/order/create', 'OrderController@create')->name('admin.order.create')->middleware('auth');
+Route::post('/admin/order', 'OrderController@store')->name('admin.order.store')->middleware('auth');
+Route::get('/admin/order/{id}', 'OrderController@show')->name('admin.order.show')->middleware('auth');
+Route::get('/admin/order/edit/{id}', 'OrderController@edit')->name('admin.order.edit')->middleware('auth');
+Route::put('/admin/order/update/{id}', 'OrderController@update')->name('admin.order.update')->middleware('auth');
+
 //Dashbroad
-Route::get('/dashbroad', 'DashbroadController@index');
+Route::get('/dashbroad', 'DashbroadController@index')->name('dashbroad.index')->middleware('auth');
 
 //Wishlist
-Route::get('/wishlist', 'WishlistController@index');
+Route::get('/wishlist', 'WishlistController@index')->middleware('auth');
 Route::post('/wishlist/store/{id}', 'WishlistController@store')->name('wishlist.store')->middleware('auth');
 Route::delete('/wishlist/{id}', 'WishlistController@destroy')->middleware('auth')->name('wishlist.destroy');
 
@@ -55,10 +63,7 @@ Route::post('/payment/create', 'AddressController@store');
 //Payment
 Route::get('/payment/form', 'StripePaymentController@form')->name('payment.form');
 Route::post('/payment/form', 'StripePaymentController@makePayment')->name('make.payment');
-//Order 
-Route::get('admin/order', function () {
-    return view('/admin/order/index');
-});
+
 
 //Chat
 Route::get('/chat', function () {
@@ -66,13 +71,11 @@ Route::get('/chat', function () {
 });
 
 
-
 Route::get('admin', function () {
     return view('admin.index');
 });
 
-Route::get('payment/button', function () {
-    return view('payment.button');
-});
 
-
+// Route::get('admin/order', function () {
+//     return view('admin.order.index');
+// });

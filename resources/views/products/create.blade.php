@@ -81,7 +81,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-12">
+                            {{-- <div class="col-12">
                                 <label for="delivery_method" class="form-label">Delivery Method :</label>
                                 <div class="col-sm-10">
                                     <div class="form-check"> <input class="form-check-input" type="checkbox"
@@ -94,7 +94,7 @@
                                 <div class="form-check"> <input class="form-check-input" type="checkbox" id="gridCheck2"
                                         checked=""> <label class="form-check-label" for="gridCheck2"> Cash On
                                         Delivery</label></div>
-                            </div>
+                            </div> --}}
                     </div>
                     <div class="text-center">
                         <button type="submit" class="btn btn-submit">Submit</button>

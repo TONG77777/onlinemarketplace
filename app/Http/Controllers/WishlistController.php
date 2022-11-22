@@ -33,6 +33,7 @@ class WishlistController extends Controller
             return redirect()->back()->with('success', 'Please login to add wishlist');
         }
     }
+    
     public function destroy($id)
     {
         $wishlist = Wishlist::find($id);

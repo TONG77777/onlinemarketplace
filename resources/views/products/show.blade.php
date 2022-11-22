@@ -86,7 +86,7 @@
                                 {{ $product->description }}
                             </p>
 
-                            <div class="testimonial-item">
+                            {{-- <div class="testimonial-item">
                                 <div>
                                     <img src="/img/p1.png" class="testimonial-img" alt="">
                                     <h3>{{ __('User Name') }}</h3>
@@ -97,7 +97,7 @@
                             <h3>{{ __('Delivery  :') }}</h3>
                             <p>{{ __('Option 1') }}</p>
                             <p>{{ __('Option 2') }}</p>
-                            </p>
+                            </p> --}}
 
                         </div>
                     </div>
@@ -115,7 +115,7 @@
                                     <span>{{ $product->created_at->format('d M Y') }}</span></li>
                                 <li><a href="#" class="btn-contact"> {{ __('Contact ') }}<i
                                             class="bi bi-person-lines-fill"></i></a></li>
-                                <li><a href="#" class="btn-buy"> {{ __('Buy Now ') }}<i
+                                <li><a href="/payment/create" class="btn-buy"> {{ __('Buy Now ') }}<i
                                             class="bi bi-cart-check-fill"></i></a></li>
                                 {{-- <ul> 
                                     <u><li><a href="{{route('seller.products.edit', $product->id)}}" class="btn-"> Edit Product <i class="bi bi-pencil-square"></i></a></li></u>

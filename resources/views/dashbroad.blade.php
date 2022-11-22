@@ -92,10 +92,12 @@
             </tbody>
             </table>
         </div>
+    
     @else
         <div class="alert alert-info">
-            {{ __('You have no products yet.') }}
+            {{ __('You have no products yet. Try to add some...') }}
         </div>
         @endif
     </div>
+</div>
 @endsection
