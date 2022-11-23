@@ -7,7 +7,7 @@
         <div class="section-header">
             <h2>{{ __('Used Item') }}</h2>
 
-            <form action="{{ url('/search') }}" method="get" >
+            <form action="{{ url('/search') }}" method="get">
                 @csrf
                 <div class="input-group mb-3 mx-auto" style="width: 750px">
                     <input type="text" class="form-control" name="query" placeholder="Search Product Name...">
@@ -16,12 +16,14 @@
                     </div>
             </form>
         </div>
-  
+
         @if (session()->get('success'))
             <div class="alert alert-success">
                 {{ session()->get('success') }}
             </div>
         @endif
+
+
     </div>
 
     <div class="portfolio-isotope" data-portfolio-filter="*" data-portfolio-layout="masonry"
@@ -58,6 +60,11 @@
             </div>
         </div>
     </div><!-- End Product -->
+    @empty($product)
+        <div class="alert alert-danger">
+            {{ __('No products found') }}
+        </div>
+    @endempty
     <section id="blog" class="blog">
         <div class="blog-pagination">
             <ul class="justify-content-center">

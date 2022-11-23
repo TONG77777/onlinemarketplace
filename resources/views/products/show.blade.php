@@ -67,15 +67,6 @@
                         <div class="portfolio-description">
                             <h2>{{ $product->name }}</h2>
                             <h3>{{ __('RM') }} {{ $product->price }}</h3>
-                            <p>
-                                {{ __('Posted :') }} {{ $product->created_at->format('d M Y') }}
-                            </p>
-                            <P>
-                                {{ __('Category  :') }}
-                                @foreach ($categories as $category)
-                                    {{ $category->name }}
-                                @endforeach
-                            </P>
                             <P>
                                 {{ __('Condition  :') }} {{ $product->condition }}
                             </P>
@@ -86,18 +77,19 @@
                                 {{ $product->description }}
                             </p>
 
-                            {{-- <div class="testimonial-item">
+                            <div class="testimonial-item">
                                 <div>
                                     <img src="/img/p1.png" class="testimonial-img" alt="">
                                     <h3>{{ __('User Name') }}</h3>
-                                    <h4>{{ Auth::user()->name }}</h4>
+                                    <h4>XXX</h4>
+                                    {{-- <h4>{{ Auth::user()->name }}</h4> --}}
                                 </div>
                             </div>
 
                             <h3>{{ __('Delivery  :') }}</h3>
                             <p>{{ __('Option 1') }}</p>
                             <p>{{ __('Option 2') }}</p>
-                            </p> --}}
+                            </p>
 
                         </div>
                     </div>
@@ -136,29 +128,8 @@
             </div>
 
             </div>
-        </section><!-- End Portfolio Details Section -->
+        </section>
 
     </main><!-- End #main -->
 @endsection
-{{-- @section('script')
-$(document).ready(function() {
-    var i = 0;    
-  $('.add-new-product').on('click', function() {
 
-    // here just clone the product when chick on (.add-new-product) button
-    // every thing is fine with clone 
-
-    var $clone = $('#new-product-content > div').clone();
-    $clone.appendTo('#products-div');
-
-      i++;  
-      // here I try to put id in each product
-      $('#new-product-content > div').attr('id', 'row'+ i);
-
-      // here to put id in 
-      $('.delete-product > a').attr('id',i);
-
-    });
-
-  });  
-@endsection --}}
