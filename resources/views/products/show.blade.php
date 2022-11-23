@@ -34,15 +34,16 @@
                         <!-- Slides with controls -->
                         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="/img/products/{{ $product->image }}" class="d-block w-100" alt="image1">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="/img/products/{{ $product->image }}" class="d-block w-100" alt="image2">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="/img/products/{{ $product->image }}" class="d-block w-100" alt="image3">
-                                </div>
+                                @php
+                                    $images = App\Models\Image::where('product_id', $product->id)->get();
+                                @endphp
+
+                                @foreach ($images as $image)
+                                    <div class="carousel-item active">
+                                        <img src="/img/products/{{ $image->url }}" class="d-block w-100" height="700px;" alt="image">
+                                    </div>
+                                @endforeach
+
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
                                 data-bs-slide="prev">
@@ -104,7 +105,8 @@
                                         @endforeach
                                     </span></li>
                                 <li><strong>{{ __('Publish Date') }}</strong>
-                                    <span>{{ $product->created_at->format('d M Y') }}</span></li>
+                                    <span>{{ $product->created_at->format('d M Y') }}</span>
+                                </li>
                                 <li><a href="#" class="btn-contact"> {{ __('Contact ') }}<i
                                             class="bi bi-person-lines-fill"></i></a></li>
                                 <li><a href="/payment/create" class="btn-buy"> {{ __('Buy Now ') }}<i
@@ -132,4 +134,3 @@
 
     </main><!-- End #main -->
 @endsection
-

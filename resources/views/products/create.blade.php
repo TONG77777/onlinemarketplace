@@ -31,7 +31,7 @@
                             <div class="col-12">
                                 <label for="prodImage" class="col-sm-2 col-form-label">File Upload</label>
                                 <div class="col-sm-12">
-                                    <input class="form-control" type="file" id="image" name="image" required>
+                                    <input class="form-control" type="file" id="image" name="image[]" multiple>
                                 </div>
                             </div>
 

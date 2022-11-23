@@ -7,6 +7,7 @@ use App\Models\Product;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\UploadedFile;
 use App\Models\Category;
+use App\Models\Image;
 
 //use App\Product;
 
@@ -22,9 +23,10 @@ class ProductController extends Controller
 
     public function show($id)
     {
+        $image['image'] = Image::find($id);
         $product = Product::find($id);
         $data['categories'] = Category::find($id)->get()->where('id', $product->category);
-        return view('products.show', ['product' => $product], $data);
+        return view('products.show', ['product' => $product], $data, $image);
     }
 
     public function edit(Product $product, $id)
@@ -78,8 +80,6 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-
-
         // $request->validate([
         //     'name' => 'required|max:100',
         //     'condition' => 'required',
@@ -92,13 +92,6 @@ class ProductController extends Controller
 
         $product->name = request('name');
 
-        if ($request->hasfile('image')) {
-            $file = $request->file('image');
-            $extention = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $extention;
-            $file->move('img/products', $filename);
-            $product->image = $filename;
-        }
 
         $product->condition = request('condition');
         $product->category = request('category');
@@ -107,6 +100,25 @@ class ProductController extends Controller
         $product->user_id = auth()->user()->id;
 
         $product->save();
+
+        $image = array();
+        if ($files = $request->file('image')) {
+            foreach ($files as $file) {
+                $name = $file->getClientOriginalName();
+                $file->move('img/products', $name);
+                $image[] = $name;
+            }
+        }
+
+
+        if ($image) {
+            foreach ($image as $img) {
+                $image = new Image();
+                $image->url = $img;
+                $image->product_id = $product->id;
+                $image->save();
+            }
+        }
 
         return redirect('/products')->with('success', 'Product Added');
     }
@@ -129,6 +141,13 @@ class ProductController extends Controller
         }
     }
 
+    public function products($category)
+    {
+        $products = Product::where('category', $category)->get();
+        $data['categories'] = Category::all();
+        return view('products.index', ['products' => $products], $data);
+    }
+
     public function users()
     {
 
@@ -143,5 +162,10 @@ class ProductController extends Controller
     public function order()
     {
         return $this->hasMany(Order::class);
+    }
+
+    public function images()
+    {
+        return $this->hasMany(Image::class, 'product_id');
     }
 }
