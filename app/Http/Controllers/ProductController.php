@@ -19,20 +19,23 @@ class ProductController extends Controller
         $data['categories'] = Category::all();
         return view('products.index', ['products' => $products], $data);
     }
-    
-    public function show($id){
+
+    public function show($id)
+    {
         $product = Product::find($id);
         $data['categories'] = Category::find($id)->get()->where('id', $product->category);
-        return view('products.show',['product'=>$product], $data);
+        return view('products.show', ['product' => $product], $data);
     }
 
-    public function edit(Product $product, $id){
+    public function edit(Product $product, $id)
+    {
         $data['categories'] = Category::all();
         $product = Product::find($id);
-        return view('products.edit',['product'=>$product], $data);
+        return view('products.edit', ['product' => $product], $data);
     }
 
-    public function update(Request $request, Product $product, $id){
+    public function update(Request $request, Product $product, $id)
+    {
 
         $request->user();
 
@@ -45,17 +48,17 @@ class ProductController extends Controller
             'price' => 'required|numeric|between:0,99999.99',
             'description' => 'required|max:1000',
         ]);
-       
+
         $product->name = request('name');
 
-        if($request->hasfile('image')){
+        if ($request->hasfile('image')) {
             $file = $request->file('image');
             $extention = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extention;
-            $file->move('img/products',$filename);
+            $filename = time() . '.' . $extention;
+            $file->move('img/products', $filename);
             $product->image = $filename;
         }
-       
+
         $product->condition = request('condition');
         $product->category = request('category');
         $product->price = request('price');
@@ -63,18 +66,20 @@ class ProductController extends Controller
 
         $product->update();
         $product->save();
-    
-        return redirect('/products/')->with('success','Product Edit Successful!');
+
+        return redirect('/products/')->with('success', 'Product Edit Successful!');
     }
 
-    public function create(){
+    public function create()
+    {
         $data['categories'] = Category::all();
         return view('products.create', $data);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
 
-       
+
         // $request->validate([
         //     'name' => 'required|max:100',
         //     'condition' => 'required',
@@ -87,14 +92,14 @@ class ProductController extends Controller
 
         $product->name = request('name');
 
-        if($request->hasfile('image')){
+        if ($request->hasfile('image')) {
             $file = $request->file('image');
             $extention = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extention;
-            $file->move('img/products',$filename);
+            $filename = time() . '.' . $extention;
+            $file->move('img/products', $filename);
             $product->image = $filename;
         }
-       
+
         $product->condition = request('condition');
         $product->category = request('category');
         $product->price = request('price');
@@ -102,32 +107,42 @@ class ProductController extends Controller
         $product->user_id = auth()->user()->id;
 
         $product->save();
-    
-        return redirect('/products')->with('success','Product Added');
+
+        return redirect('/products')->with('success', 'Product Added');
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         $product = Product::find($id);
         $product->delete();
-        return redirect('/products')->with('success','Product Deleted');
+        return redirect('/products')->with('success', 'Product Deleted');
     }
 
-    // public function search($name)
-    // {
-    //     return Product::where('name','like','%'.$name.'%')->get();
-    // }
+    public function search()
+    {
+        if($search_text = $_GET['query']){
+            $products = Product::where('name', 'LIKE', '%' . $search_text . '%')->get();
+            $data['categories'] = Category::all();
+            return view('products.index', ['products' => $products], $data);
+        }
+        else{;
+            return redirect('/products')->with('success', 'No Products Found');
+        }
+    }
 
-    public function users(){
+    public function users()
+    {
 
         return $this->belongsTo(User::class, 'id');
-
     }
 
-    public function wishlist(){
+    public function wishlist()
+    {
         return $this->hasMany(Wishlist::class);
     }
 
-    public function order(){
+    public function order()
+    {
         return $this->hasMany(Order::class);
     }
 }

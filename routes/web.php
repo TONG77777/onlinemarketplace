@@ -31,6 +31,7 @@ Route::get('/products/edit/{id}', 'ProductController@edit')->name('seller.produc
 Route::put('/products/update/{id}', 'ProductController@update')->name('seller.products.update')->middleware('auth');
 Route::get('/products/{id}', 'ProductController@show');
 Route::delete('/products/{id}', 'ProductController@destroy')->middleware('auth');
+Route::get('/search','ProductController@search')->middleware('auth');
 
 //category
 Route::get('admin/category', 'CategoryController@index');
