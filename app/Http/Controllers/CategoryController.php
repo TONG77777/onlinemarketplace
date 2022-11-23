@@ -66,4 +66,11 @@ class CategoryController extends Controller
         $category->delete();
         return redirect('admin/category')->with('success', 'Category Deleted');
     }
+
+    public function show(Category $category, $id)
+    {
+        $category = Category::find($id);
+        return view('admin.category.show', ['category' => $category]);
+    }
+    
 }

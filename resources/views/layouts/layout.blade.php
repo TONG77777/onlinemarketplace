@@ -36,7 +36,7 @@
 
     <header id="header" class="header d-flex align-items-center">
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-            <a href="{{ route('home') }}" class="logo d-flex align-items-center">
+            <a href="{{ route('products.index') }}" class="logo d-flex align-items-center">
 
                 <h1>{{ __('Online Marketplace to sell and buy Used Item') }}<span>.</span></h1>
             </a>
@@ -47,12 +47,13 @@
                     <li class="dropdown"><a href="#"><span>{{ __('Category') }}</span> <i
                                 class="bi bi-chevron-down dropdown-indicator"></i></a>
                         <ul>
-                            <li><a href="#">{{ __('Computer & technology') }}</a></li>
-                            <li><a href="#">{{ __('Furniture') }}</a></li>
-                            <li><a href="#">{{ __('Home & living') }}</a></li>
-                            <li><a href="#">{{ __('Hobbies') }}</a></li>
-                            <li><a href="#">{{ __('Sport Equipment') }}</a></li>
-                            <li><a href="#">{{ __('Book & Article') }}</a></li>
+                            @php
+                                $categories = App\Models\Category::all();
+                            @endphp
+                            @foreach ($categories as $category)
+                                <li><a href="/category/{{$category->id}}">{{ $category->name }}</a></li>
+                            @endforeach
+
                         </ul>
                     </li>
                     <li><a href="/wishlist">{{ __('Wishlist') }}<i class="bi bi-heart"></i></a></li>

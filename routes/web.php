@@ -24,7 +24,7 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 
 //Products
-Route::get('/products', 'ProductController@index');
+Route::get('/products', 'ProductController@index')->name('products.index');
 Route::get('/products/create', 'ProductController@create')->name('seller.products.create')->middleware('auth');
 Route::post('/products', 'ProductController@store');
 Route::get('/products/edit/{id}', 'ProductController@edit')->name('seller.products.edit')->middleware('auth');
@@ -32,6 +32,7 @@ Route::put('/products/update/{id}', 'ProductController@update')->name('seller.pr
 Route::get('/products/{id}', 'ProductController@show');
 Route::delete('/products/{id}', 'ProductController@destroy')->middleware('auth');
 Route::get('/search','ProductController@search')->middleware('auth');
+Route::get('/category/{id}','ProductController@products')->name('category.index')->middleware('auth');
 
 //category
 Route::get('admin/category', 'CategoryController@index');

@@ -14,7 +14,13 @@ class Image extends Model
         'product_id',
     ];
 
-    public function product(){
+    public function product()
+    {
         return $this->belongsTo('App\Models\Product', 'product_id');
+    }
+
+    public function getFirstImageAttribute()
+    {
+        return $this->hasOne('RoomImageModel');
     }
 }

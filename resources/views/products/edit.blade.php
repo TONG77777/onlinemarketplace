@@ -34,8 +34,13 @@
                             <div class="col-12">
                                 <label for="inputNumber" class="col-sm-2 col-form-label">File Upload</label>
                                 <div class="col-sm-12">
-                                    <input class="form-control" type="file" id="formFile" name="image"
-                                        value="{{ old('image') ?? $product->image }}">
+                                    <input class="form-control" type="file" id="formFile" name="image[]" multiple>
+                                    @php
+                                        $images = App\Models\Image::where('product_id', $product->id)->get();
+                                    @endphp
+                                    @foreach ($images as $image)
+                                        {{asset("$image->url")}}|
+                                    @endforeach
                                 </div>
                             </div>
 

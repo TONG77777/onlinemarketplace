@@ -35,21 +35,42 @@
                 <div class="col-xl-4 col-md-6 portfolio-item filter-app">
 
                     <div class="portfolio-wrap">
-                        <a href="products/{{ $product->id }}"><img src="img/products/{{ $product->image }}"
-                                class="img-fluid" alt="image"></a>
-                        <div class="portfolio-info">
-                            <h4><a href="products/{{ $product->id }}" title="More Details">{{ $product->name }}</a>
-                            </h4>
-                            <p>{{ __('RM') }} {{ $product->price }}</p>
-                            <p>{{ $product->description }}</p>
 
-                            <form action="{{ route('wishlist.store', $product->id) }}" method="POST">
-                                @csrf
-                                <button type="submit" class="btn .btn-light btn-rounded float-end active"><i
-                                        class="bi bi-heart" style="color:red"></i></button>
-                            </form>
-                            {{-- bi bi-heart-fill --}}
-                        </div>
+                        <a href="/products/{{ $product->id }}">
+                            @php
+                                $images = App\Models\Image::where('product_id', $product->id)->get();
+                            @endphp
+
+                            @foreach ($images as $image)
+                                @if ($loop->first)
+                                    <img src="/img/products/{{ $image->url }}" class="img-fluid" alt="image"
+                                    style="width:400px;height:500px;>
+                                @endif
+                            @endforeach
+                            <div class="portfolio-info">
+                                <h4><a href="/products/{{ $product->id }}" title="More Details">{{ $product->name }}</a>
+                                </h4>
+                                <p>{{ __('RM') }} {{ $product->price }}</p>
+                                <p>{{ $product->description }}</p>
+
+                                <form action="{{ route('wishlist.store', $product->id) }}" method="POST">
+                                    @csrf
+                                    @php
+                                        $wishlist = App\Models\Wishlist::where('user_id', Auth::user()->id)->get();
+                                    @endphp
+
+                                    @if ($wishlist->contains('product_id', $product->id))
+                                        <button type="submit" class="btn btn-submit-secondary float-end active">
+                                            <i class="bi bi-heart-fill" style="color: red"></i>
+                                        </button>
+                                    @else
+                                        <button type="submit" class="btn .btn-light btn-rounded float-end"><i
+                                                class="bi bi-heart"></i></button>
+                                    @endif
+
+                                </form>
+
+                            </div>
                     </div>
                 </div><!-- End product Item -->
             @endforeach

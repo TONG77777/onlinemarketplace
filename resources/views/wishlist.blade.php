@@ -10,14 +10,14 @@
             </div>
         </nav>
     </div><!-- End Breadcrumbs -->
-    
+
 
     <div class="container pt-5 my-5" style="height:400px;">
         @if (session()->get('success'))
-        <div class="alert alert-success">
-            {{ session()->get('success') }}
-        </div>
-    @endif
+            <div class="alert alert-success">
+                {{ session()->get('success') }}
+            </div>
+        @endif
         <table class="table">
             <thead>
                 <tr>
@@ -30,47 +30,55 @@
                 </tr>
             </thead>
             <tbody>
-               
-               @if($wishlist->count() > 0)
-        
-                @foreach ($wishlist as $wish)
-                <tr>
-                    <th scope="row"><a href="products/{{ $wish->product_id }}"><img
-                                src="img/products/{{ $wish->product->image }}" style="width:60px;height:60px;"
-                                alt=""></a></th>
-                    <div class="portfolio-info">
-                        <td><a href="products/{{ $wish->product_id }}" class="">{{ $wish
-                                ->product->name }}</a></td>
-                    </div>
-                    <td>{{ __('RM') }} {{ $wish->product->price }}</td>
-                    <td scope="row">{{ $wish->product->condition }}</td>
-                    <td>
-                        <form action="">
-                        @csrf
-                        <input type="hidden" name="id" value="{{ $wish->product->id }}">
-                        <input type="hidden" name="name" value="{{ $wish->product->name }}">
-                        <button type="submit" class="btn" style="background: #00b6a1;color:azure"><i class="bi bi-bag-fill"></i></button>
-                        </form>
-                    </td>
 
-                    </td>
-                    <td>
-                        <form action="{{ route('wishlist.destroy', $wish->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger"><i class="bi bi-trash-fill"></i></button>
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
+                @if ($wishlist->count() > 0)
+                    @foreach ($wishlist as $wish)
+                        <tr>
+                            <th scope="row"><a href="products/{{ $wish->product_id }}">
+                                    @php
+                                        $images = App\Models\Image::where('product_id', $wish->product_id)->get();
+                                    @endphp
+                                    @foreach ($images as $image)
+                                        @if ($loop->first)
+                                            <img src="/img/products/{{ $image->url }}" style="width:60px;height:60px;"
+                                                alt="">
+                                        @endif
+                                    @endforeach
+                                </a></th>
+                            <div class="portfolio-info">
+                                <td><a href="products/{{ $wish->product_id }}"
+                                        class="">{{ $wish->product->name }}</a></td>
+                            </div>
+                            <td>{{ __('RM') }} {{ $wish->product->price }}</td>
+                            <td scope="row">{{ $wish->product->condition }}</td>
+                            <td>
+                                <form action="">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{ $wish->product->id }}">
+                                    <input type="hidden" name="name" value="{{ $wish->product->name }}">
+                                    <button type="submit" class="btn" style="background: #00b6a1;color:azure"><i
+                                            class="bi bi-bag-fill"></i></button>
+                                </form>
+                            </td>
+
+                            </td>
+                            <td>
+                                <form action="{{ route('wishlist.destroy', $wish->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger"><i class="bi bi-trash-fill"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
                 @else
-                <tr>
-                    <td colspan="6" class="text-center">{{ __('No Wishlist') }}</td>
-                </tr>
+                    <tr>
+                        <td colspan="6" class="text-center">{{ __('No Wishlist') }}</td>
+                    </tr>
                 @endif
             </tbody>
 
-               
+
         </table>
     </div>
 @endsection

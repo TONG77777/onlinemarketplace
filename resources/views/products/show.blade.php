@@ -40,7 +40,7 @@
 
                                 @foreach ($images as $image)
                                     <div class="carousel-item active">
-                                        <img src="/img/products/{{ $image->url }}" class="d-block w-100" height="700px;" alt="image">
+                                        <img src="/img/products/{{ $image->url }}" class="d-block w-100" style="max-width:400px;min-height:500px; alt="image">
                                     </div>
                                 @endforeach
 

@@ -8,8 +8,8 @@ use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\UploadedFile;
 use App\Models\Category;
 use App\Models\Image;
+use Illuminate\Support\Facades\File;
 
-//use App\Product;
 
 class ProductController extends Controller
 {
@@ -53,12 +53,34 @@ class ProductController extends Controller
 
         $product->name = request('name');
 
-        if ($request->hasfile('image')) {
-            $file = $request->file('image');
-            $extention = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $extention;
-            $file->move('img/products', $filename);
-            $product->image = $filename;
+
+
+        if ($request->hasFile('images')) {
+            Image::where('product_id', $id)->delete();
+            $image = Image::where('product_id', $id)->get();
+            foreach ($image as $img) {
+                $file_path = 'img/products/' . $img->url;
+                if (File::exists($file_path)) {
+                    File::delete($file_path);
+                }
+            }
+        }
+        $image = array();
+        if ($files = $request->file('image')) {
+            foreach ($files as $file) {
+                $name = $file->getClientOriginalName();
+                $file->move('img/products', $name);
+                $image[] = $name;
+            }
+        }
+
+        if ($image) {
+            foreach ($image as $img) {
+                $image = new Image();
+                $image->url = $img;
+                $image->product_id = $product->id;
+                $image->save();
+            }
         }
 
         $product->condition = request('condition');
@@ -125,7 +147,12 @@ class ProductController extends Controller
 
     public function destroy($id)
     {
+        Image::where('product_id', $id)->delete();
         $product = Product::find($id);
+        $image = Image::where('product_id', $id)->get();
+        foreach ($image as $img) {
+            File::delete('img/products/' . $img->url);
+        }
         $product->delete();
         return redirect('/products')->with('success', 'Product Deleted');
     }
@@ -147,6 +174,7 @@ class ProductController extends Controller
         $data['categories'] = Category::all();
         return view('products.index', ['products' => $products], $data);
     }
+
 
     public function users()
     {

@@ -43,8 +43,18 @@
                     <tbody>
                         <tr>
                             @foreach ($products as $product)
-                                <th scope="row"><img src="img/products/{{ $product->image }}"
-                                        style="width:60px;height:60px;" alt=""></a></th>
+                                @php
+                                    $images = App\Models\Image::where('product_id', $product->id)->get();
+                                    
+                                @endphp
+                                @foreach ($images as $image)
+                                    @if ($loop->first)
+                                        <th scope="row"><img src="/img/products/{{ $image->url }}"
+                                                style="width:60px;height:60px;" alt=""></a></th>
+                                    @endif
+                                @endforeach
+
+
                                 <div class="portfolio-info">
                                     <td>{{ $product->name }}</a></td>
                                 </div>
@@ -73,7 +83,8 @@
                                         <form action="" method="POST">
                                             @csrf
                                             @method('PUT')
-                                            <button type="submit" class="btn btn-success"><i class="bi bi-check-circle-fill"></i></button>
+                                            <button type="submit" class="btn btn-success"><i
+                                                    class="bi bi-check-circle-fill"></i></button>
                                         </form>
                                     </div>
                                 </td>
@@ -92,12 +103,11 @@
             </tbody>
             </table>
         </div>
-    
     @else
         <div class="alert alert-info">
             {{ __('You have no products yet. Try to add some...') }}
         </div>
         @endif
     </div>
-</div>
+    </div>
 @endsection
