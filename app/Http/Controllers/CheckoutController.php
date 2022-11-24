@@ -3,20 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Models\Address;
+use App\Models\Order;
 use Illuminate\Http\Request;
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 
 
-class AddressController extends Controller
+
+
+
+class CheckoutController extends Controller
 {
+    public function checkout($id){
+        
+        $product = Product::find($id);
+        return view('payment.checkout', compact('product'));
 
-    public function create(){
-
-        return view('payment.create');
     }
 
-    public function store(){
+    public function placeorder(Request $request){
 
         $address = new Address();
         $address->title = request('title');
@@ -30,9 +37,15 @@ class AddressController extends Controller
         $address->user_id = Auth::user()->id;
         $address->save();
 
-
-        return redirect('/payment/create')->with('success', 'Address Added');
-    
+        Order::create([
+            'product_id' => request('product_id'),
+            'status' => 'pending',
+            'amount_to_pay' => request('amount_to_pay'),
+            'shipping_fee' => request('shipping_fee'),
+            'user_id' => Auth::user()->id,
+        ]);
+        
     }
 
+   
 }

@@ -64,9 +64,11 @@ Route::get('/wishlist', 'WishlistController@index')->middleware('auth');
 Route::post('/wishlist/store/{id}', 'WishlistController@store')->name('wishlist.store')->middleware('auth');
 Route::delete('/wishlist/{id}', 'WishlistController@destroy')->middleware('auth')->name('wishlist.destroy');
 
+
 //Payment & Checkout
-Route::get('/payment/create', 'AddressController@create')->name('payment.create')->middleware('auth');
-Route::post('/payment/create', 'AddressController@store');
+Route::post('/payment/checkout/{id}', 'CheckoutController@checkout')->name('checkout.store')->middleware('auth');
+Route::post('/payment/placeorder', 'CheckoutController@placeOrder')->name('place.order')->middleware('auth');
+// Route::post('/payment/checkout', 'AddressController@store');
 
 //Payment
 Route::get('/payment/form', 'StripePaymentController@form')->name('payment.form');

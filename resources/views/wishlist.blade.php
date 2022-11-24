@@ -52,10 +52,8 @@
                             <td>{{ __('RM') }} {{ $wish->product->price }}</td>
                             <td scope="row">{{ $wish->product->condition }}</td>
                             <td>
-                                <form action="">
+                                <form action="{{ route('checkout.store', $wish->product_id) }}" method="POST">
                                     @csrf
-                                    <input type="hidden" name="id" value="{{ $wish->product->id }}">
-                                    <input type="hidden" name="name" value="{{ $wish->product->name }}">
                                     <button type="submit" class="btn" style="background: #00b6a1;color:azure"><i
                                             class="bi bi-bag-fill"></i></button>
                                 </form>
