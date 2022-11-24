@@ -49,5 +49,13 @@ class LoginController extends Controller
         return $this->loggedOut($request) ?: redirect('/login');
     }
 
+    public function authenticated(){
+        if(Auth::user()->role_as == '1'){
+            return redirect('admin/dashboard')->with('status', 'Welcome to the admin page');
+        }
+        else{
+            return redirect('/home')->with('status', 'Logged in successfully!');
+        }
+    }
     
 }

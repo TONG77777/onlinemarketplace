@@ -36,7 +36,7 @@
 
     <header id="header" class="header d-flex align-items-center">
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-            <a href="/admin" class="logo d-flex align-items-center">
+            <a href="/admin/dashboard" class="logo d-flex align-items-center">
 
                 <h1>{{ __('Online Marketplace to sell and buy Used Item') }}<span>.</span></h1>
             </a>
