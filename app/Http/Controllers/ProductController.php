@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\UploadedFile;
 use App\Models\Category;
 use App\Models\Image;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 
@@ -16,7 +17,7 @@ class ProductController extends Controller
     //
     public function index()
     {
-        $products = Product::all();
+        $products = Product::with('users')->where('mark_as_sold', '=', '0')->get();
         $data['categories'] = Category::all();
         return view('products.index', ['products' => $products], $data);
     }
@@ -173,6 +174,13 @@ class ProductController extends Controller
         $products = Product::where('category', $category)->get();
         $data['categories'] = Category::all();
         return view('products.index', ['products' => $products], $data);
+    }
+
+    public function markAsSold($id){
+        $product = Product::find($id);
+        $product->mark_as_sold = 1;
+        $product->save();
+        return redirect('/dashbroad')->with('success', 'Product Marked as Sold');
     }
 
 

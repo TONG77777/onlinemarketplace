@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->integer('category');
             $table->decimal('price',10,2);
             $table->text('description');
-            $table->boolean('mask_as_sold')->default('0');//0 = false, 1 = true
+            $table->boolean('mark_as_sold')->default('0');//0 = default, 1 = sold
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });

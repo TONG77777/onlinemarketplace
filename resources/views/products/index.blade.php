@@ -44,42 +44,45 @@
                             @foreach ($images as $image)
                                 @if ($loop->first)
                                     <img src="/img/products/{{ $image->url }}" class="img-fluid" alt="image"
-                                    style="width:400px;height:500px;>
+                                        style="width:400px;min-height:500px; max-height:500px;">
                                 @endif
-                            @endforeach
+                                @endforeach
                             <div class="portfolio-info">
-                                <h4><a href="/products/{{ $product->id }}" title="More Details">{{ $product->name }}</a>
-                                </h4>
-                                <p>{{ __('RM') }} {{ $product->price }}</p>
-                                <p>{{ $product->description }}</p>
+                                    <h4><a href="/products/{{ $product->id }}"
+                                            title="More Details">{{ $product->name }}</a>
+                                    </h4>
+                                    <p>{{ __('RM') }} {{ $product->price }}</p>
+                                    <p>{{ $product->description }}</p>
 
-                                <form action="{{ route('wishlist.store', $product->id) }}" method="POST">
-                                    @csrf
-                                    @php
-                                        $wishlist = App\Models\Wishlist::where('user_id', Auth::user()->id)->get();
-                                    @endphp
+                                    <form action="{{ route('wishlist.store', $product->id) }}" method="POST">
+                                        @csrf
+                                        @php
+                                            $wishlist = App\Models\Wishlist::where('user_id', Auth::user()->id)->get();
+                                        @endphp
 
-                                    @if ($wishlist->contains('product_id', $product->id))
-                                        <button type="submit" class="btn btn-submit-secondary float-end active">
-                                            <i class="bi bi-heart-fill" style="color: red"></i>
-                                        </button>
-                                    @else
-                                        <button type="submit" class="btn .btn-light btn-rounded float-end"><i
-                                                class="bi bi-heart"></i></button>
-                                    @endif
+                                        @if ($wishlist->contains('product_id', $product->id))
+                                            <button type="submit" class="btn btn-submit-secondary float-end active">
+                                                <i class="bi bi-heart-fill" style="color: red"></i>
+                                            </button>
+                                        @else
+                                            <button type="submit" class="btn .btn-light btn-rounded float-end"><i
+                                                    class="bi bi-heart"></i></button>
+                                        @endif
 
-                                </form>
+                                    </form>
 
-                            </div>
                     </div>
-                </div><!-- End product Item -->
-            @endforeach
-
-            <div class="col-xl-4 col-md-6 portfolio-item filter-app">
-                <div class="portfolio-wrap">
                 </div>
+        </div><!-- End product Item -->
+       
+        @endforeach
+
+
+        <div class="col-xl-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
             </div>
         </div>
+    </div>
     </div><!-- End Product -->
     @empty($product)
         <div class="alert alert-danger">

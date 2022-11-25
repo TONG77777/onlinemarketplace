@@ -42,6 +42,7 @@
                     </thead>
                     <tbody>
                         <tr>
+
                             @foreach ($products as $product)
                                 @php
                                     $images = App\Models\Image::where('product_id', $product->id)->get();
@@ -80,7 +81,9 @@
 
                                 <td>
                                     <div class="btn-">
-                                        <form action="" method="POST">
+
+                                        <form action="{{ route('seller.products.markAsSold', $product->id) }}"
+                                            method="PUT">
                                             @csrf
                                             @method('PUT')
                                             <button type="submit" class="btn btn-success"><i
@@ -90,7 +93,7 @@
                                 </td>
                                 <td>
                                     <div class="btn-">
-                                        <form action="/products/{{ $product->id }}" method="POST">
+                                        <form action="{{ route('seller.products.delete', $product->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger"><i

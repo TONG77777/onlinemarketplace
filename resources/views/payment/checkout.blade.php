@@ -98,14 +98,6 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                    {{-- <div class="form-check mb-4">
-                                        <input class="form-check-input" type="checkbox" value="" id="checkoutForm2"
-                                            checked />
-                                        <label class="form-check-label" for="checkoutForm2">
-                                            Save this information for next time
-                                        </label>
-                                    </div> --}}
                             </div>
                         </div>
                     </div>
@@ -145,12 +137,11 @@
 
                                     </li>
                                 </ul>
-                                {{-- <a href="{{ url('checkout') }}" class="btn btn-login btn-lg btn-block float-end">
-                                    {{ __('Proceed to Checkout') }}
-                                </a> --}}
 
-                                <button class="btn btn-login btn-lg btn-block" type="submit" id="checkout-button">
-                                    {{ __('Continue to checkout') }}
+
+                                <button class="btn btn-login btn-lg btn-block float-end" type="submit"
+                                    id="checkout-button">
+                                    {{ __('Continue to proceed') }}
                                 </button>
 
                             </div>

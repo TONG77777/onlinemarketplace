@@ -49,12 +49,14 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
 Route::get('/products', 'ProductController@index')->name('products.index');
 Route::get('/products/create', 'ProductController@create')->name('seller.products.create')->middleware('auth');
 Route::post('/products', 'ProductController@store');
+Route::get('/markAsSold/{id}', 'ProductController@markAsSold')->name('seller.products.markAsSold')->middleware('auth');
 Route::get('/products/edit/{id}', 'ProductController@edit')->name('seller.products.edit')->middleware('auth');
 Route::put('/products/update/{id}', 'ProductController@update')->name('seller.products.update')->middleware('auth');
 Route::get('/products/{id}', 'ProductController@show');
-Route::delete('/products/{id}', 'ProductController@destroy')->middleware('auth');
+Route::delete('/products/{id}', 'ProductController@destroy')->name('seller.products.delete')->middleware('auth');
 Route::get('/search', 'ProductController@search')->middleware('auth');
 Route::get('/category/{id}', 'ProductController@products')->name('category.index')->middleware('auth');
+
 
 //Dashbroad
 Route::get('/dashbroad', 'DashbroadController@index')->name('dashbroad.index')->middleware('auth');

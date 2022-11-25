@@ -40,7 +40,8 @@
 
                                 @foreach ($images as $image)
                                     <div class="carousel-item active">
-                                        <img src="/img/products/{{ $image->url }}" class="d-block w-100" style="max-width:400px;min-height:500px; alt="image">
+                                        <img src="/img/products/{{ $image->url }}" class="d-block w-100"
+                                            style="width:400px;min-height:500px; max-height:500px;" alt="image">
                                     </div>
                                 @endforeach
 
@@ -81,9 +82,30 @@
                             <div class="testimonial-item">
                                 <div>
                                     <img src="/img/p1.png" class="testimonial-img" alt="">
-                                    <h3>{{ __('User Name') }}</h3>
-                                    <h4>XXX</h4>
-                                    {{-- <h4>{{ Auth::user()->name }}</h4> --}}
+                                    
+                                    @php 
+                                        $user = App\Models\User::where('id', $product->user_id)->get();
+                                       
+                                    @endphp
+
+                                    @foreach ($user as $u)
+                                        <h3>{{ $u->name }}</h3>
+                                    @endforeach
+
+                                    @foreach ($user as $u)
+                                   
+                                        <h4> <a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ $u->email }}&su={{ $product->name}}&body={{__('I am interested in your product...')}}" target="_blank">{{ $u->email }}</a></h4>
+                                    @endforeach
+
+                                    @foreach ($user as $u)
+                                    @php
+                                        $now = Carbon\Carbon::now();
+                                        $date = Carbon\Carbon::parse($u->created_at);
+                                        $diff = $now->diffInDays($date);
+                                    @endphp
+                                        <h4>{{__('Joined ')}}{{ $diff }}{{__(' days ago')}}</h4>
+                                    @endforeach
+                           
                                 </div>
                             </div>
 
@@ -100,25 +122,67 @@
                             <h3>{{ __('Product Infromation') }}</h3>
                             <ul>
                                 <li><strong>{{ __('Category') }}</strong> <span>
+                                        @php
+                                            $category = App\Models\Category::where('id', $product->category_id)->first();
+                                        @endphp
+
                                         @foreach ($categories as $category)
-                                            {{ $category->name }}
-                                        @endforeach
-                                    </span></li>
+                                            <a href="/category/{{ $category->id }}">{{ $category->name }}</a></li>
+                                @endforeach
+                                </span></li>
                                 <li><strong>{{ __('Publish Date') }}</strong>
                                     <span>{{ $product->created_at->format('d M Y') }}</span>
                                 </li>
                                 <li><a href="#" class="btn-contact"> {{ __('Contact ') }}<i
                                             class="bi bi-person-lines-fill"></i></a></li>
-                                <li><a href="/payment/create" class="btn-buy"> {{ __('Buy Now ') }}<i
-                                            class="bi bi-cart-check-fill"></i></a></li>
-                                {{-- <ul> 
+                                <li>
+                                    <form action="{{ route('checkout.store', $product->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn-buy">{{ __('Buy Now') }}<i
+                                                class="bi bi-cart-check-fill"></i>
+                                </li></button>
+
+                                </form>
+                                @if ($product->user_id == Auth::user()->id)
+                                
+                                    <ul>
+                                        <li class="dropdown">
+                                            <form action="{{ route('seller.products.edit', $product->id) }}" style="border:none;">
+                                                @csrf
+                                                <button type="submit" class="btn btn-link" style="color: #008374">
+                                                    {{ __('Edit') }}
+                                                    <i class="bi bi-pencil-square"></i></button>
+                                            </form></a>
+
+                                        </li>
+                                        <li>
+                                            <form action="{{ route('seller.products.markAsSold', $product->id) }}"
+                                                method="PUT">
+                                                @csrf
+                                                @method('PUT')
+                                                <button type="submit" class="btn btn-link" style="color: #008374">{{ __('Mark As Sold') }}<i
+                                                        class="bi bi-trash-fill"></i></button>
+                                            </form>
+                                        </li>
+                                        <li>
+                                            <form action="{{ route('seller.products.delete', $product->id) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-link" style="color: #008374">{{ __('Delete') }}<i
+                                                        class="bi bi-trash-fill"></i></button>
+                                            </form>
+                                        </li>
+                                @endif
+                            </ul>
+                            {{-- <ul> 
                                     <u><li><a href="{{route('seller.products.edit', $product->id)}}" class="btn-"> Edit Product <i class="bi bi-pencil-square"></i></a></li></u>
                                     <u><li><a href="#" class="btn-"> Mask as Sold <i class="bi bi-check-square-fill"></i></a></li></u>
                                     <u><li>
                                     <form action="/products/{{$product->id}}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button><i class="bi bi-trash-fill" style="color:red">Delete Product </i></button>
+                                        <button>Delete Product </i></button>
                                     </form>
                                 </li></u>
                                 </ul> --}}
