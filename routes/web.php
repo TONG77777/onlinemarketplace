@@ -37,12 +37,9 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::put('category/update/{id}', 'CategoryController@update')->name('admin.category.update')->middleware('auth');
     Route::delete('category/{id}', 'CategoryController@destroy')->middleware('auth');
     //Order 
-    Route::get('order', 'OrderController@index')->name('admin.order.index')->middleware('auth');
-    Route::get('order/create', 'OrderController@create')->name('admin.order.create')->middleware('auth');
-    Route::post('order', 'OrderController@store')->name('admin.order.store')->middleware('auth');
-    Route::get('order/{id}', 'OrderController@show')->name('admin.order.show')->middleware('auth');
-    Route::get('order/edit/{id}', 'OrderController@edit')->name('admin.order.edit')->middleware('auth');
-    Route::put('order/update/{id}', 'OrderController@update')->name('admin.order.update')->middleware('auth');
+    Route::get('order', 'OrderController@adminIndex')->name('admin.order.index')->middleware('auth');
+    Route::get('/update/{id}', 'OrderController@adminUpdate')->name('admin.order.update')->middleware('auth');
+    Route::get('/search', 'OrderController@adminSearch')->name('admin.order.search')->middleware('auth');
 });
 
 //Products
