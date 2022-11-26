@@ -20,7 +20,7 @@ class StripePaymentController extends Controller
     return view('payment.form');
   }
 
-  public function makePayment(Request $request, $id)
+  public function makePayment(Request $request)
   {
     
     $input = $request->all();

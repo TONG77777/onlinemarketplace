@@ -70,7 +70,7 @@ Route::delete('/wishlist/{id}', 'WishlistController@destroy')->middleware('auth'
 //Payment & Checkout
 Route::post('/payment/checkout/{id}', 'CheckoutController@checkout')->name('checkout.store')->middleware('auth');
 Route::post('/payment/placeorder', 'CheckoutController@placeorder')->name('place.order')->middleware('auth');
-// Route::post('/payment/checkout', 'AddressController@store');
+
 
 //Payment
 Route::get('/payment/form', 'StripePaymentController@form')->name('payment.form');

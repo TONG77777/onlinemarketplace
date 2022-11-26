@@ -85,36 +85,3 @@
         </table>
     </div>
 @endsection
-{{-- 
-                    @foreach ($products as $product)
-                    
-                        <th scope="row"><a href="products/{{ $product->id }}"><img
-                                    src="img/products/{{ $product->image }}" style="width:150px;height:150px;"
-                                    alt=""></a></th>
-                        <div class="portfolio-info">
-                            <td><a href="products/{{ $product->id }}" class="">{{ $product->name }}</a></td>
-                        </div>
-                        <td>{{ __('RM') }} {{ $product->price }}</td>
-                        <td>{{ $product->condition }}</td>
-                        <td>
-                            @foreach ($categories as $category)
-                                @if ($category->id == $product->category)
-                                    {{ $category->name }}
-                                @endif
-                            @endforeach
-                        </td>
-                        <td>
-                            <form action="" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" onclick="return confirm('Are you sure?')" class="btn btn-link"><i
-                                        class="bi bi-trash-fill" style="color:red"></i></button>
-                            </form>
-                        </td>
-                  
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-@endsection --}}

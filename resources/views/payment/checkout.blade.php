@@ -14,7 +14,7 @@
                                 <h5 class="mb-0">Address details</h5>
                             </div>
                             <div class="card-body">
-                                <form action="{{ route('place.order') }}" enctype="multipart/form-data" method="POST">
+                                <form action="{{ route('place.order', $product->id) }}" enctype="multipart/form-data" method="POST">
                                     @csrf
                                     <div class="row mb-4">
                                         <div class="col">
@@ -187,16 +187,7 @@
                                     id="checkout-button">
                                     {{ __('Continue to proceed') }}
                                 </button>
-
-                                {{-- <form action="{{ route('make.payment') }}" method="POST">
-                                    @csrf
-
-                                    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                        data-key="pk_test_51M51nyFaj0TxPMzIhA29LFxM4KO0v783LldfgwvhVzwQfHcPgYk93QhcU1zVRAzo9IdIQQHQgKxkVZgIXtizFnYG00FgbXjrlV"
-                                        data-name="Online Marketplace" data-description="{{ $product->name }}" data-amount="{{ $total * 100 }}"></script>
-                                </form> --}}
-
-
+                                
                             </div>
 
                         </div>

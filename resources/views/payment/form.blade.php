@@ -5,7 +5,9 @@
             {{ Session::get('success') }}
         </div>
     @endif
-
+    @php
+        $total = 0;
+    @endphp
 
     <form action="{{ route('make.payment') }}" method="POST">
         @csrf
