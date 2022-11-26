@@ -7,23 +7,46 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\User;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Auth;
-
-
+use Illuminate\Support\Facades\Validator;
 
 
 
 
 class CheckoutController extends Controller
 {
-    public function checkout($id){
-        
+    public function checkout($id)
+    {
+
         $product = Product::find($id);
         return view('payment.checkout', compact('product'));
-
     }
 
-    public function placeorder(Request $request){
+    public function placeorder(Request $request)
+    {
+
+
+        $validator = Validator::make(
+            $request->all(),
+
+            [
+                'title' => 'required|max:100',
+                'receiver_name' => 'required|max:100',
+                'receiver_contact' => 'required|max:12',
+                'email' => 'required|email',
+                'address' => 'required',
+                'city' => 'required',
+                'state' => 'required',
+                'postal_code' => 'required|numeric|digits:5',
+            ]
+        );
+
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        
 
         $address = new Address();
         $address->title = request('title');
@@ -44,8 +67,8 @@ class CheckoutController extends Controller
             'shipping_fee' => request('shipping_fee'),
             'user_id' => Auth::user()->id,
         ]);
-        
-    }
 
-   
+
+        return view('/payment/form')->with('success', 'Order Placed Successfully, Complete Payment to Confirm Order');
+    }
 }

@@ -14,25 +14,37 @@
                                 <h5 class="mb-0">Address details</h5>
                             </div>
                             <div class="card-body">
-                                <form action="{{ route('place.order') }}" enctype="multipart/form-data" method="post">
+                                <form action="{{ route('place.order') }}" enctype="multipart/form-data" method="POST">
                                     @csrf
                                     <div class="row mb-4">
                                         <div class="col">
                                             <div class="form-outline">
                                                 <label class="form-label"
                                                     for="form6Example1">{{ __('Receiver Name') }}</label>
-                                                <input type="text" id="form6Example1" class="form-control"
-                                                    placeholder="Full Name" name="receiver_name" />
-
+                                                <input type="text" id="form6Example1"
+                                                    class="form-control @error('receiver_name') is-invalid @enderror"
+                                                    placeholder="Full Name" name="receiver_name" required/>
+                                                @error('receiver_name')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="form-outline">
 
                                                 <label class="form-label" for="form6Example2">{{ __('Label') }}</label>
-                                                <input type="text" id="form6Example2" class="form-control"
-                                                    placeholder="Company Name/Home" name="title" />
+                                                <input type="text" id="form6Example2"
+                                                    class="form-control @error('title') is-invalid @enderror"
+                                                    placeholder="Company Name/Home" name="title" required />
+                                                @error('title')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
+
                                         </div>
                                     </div>
 
@@ -41,9 +53,14 @@
                                             <div class="form-outline">
                                                 <label class="form-label"
                                                     for="form6Example1">{{ __('Email Address') }}</label>
-                                                <input type="text" id="form6Example1" class="form-control"
-                                                    placeholder="exmaple@gmail.com" name="email" />
-
+                                                <input type="text" id="form6Example1"
+                                                    class="form-control @error('email') is-invalid @enderror"
+                                                    placeholder="exmaple@gmail.com" name="email" required/>
+                                                @error('email')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col">
@@ -51,8 +68,14 @@
 
                                                 <label class="form-label"
                                                     for="form6Example2">{{ __('Contact Number') }}</label>
-                                                <input type="text" id="form6Example2" class="form-control"
-                                                    placeholder="01X-XXXXXXXX" name="receiver_contact" />
+                                                <input type="text" id="form6Example2"
+                                                    class="form-control @error('receiver_contact') is-invalid @enderror"
+                                                    placeholder="01X-XXXXXXXX" name="receiver_contact" required/>
+                                                @error('receiver_contact')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
@@ -62,8 +85,13 @@
                                             <div class="form-outline">
                                                 <label for="address" class="form-label">{{ __('Address') }}</label>
                                                 <div class="form-floating">
-                                                    <textarea class="form-control" placeholder="Description for the product..." id="description" style="height: 100px;"
-                                                        name="address"></textarea>
+                                                    <textarea class="form-control @error('address') is-invalid @enderror" placeholder="Description for the product..."
+                                                        id="description" style="height: 100px;" name="address"></textarea>
+                                                    @error('address')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                     <label for="floatingTextarea"></label>
                                                 </div>
                                             </div>
@@ -75,8 +103,14 @@
                                             <div class="form-outline">
 
                                                 <label class="form-label" for="formExpiration">{{ __('City') }}</label>
-                                                <input type="text" id="formExpiration" class="form-control"
-                                                    placeholder="" name="city" />
+                                                <input type="text" id="formExpiration"
+                                                    class="form-control @error('city') is-invalid @enderror" placeholder=""
+                                                    name="city" required/>
+                                                @error('city')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         {{ __(' / ') }}
@@ -84,8 +118,13 @@
                                             <div class="form-outline">
 
                                                 <label class="form-label" for="formCVV">{{ __('State') }}</label>
-                                                <input type="text" id="formCVV" class="form-control" placeholder=""
-                                                    name="state" />
+                                                <input type="text" id="formCVV" class="form-control @error('state') is-invalid @enderror" placeholder=""
+                                                    name="state" required/>
+                                                @error('state')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col">
@@ -93,8 +132,13 @@
 
                                                 <label class="form-label"
                                                     for="formCardNumber">{{ __('Postal Code') }}</label>
-                                                <input type="text" id="formCardNumber" class="form-control"
-                                                    name="postal_code" placeholder="XXXXX" />
+                                                <input type="text" id="formCardNumber" class="form-control @error('postal_code') is-invalid @enderror" placeholder=""
+                                                    name="postal_code" placeholder="XXXXX" required/>
+                                                @error('postal_code')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
@@ -143,6 +187,15 @@
                                     id="checkout-button">
                                     {{ __('Continue to proceed') }}
                                 </button>
+
+                                {{-- <form action="{{ route('make.payment') }}" method="POST">
+                                    @csrf
+
+                                    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                        data-key="pk_test_51M51nyFaj0TxPMzIhA29LFxM4KO0v783LldfgwvhVzwQfHcPgYk93QhcU1zVRAzo9IdIQQHQgKxkVZgIXtizFnYG00FgbXjrlV"
+                                        data-name="Online Marketplace" data-description="{{ $product->name }}" data-amount="{{ $total * 100 }}"></script>
+                                </form> --}}
+
 
                             </div>
 

@@ -37,7 +37,10 @@
                             <th scope="row"><a href="products/{{ $wish->product_id }}">
                                     @php
                                         $images = App\Models\Image::where('product_id', $wish->product_id)->get();
+                                        $product = App\Models\Product::find($wish->product_id);
+                                        $mark_as_sold = App\Models\Product::where('mark_as_sold', 0)->get();
                                     @endphp
+                                    @if($product->mark_as_sold == 0)
                                     @foreach ($images as $image)
                                         @if ($loop->first)
                                             <img src="/img/products/{{ $image->url }}" style="width:60px;height:60px;"
@@ -66,6 +69,8 @@
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger"><i class="bi bi-trash-fill"></i></button>
                                 </form>
+                            
+                            @endif
                             </td>
                         </tr>
                     @endforeach

@@ -12,6 +12,7 @@ class WishlistController extends Controller
 {
     public function index()
     {
+        $user = Auth::user();
         $wishlist = Wishlist::where('user_id', Auth::user()->id)->get();
         return view('/wishlist', compact('wishlist'));
     }

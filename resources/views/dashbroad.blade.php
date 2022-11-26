@@ -85,7 +85,7 @@
                                         <form action="{{ route('seller.products.markAsSold', $product->id) }}"
                                             method="PUT">
                                             @csrf
-                                            @method('PUT')
+                                       
                                             <button type="submit" class="btn btn-success"><i
                                                     class="bi bi-check-circle-fill"></i></button>
                                         </form>
