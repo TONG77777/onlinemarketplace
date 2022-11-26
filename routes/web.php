@@ -73,6 +73,10 @@ Route::post('/payment/placeorder', 'CheckoutController@placeorder')->name('place
 Route::get('/payment/form', 'StripePaymentController@form')->name('payment.form');
 Route::post('/payment/form', 'StripePaymentController@makePayment')->name('make.payment');
 
+//Order
+Route::get('/order', 'OrderController@index')->name('order.index')->middleware('auth');
+Route::get('/order/{id}', 'OrderController@show')->name('order.show')->middleware('auth');
+
 //Chat
 Route::get('/chat', function () {
     return view('chat');
@@ -80,6 +84,6 @@ Route::get('/chat', function () {
 
 
 
-// Route::get('admin/order', function () {
-//     return view('admin.order.index');
-// });
+Route::get('admin/reports', function () {
+    return view('admin.reports.index');
+});

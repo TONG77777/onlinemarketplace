@@ -24,6 +24,16 @@
                 </div>
             @endif
         </div>
+        {{-- <div class="dataTable-top">
+            <div class="dataTable-dropdown"><label><select class="dataTable-selector">
+                        <option value="5">5</option>
+                        <option value="10" selected="">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="25">25</option>
+                    </select> entries per page</label></div>
+            <div class="dataTable-search"><input class="dataTable-input" placeholder="Search..." type="text"></div>
+        </div> --}}
         <div class="dataTable-container">
             <table class="table">
                 <thead>

@@ -38,13 +38,13 @@
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
             <a href="{{ route('products.index') }}" class="logo d-flex align-items-center">
 
-                <h1>{{ __('Online Marketplace to sell and buy Used Item') }}<span>.</span></h1>
+                <h1>{{ __('Online Marketplace') }}<span>.</span></h1>
             </a>
             <nav id="navbar" class="navbar">
                 <ul>
                     {{-- <li><a href="{{ route('home') }}">{{ __('Home') }}<i class="bi bi-house"></i></a></li> --}}
                     <li><a href="/dashbroad">{{ __('Dashbroad') }}</a></li>
-                    <li class="dropdown"><a href="#"><span>{{ __('Category') }}</span> <i
+                    <li class="dropdown"><a href=""><span>{{ __('Category') }}</span> <i
                                 class="bi bi-chevron-down dropdown-indicator"></i></a>
                         <ul>
                             @php
@@ -57,6 +57,7 @@
                         </ul>
                     </li>
                     <li><a href="/wishlist">{{ __('Wishlist') }}<i class="bi bi-heart"></i></a></li>
+                    <li><a href="/order">{{ __('Order') }}</a></li>
                     <li><a href="#chat">{{ __('Chat') }}<i class="bi bi-chat"></i></a></li>
                     @guest
                         @if (Route::has('login'))
