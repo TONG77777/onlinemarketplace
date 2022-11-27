@@ -45,8 +45,9 @@ class OrderController extends Controller
 
     public function update($id, Request $request)
     {
+        //pending, confirmed, shipping, completed, cancelled
         $order = Order::find($id);
-        $order->status = 'paid';
+        $order->status = 'completed';
         $order->save();
         return redirect('/orders')->with('success', 'Order Updated!');
     }
@@ -66,5 +67,14 @@ class OrderController extends Controller
         $order = Order::find($id);
         $data['categories'] = Category::all();
         return view('orders.show', ['order' => $order, 'users' => $users, 'products' => $products, 'address' => $address], $data, $image);
+    }
+
+    public function cancel($id)
+    {
+        //pending, confirmed, shipping, completed, cancelled
+        $order = Order::find($id);
+        $order->status = 'cancelled';
+        $order->save();
+        return redirect('/order')->with('success', 'Your Order has been Cancelled!');
     }
 }

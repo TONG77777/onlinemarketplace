@@ -6,7 +6,9 @@
             <div class="card" style="border-radius: 10px;">
                 <div class="card-header pt-2 my-2">
                     <h5 class="text-muted mb-0">Order History</h5>
+
                 </div>
+
 
                 <div class="card-body p-4">
                     <div class="card shadow-0 border mb-4">
@@ -169,10 +171,31 @@
                     <p class="text-muted mb-0">Delivery Fee :</p>
                     <p class="text-muted mb-0"><span class="fw-bold me-4"></span> RM {{ $order->shipping_fee }}</p>
                 </div>
+
+                @if($order->status != 'cancelled')
+                <form action="{{route('order.cancel', $order->id)}}" method="PUT">
+                    @csrf
+                    @method('PUT')
+                    <div class="d-flex justify-content-between pt-2">
+
+                        <p class="text-muted mb-0"></p>
+                        <p class="text-muted mb-0"><span class="fw-bold me-4"></span> <button type="submit"
+                                class="btn float-right" style="background-color: #f85a40; color:aliceblue; ">Cancel
+                                order</button></p>
+                    </div>
+                </form>
+                @endif
+
+
+
+
+
             </div>
             <div class="card-footer border-0 pt-3 py-3"
                 style="table-active; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
-                <h5 class="d-flex align-items-center justify-content-end text-uppercase mb-0">Total
+
+                <h5 class="d-flex align-items-center justify-content-end text-uppercase mb-0">
+                    Total
                     paid: <span class="h2 mb-0 ms-2">RM {{ $total }}</span></h5>
             </div>
 

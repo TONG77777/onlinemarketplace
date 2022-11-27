@@ -76,6 +76,7 @@ Route::post('/payment/form', 'StripePaymentController@makePayment')->name('make.
 //Order
 Route::get('/order', 'OrderController@index')->name('order.index')->middleware('auth');
 Route::get('/order/{id}', 'OrderController@show')->name('order.show')->middleware('auth');
+Route::get('/cancel/{id}', 'OrderController@cancel')->name('order.cancel')->middleware('auth');
 
 //Chat
 Route::get('/chat', function () {
