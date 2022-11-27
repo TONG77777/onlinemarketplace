@@ -59,32 +59,44 @@
                                 <div class="col-md-12">
                                     <div class="progress" style="height: 6px; border-radius: 16px;">
 
-                                        @if ($order->status == 'pending')
+                                        @if ($order->status == 'cancelled')
                                             <div class="progress-bar" role="progressbar"
-                                                style="width: 25%; border-radius: 16px; background-color: #00b6a1;"
-                                                aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                                        @elseif($order->status == 'confirmed')
-                                            <div class="progress-bar" role="progressbar"
-                                                style="width: 50%; border-radius: 16px; background-color: #00b6a1;"
-                                                aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                                        @elseif($order->status == 'shipping')
-                                            <div class="progress-bar" role="progressbar"
-                                                style="width: 75%; border-radius: 16px; background-color: #00b6a1;"
-                                                aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                                        @elseif($order->status == 'completed')
-                                            <div class="progress-bar" role="progressbar"
-                                                style="width: 100%; border-radius: 16px; background-color: #00b6a1;"
-                                                aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                                        @endif
+                                                style="width: 100%; border-radius: 16px; background-color: red;"
+                                                aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">
+                                            </div>
                                     </div>
-                                    {{-- pending, confirmed, shipping, completed, cancelled --}}
                                     <div class="d-flex justify-content-around mb-1">
-                                        <p class="text-muted mb-0 small">Order Created</p>
-                                        <p class="text-muted mb-0 small">Order Confirmed</p>
-                                        <p class="text-muted mb-0 small">Out for delivary</p>
-                                        <p class="text-muted mb-0 small">Delivered</p>
+                                        <h5>The order has already been canceled. </h5>
                                     </div>
+                                @else
+                                    @if ($order->status == 'pending')
+                                        <div class="progress-bar" role="progressbar"
+                                            style="width: 25%; border-radius: 16px; background-color: #00b6a1;"
+                                            aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                    @elseif($order->status == 'confirmed')
+                                        <div class="progress-bar" role="progressbar"
+                                            style="width: 50%; border-radius: 16px; background-color: #00b6a1;"
+                                            aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                    @elseif($order->status == 'shipping')
+                                        <div class="progress-bar" role="progressbar"
+                                            style="width: 75%; border-radius: 16px; background-color: #00b6a1;"
+                                            aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                    @elseif($order->status == 'completed')
+                                        <div class="progress-bar" role="progressbar"
+                                            style="width: 100%; border-radius: 16px; background-color: #00b6a1;"
+                                            aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                    @endif
+
                                 </div>
+                                {{-- pending, confirmed, shipping, completed, cancelled --}}
+                                <div class="d-flex justify-content-around mb-1">
+                                    <p class="text-muted mb-0 small">Order Created</p>
+                                    <p class="text-muted mb-0 small">Order Confirmed</p>
+                                    <p class="text-muted mb-0 small">Out for delivary</p>
+                                    <p class="text-muted mb-0 small">Order Completed</p>
+                                </div>
+                                @endif
+
                             </div>
                         </div>
                     </div>
@@ -127,39 +139,44 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                @php
+                    $total = 0;
+                    $total = $order->amount_to_pay + $order->shipping_fee;
+                    
+                @endphp
+                <div class="d-flex justify-content-between pt-2">
+                    <p class="fw-bold mb-0">Order Details</p>
+                    <p class="text-muted mb-0"><span class="fw-bold me-4">Total</span> RM {{ $total }}</p>
+                </div>
 
-                    @php
-                        $total = 0;
-                        $total = $order->amount_to_pay + $order->shipping_fee;
-
-                    @endphp
-                    <div class="d-flex justify-content-between pt-2">
-                        <p class="fw-bold mb-0">Order Details</p>
-                        <p class="text-muted mb-0"><span class="fw-bold me-4">Total</span> RM {{ $total }}</p>
+                <div class="d-flex justify-content-between pt-2">
+                    <p class="text-muted mb-0">Order Id :</p>
+                    <p class="text-muted mb-0"><span class="fw-bold me-4"></span> # {{ $order->id }}</p>
+                </div>
+                @if ($order->status == 'cancelled')
+                    <div class="d-flex justify-content-between">
+                        <p class="text-muted mb-0">Cancel At : </p>
+                        <p class="text-muted mb-0"><span class="fw-bold me-4"></span> {{ $order->updated_at }}</p>
                     </div>
-
-                    <div class="d-flex justify-content-between pt-2">
-                        <p class="text-muted mb-0">Order Id :</p>
-                        <p class="text-muted mb-0"><span class="fw-bold me-4"></span> # {{ $order->id }}</p>
-                    </div>
-
+                @else
                     <div class="d-flex justify-content-between">
                         <p class="text-muted mb-0">Invoice Date : </p>
                         <p class="text-muted mb-0"><span class="fw-bold me-4"></span> {{ $order->created_at }}</p>
                     </div>
-
-                    <div class="d-flex justify-content-between mb-5">
-                        <p class="text-muted mb-0">Delivery Fee :</p>
-                        <p class="text-muted mb-0"><span class="fw-bold me-4"></span> RM {{ $order->shipping_fee }}</p>
-                    </div>
+                @endif
+                <div class="d-flex justify-content-between mb-5">
+                    <p class="text-muted mb-0">Delivery Fee :</p>
+                    <p class="text-muted mb-0"><span class="fw-bold me-4"></span> RM {{ $order->shipping_fee }}</p>
                 </div>
-                <div class="card-footer border-0 pt-3 py-3"
-                    style="table-active; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
-                    <h5 class="d-flex align-items-center justify-content-end text-uppercase mb-0">Total
-                        paid: <span class="h2 mb-0 ms-2">RM {{ $total }}</span></h5>
-                </div>
-
             </div>
+            <div class="card-footer border-0 pt-3 py-3"
+                style="table-active; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+                <h5 class="d-flex align-items-center justify-content-end text-uppercase mb-0">Total
+                    paid: <span class="h2 mb-0 ms-2">RM {{ $total }}</span></h5>
+            </div>
+
+        </div>
         </div>
     </section>
 @endsection
