@@ -39,7 +39,8 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">User Id</th>
+                        <th scope="col">Ordered By</th>
+                        <th scope="col">Date</th>
                         <th scope="col">Product</a></th>
                         <th scope="col">Status</a></th>
                         <th scope="col">Price</a></th>
@@ -59,18 +60,24 @@
                                 @endif
                             @endforeach
 
+                            <td>{{ $or->created_at }}</td>
+
                             @foreach ($products as $product)
                                 @if ($product->id == $or->product_id)
                                     <td><a href="#" class="text-primary">{{ $product->name }}</td>
                                 @endif
                             @endforeach
-
+                            {{-- //pending, confirmed, shipping, completed, cancelled --}}
                             @if ($or->status == 'pending')
                                 <td><span class="badge bg-warning text-dark">{{ $or->status }}</span></td>
                             @elseif($or->status == 'cancelled')
                                 <td><span class="badge bg-danger">{{ $or->status }}</span></td>
                             @elseif($or->status == 'completed')
                                 <td><span class="badge bg-success">{{ $or->status }}</span></td>
+                            @elseif($or->status == 'shipping')
+                                <td><span class="badge bg-info">{{ $or->status }}</span></td>
+                            @elseif($or->status == 'confirmed')
+                                <td><span class="badge bg-primary">{{ $or->status }}</span></td>
                             @endif
 
 

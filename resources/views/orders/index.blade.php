@@ -39,9 +39,10 @@
             </thead>
             <tbody>
                 <tr>
+                    {{-- pending, confirmed, shipping, completed, cancelled --}}
                     @php $total = 0; @endphp
                     @foreach ($orders as $order)
-                        <td>{{ $order->id }}</td>
+                        <td>{{ __('#') }}{{ $order->id }}</td>
                         <td>{{ $total = $order->amount_to_pay + $order->shipping_fee }}</td>
                         @if ($order->status == 'pending')
                             <td><span class="badge bg-warning text-dark">{{ $order->status }}</span></td>
@@ -49,6 +50,10 @@
                             <td><span class="badge bg-danger">{{ $order->status }}</span></td>
                         @elseif($order->status == 'completed')
                             <td><span class="badge bg-success">{{ $order->status }}</span></td>
+                        @elseif($order->status == 'shipping')
+                            <td><span class="badge bg-info">{{ $order->status }}</span></td>
+                        @elseif($order->status == 'confirmed')
+                            <td><span class="badge bg-primary">{{ $order->status }}</span></td>
                         @endif
 
                         <form action="{{ route('order.show', $order->id) }}" method="GET">

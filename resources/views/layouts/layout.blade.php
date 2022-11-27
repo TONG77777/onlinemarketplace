@@ -42,23 +42,37 @@
             </a>
             <nav id="navbar" class="navbar">
                 <ul>
-                    {{-- <li><a href="{{ route('home') }}">{{ __('Home') }}<i class="bi bi-house"></i></a></li> --}}
-                    <li><a href="/dashbroad">{{ __('Dashbroad') }}</a></li>
+                    <li><a href="{{ route('home') }}">{{ __('Home') }}<i class="bi bi-house"></i></a></li>
                     <li class="dropdown"><a href=""><span>{{ __('Category') }}</span> <i
-                                class="bi bi-chevron-down dropdown-indicator"></i></a>
-                        <ul>
-                            @php
-                                $categories = App\Models\Category::all();
-                            @endphp
-                            @foreach ($categories as $category)
-                                <li><a href="/category/{{$category->id}}">{{ $category->name }}</a></li>
-                            @endforeach
+                        class="bi bi-chevron-down dropdown-indicator"></i></a>
+                <ul>
+                    @php
+                        $categories = App\Models\Category::all();
+                    @endphp
+                    @foreach ($categories as $category)
+                        <li><a href="/category/{{ $category->id }}">{{ $category->name }}</a></li>
+                    @endforeach
 
+                </ul>
+            </li>
+                    <li><a href="/dashbroad">{{ __('Dashbroad') }}</a></li>
+                    
+                    <li class="dropdown"><a href="">{{ __('Chat') }} <span
+                                class="badge badge-number" style="background:#f85a40">3</span> </span>
+                        </a>
+                        <ul>
+                            <li><a href="/chat">Chat</a></li>
+                            <li><a href="/chat">Chat</a></li>
+                            <li><a href="/chat">Chat</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li class="dropdown-footer"> <a href="#">Show all messages</a></li>
                         </ul>
                     </li>
                     <li><a href="/wishlist">{{ __('Wishlist') }}<i class="bi bi-heart"></i></a></li>
+
                     <li><a href="/order">{{ __('Order') }}</a></li>
-                    <li><a href="#chat">{{ __('Chat') }}<i class="bi bi-chat"></i></a></li>
                     @guest
                         @if (Route::has('login'))
                             <li class="nav-item">

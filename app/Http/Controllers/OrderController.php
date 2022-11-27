@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Address;
+use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\Image;
 
 
 class OrderController extends Controller
@@ -59,8 +61,10 @@ class OrderController extends Controller
     {
         $address = Address::where('user_id', auth()->user()->id)->first();
         $users = User::all();
+        $image['image'] = Image::find($id);
         $products = Product::all();
-        $order = Order::where('id', $id)->where('user_id', auth()->user()->id)->get();
-        return view('orders.show', ['orders' => $order, 'users' => $users, 'products' => $products, 'address' => $address]);
+        $order = Order::find($id);
+        $data['categories'] = Category::all();
+        return view('orders.show', ['order' => $order, 'users' => $users, 'products' => $products, 'address' => $address], $data, $image);
     }
 }

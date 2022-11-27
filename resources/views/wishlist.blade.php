@@ -40,13 +40,13 @@
                                         $product = App\Models\Product::find($wish->product_id);
                                         $mark_as_sold = App\Models\Product::where('mark_as_sold', 0)->get();
                                     @endphp
-                                    @if($product->mark_as_sold == 0)
-                                    @foreach ($images as $image)
-                                        @if ($loop->first)
-                                            <img src="/img/products/{{ $image->url }}" style="width:60px;height:60px;"
-                                                alt="">
-                                        @endif
-                                    @endforeach
+                                    @if ($product->mark_as_sold == 0)
+                                        @foreach ($images as $image)
+                                            @if ($loop->first)
+                                                <img src="/img/products/{{ $image->url }}"
+                                                    style="width:60px;height:60px;" alt="">
+                                            @endif
+                                        @endforeach
                                 </a></th>
                             <div class="portfolio-info">
                                 <td><a href="products/{{ $wish->product_id }}"
@@ -69,15 +69,14 @@
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger"><i class="bi bi-trash-fill"></i></button>
                                 </form>
-                            
-                            @endif
-                            </td>
-                        </tr>
-                    @endforeach
-                @else
-                    <tr>
-                        <td colspan="6" class="text-center">{{ __('No Wishlist') }}</td>
+                    @endif
+                    </td>
                     </tr>
+                @endforeach
+            @else
+                <tr>
+                    <td colspan="6" class="text-center">{{ __('No Wishlist') }}</td>
+                </tr>
                 @endif
             </tbody>
 
