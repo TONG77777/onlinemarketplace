@@ -42,7 +42,7 @@
             </a>
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a href="{{ route('home') }}">{{ __('Home') }}<i class="bi bi-house"></i></a></li>
+                    <li><a href="{{ route('home') }}">{{ __('Home') }}<i class="bi bi-house-fill"></i></a></li>
                     <li class="dropdown"><a href=""><span>{{ __('Category') }}</span> <i
                         class="bi bi-chevron-down dropdown-indicator"></i></a>
                 <ul>
@@ -56,9 +56,9 @@
                 </ul>
             </li>
                     <li><a href="/dashbroad">{{ __('Dashbroad') }}</a></li>
-                    <li><a href="/chatify">{{ __('Chat') }}</a></li>
-                    {{-- <li class="dropdown"><a href="">{{ __('Chat') }} <span
-                                class="badge badge-number" style="background:#f85a40">3</span> </span>
+                    <li><a href="/chatify">{{ __('Chat') }}<i class="bi bi-chat-left-text-fill"></i>
+                    </a></li>
+                    {{-- <li class="dropdown"><a href="">{{ __('Chat') }}  </span>
                         </a>
                         <ul>
                             <li><a href="/chat">Chat</a></li>
@@ -70,7 +70,7 @@
                             <li class="dropdown-footer"> <a href="#">Show all messages</a></li>
                         </ul>
                     </li> --}}
-                    <li><a href="/wishlist">{{ __('Wishlist') }}<i class="bi bi-heart"></i></a></li>
+                    <li><a href="/wishlist">{{ __('Wishlist') }}<i class="bi bi-heart-fill"></i></a></li>
 
                     <li><a href="/order">{{ __('Order') }}</a></li>
                     @guest

@@ -90,6 +90,3 @@ Route::get('admin/reports', function () {
     return view('admin.reports.index');
 });
 
-Route::get('/send-event', function(){
-    broadcast(new \App\Events\HelloEvent('Hello World'));
-});
