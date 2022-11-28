@@ -1,10 +1,12 @@
 <?php
 
+use App\Events\HelloEvent;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProductController;
 use App\Models\Product;
+
 
 
 
@@ -84,7 +86,10 @@ Route::get('/chat', function () {
 });
 
 
-
 Route::get('admin/reports', function () {
     return view('admin.reports.index');
+});
+
+Route::get('/send-event', function(){
+    broadcast(new \App\Events\HelloEvent('Hello World'));
 });

@@ -37,10 +37,20 @@
                                                 class="col-md-3 text-center d-flex justify-content-center align-items-center">
                                                 <p class="text-muted mb-0">{{ $product->name }}</p>
                                             </div>
-                                            <div
-                                                class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                                <p class="text-muted mb-0 small">{{ $product->category }}</p>
-                                            </div>
+                                            @php
+                                                $category = App\Models\Category::find($product->category_id);
+                                            @endphp
+
+                                            @foreach ($categories as $category)
+                                           
+                                            @if($product->category == $category->id)
+                                                <div
+                                                    class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                                    <p class="text-muted mb-0 small">{{ $category->name }}</p>
+                                                </div>
+                                         @endif
+                                            @endforeach
+
                                             <div
                                                 class="col-md-3 text-center d-flex justify-content-center align-items-center">
                                                 <p class="text-muted mb-0 small">{{ $product->condition }}</p>
@@ -172,18 +182,18 @@
                     <p class="text-muted mb-0"><span class="fw-bold me-4"></span> RM {{ $order->shipping_fee }}</p>
                 </div>
 
-                @if($order->status != 'cancelled')
-                <form action="{{route('order.cancel', $order->id)}}" method="PUT">
-                    @csrf
-                    @method('PUT')
-                    <div class="d-flex justify-content-between pt-2">
+                @if ($order->status != 'cancelled')
+                    <form action="{{ route('order.cancel', $order->id) }}" method="PUT">
+                        @csrf
+                        @method('PUT')
+                        <div class="d-flex justify-content-between pt-2">
 
-                        <p class="text-muted mb-0"></p>
-                        <p class="text-muted mb-0"><span class="fw-bold me-4"></span> <button type="submit"
-                                class="btn float-right" style="background-color: #f85a40; color:aliceblue; ">Cancel
-                                order</button></p>
-                    </div>
-                </form>
+                            <p class="text-muted mb-0"></p>
+                            <p class="text-muted mb-0"><span class="fw-bold me-4"></span> <button type="submit"
+                                    class="btn float-right" style="background-color: #f85a40; color:aliceblue; ">Cancel
+                                    order</button></p>
+                        </div>
+                    </form>
                 @endif
 
 

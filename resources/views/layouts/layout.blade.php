@@ -56,8 +56,8 @@
                 </ul>
             </li>
                     <li><a href="/dashbroad">{{ __('Dashbroad') }}</a></li>
-                    
-                    <li class="dropdown"><a href="">{{ __('Chat') }} <span
+                    <li><a href="/chatify">{{ __('Chat') }}</a></li>
+                    {{-- <li class="dropdown"><a href="">{{ __('Chat') }} <span
                                 class="badge badge-number" style="background:#f85a40">3</span> </span>
                         </a>
                         <ul>
@@ -69,7 +69,7 @@
                             </li>
                             <li class="dropdown-footer"> <a href="#">Show all messages</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
                     <li><a href="/wishlist">{{ __('Wishlist') }}<i class="bi bi-heart"></i></a></li>
 
                     <li><a href="/order">{{ __('Order') }}</a></li>

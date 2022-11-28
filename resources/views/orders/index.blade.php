@@ -43,7 +43,7 @@
                     @php $total = 0; @endphp
                     @foreach ($orders as $order)
                         <td>{{ __('#') }}{{ $order->id }}</td>
-                        <td>{{ $total = $order->amount_to_pay + $order->shipping_fee }}</td>
+                        <td>RM {{ $total = $order->amount_to_pay + $order->shipping_fee }}</td>
                         @if ($order->status == 'pending')
                             <td><span class="badge bg-warning text-dark">{{ $order->status }}</span></td>
                         @elseif($order->status == 'cancelled')

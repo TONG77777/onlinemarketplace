@@ -82,10 +82,10 @@
                             <div class="testimonial-item">
                                 <div>
                                     <img src="/img/p1.png" class="testimonial-img" alt="">
-                                    
-                                    @php 
+
+                                    @php
                                         $user = App\Models\User::where('id', $product->user_id)->get();
-                                       
+                                        
                                     @endphp
 
                                     @foreach ($user as $u)
@@ -93,19 +93,19 @@
                                     @endforeach
 
                                     @foreach ($user as $u)
-                                   
-                                        <h4> <a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ $u->email }}&su={{ $product->name}}&body={{__('I am interested in your product...')}}" target="_blank">{{ $u->email }}</a></h4>
+                                        <h4> <a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ $u->email }}&su={{ $product->name }}&body={{ __('I am interested in your product...') }}"
+                                                target="_blank">{{ $u->email }}</a></h4>
                                     @endforeach
 
                                     @foreach ($user as $u)
-                                    @php
-                                        $now = Carbon\Carbon::now();
-                                        $date = Carbon\Carbon::parse($u->created_at);
-                                        $diff = $now->diffInDays($date);
-                                    @endphp
-                                        <h4>{{__('Joined ')}}{{ $diff }}{{__(' days ago')}}</h4>
+                                        @php
+                                            $now = Carbon\Carbon::now();
+                                            $date = Carbon\Carbon::parse($u->created_at);
+                                            $diff = $now->diffInDays($date);
+                                        @endphp
+                                        <h4>{{ __('Joined ') }}{{ $diff }}{{ __(' days ago') }}</h4>
                                     @endforeach
-                           
+
                                 </div>
                             </div>
 
@@ -133,8 +133,11 @@
                                 <li><strong>{{ __('Publish Date') }}</strong>
                                     <span>{{ $product->created_at->format('d M Y') }}</span>
                                 </li>
-                                <li><a href="#" class="btn-contact"> {{ __('Contact ') }}<i
-                                            class="bi bi-person-lines-fill"></i></a></li>
+                                @foreach ($user as $u)
+                                    <li><a href="/chatify/{{ $u->id }}" class="btn-contact"> {{ __('Contact ') }}<i
+                                                class="bi bi-person-lines-fill"></i></a></li>
+                                @endforeach
+
                                 <li>
                                     <form action="{{ route('checkout.store', $product->id) }}" method="POST">
                                         @csrf
@@ -144,10 +147,10 @@
 
                                 </form>
                                 @if ($product->user_id == Auth::user()->id)
-                                
                                     <ul>
                                         <li class="dropdown">
-                                            <form action="{{ route('seller.products.edit', $product->id) }}" style="border:none;">
+                                            <form action="{{ route('seller.products.edit', $product->id) }}"
+                                                style="border:none;">
                                                 @csrf
                                                 <button type="submit" class="btn btn-link" style="color: #008374">
                                                     {{ __('Edit') }}
@@ -160,7 +163,8 @@
                                                 method="PUT">
                                                 @csrf
                                                 @method('PUT')
-                                                <button type="submit" class="btn btn-link" style="color: #008374">{{ __('Mark As Sold') }}<i
+                                                <button type="submit" class="btn btn-link"
+                                                    style="color: #008374">{{ __('Mark As Sold') }}<i
                                                         class="bi bi-trash-fill"></i></button>
                                             </form>
                                         </li>
@@ -169,7 +173,8 @@
                                                 method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-link" style="color: #008374">{{ __('Delete') }}<i
+                                                <button type="submit" class="btn btn-link"
+                                                    style="color: #008374">{{ __('Delete') }}<i
                                                         class="bi bi-trash-fill"></i></button>
                                             </form>
                                         </li>
