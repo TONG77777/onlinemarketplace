@@ -39,7 +39,7 @@
                                 @endphp
 
                                 @foreach ($images as $image)
-                                    <div class="carousel-item @if($loop->first) active @endif">
+                                    <div class="carousel-item @if ($loop->first) active @endif">
                                         <img src="/img/products/{{ $image->url }}" class="d-block w-100"
                                             style="width:400px;min-height:500px; max-height:500px;" alt="image">
                                     </div>
@@ -122,31 +122,34 @@
                             <h3>{{ __('Product Infromation') }}</h3>
                             <ul>
                                 <li><strong>{{ __('Category') }}</strong> <span>
-                                        @php
-                                            $category = App\Models\Category::where('id', $product->category_id)->first();
-                                        @endphp
+                                       
 
                                         @foreach ($categories as $category)
+                                            @if ($category->id == $product->category)
+                                              
                                             <a href="/category/{{ $category->id }}">{{ $category->name }}</a></li>
+                                            @endif
                                 @endforeach
                                 </span></li>
                                 <li><strong>{{ __('Publish Date') }}</strong>
                                     <span>{{ $product->created_at->format('d M Y') }}</span>
                                 </li>
-                                @foreach ($user as $u)
-                                    <li><a href="/chatify/{{ $u->id }}" class="btn-contact"> {{ __('Contact ') }}<i
-                                                class="bi bi-person-lines-fill"></i></a></li>
-                                @endforeach
 
-                                <li>
-                                    <form action="{{ route('checkout.store', $product->id) }}" method="POST">
-                                        @csrf
-                                        <button type="submit" class="btn-buy">{{ __('Buy Now') }}<i
-                                                class="bi bi-cart-check-fill"></i>
-                                </li></button>
+                                @if ($product->user_id != Auth::user()->id)
+                                    @foreach ($user as $u)
+                                        <li><a href="/chatify/{{ $u->id }}" class="btn-contact">
+                                                {{ __('Contact ') }}<i class="bi bi-person-lines-fill"></i></a></li>
+                                    @endforeach
 
-                                </form>
-                                @if ($product->user_id == Auth::user()->id)
+                                    <li>
+                                        <form action="{{ route('checkout.store', $product->id) }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn-buy">{{ __('Buy Now') }}<i
+                                                    class="bi bi-cart-check-fill"></i>
+                                    </li></button>
+
+                                    </form>
+                                @elseif ($product->user_id == Auth::user()->id)
                                     <ul>
                                         <li class="dropdown">
                                             <form action="{{ route('seller.products.edit', $product->id) }}"

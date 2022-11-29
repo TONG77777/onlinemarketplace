@@ -23,6 +23,11 @@
                     {{ Session::get('success') }}
                 </div>
             @endif
+            @if(Session::has('error'))
+            <div class="alert alert-danger" role="alert">
+                {{ Session::get('error') }}
+            </div>
+            @endif
         </div>
         {{-- <div class="dataTable-top">
             <div class="dataTable-dropdown"><label><select class="dataTable-selector">

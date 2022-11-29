@@ -26,7 +26,7 @@ class ProductController extends Controller
     {
         $image['image'] = Image::find($id);
         $product = Product::find($id);
-        $data['categories'] = Category::find($id)->get()->where('id', $product->category);
+        $data['categories'] = Category::all();
         return view('products.show', ['product' => $product], $data, $image);
     }
 

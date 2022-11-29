@@ -78,9 +78,6 @@ Route::post('/payment/form/{id}', 'StripePaymentController@makePayment')->name('
 // Route::get('/payment/form', 'StripePaymentController@form')->name('payment.form')->middleware('auth');
 // Route::post('/payment/form/{id}', 'CheckoutController@placeorder')->name('payment.make')->middleware('auth');
 
-// //Payment
-// Route::get('/payment/form/{order}', 'CheckoutController@form')->name('payment.form');
-// Route::post('/payment/form/', 'StripePaymentController@makePayment')->name('make.payment');
 
 //Order
 Route::get('/order', 'OrderController@index')->name('order.index')->middleware('auth');

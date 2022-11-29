@@ -21,11 +21,6 @@ class StripePaymentController extends Controller
     return $this->belongsTo(Order::class);
   }
 
-  public function success($order_id)
-  {
-    return view('payment.success', $order_id);
-  }
-
   public function makePayment(Request $request, $order_id)
   {
     $order = Order::find($order_id);
@@ -50,9 +45,14 @@ class StripePaymentController extends Controller
       'currency' => 'myr',
     ]);
 
-
-    if ($payment->status == 'succeeded') {
-      return redirect()->route('payment.form',['order' => $order_id])->with('success', 'Payment successfully.');
+    if ($charge->status == 'succeeded') {
+      $payment->status = 'success';
+      $payment->save();
+      return redirect('/order')->with('success', 'Payment successfully.');
+    } elseif ($charge->status == 'failed') {
+      $payment->status = 'failed';
+      $payment->save();
+      return redirect('/order')->with('error', 'Payment failed.');
     }
   }
 }

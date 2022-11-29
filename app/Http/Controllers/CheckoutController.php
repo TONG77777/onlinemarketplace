@@ -26,7 +26,6 @@ class CheckoutController extends Controller
 
     public function placeorder(Request $request, $id)
     {
-
         $product = Product::find($id);
         $address = new Address();
         $address->title = request('title');
@@ -54,8 +53,8 @@ class CheckoutController extends Controller
         $product->update();
         $product->save();
 
-        return view('payment.form', ['order' => $order->id])->with('success', 'Order successfully.');
-        // return view('/payment/form', ['order' => $order])->with('success', 'Order Placed Successfully, Complete Payment to Confirm Order');
+        
+        return view('payment.form', ['order' => $order->id]);
     }
 
 }
