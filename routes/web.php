@@ -42,16 +42,21 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('order', 'OrderController@adminIndex')->name('admin.order.index')->middleware('auth');
     Route::get('/update/{id}', 'OrderController@adminUpdate')->name('admin.order.update')->middleware('auth');
     Route::get('/search', 'OrderController@adminSearch')->name('admin.order.search')->middleware('auth');
+    Route::get('/status', 'OrderController@adminStatus')->name('admin.order.status')->middleware('auth');
+});
+Route::get('admin/reports', function () {
+    return view('admin.reports.index');
 });
 
+
 //Products
-Route::get('/products', 'ProductController@index')->name('products.index');
+Route::get('/products', 'ProductController@index')->name('products.index')->middleware('auth');
 Route::get('/products/create', 'ProductController@create')->name('seller.products.create')->middleware('auth');
-Route::post('/products', 'ProductController@store');
+Route::post('/products', 'ProductController@store')->middleware('auth');
 Route::get('/markAsSold/{id}', 'ProductController@markAsSold')->name('seller.products.markAsSold')->middleware('auth');
 Route::get('/products/edit/{id}', 'ProductController@edit')->name('seller.products.edit')->middleware('auth');
 Route::put('/products/update/{id}', 'ProductController@update')->name('seller.products.update')->middleware('auth');
-Route::get('/products/{id}', 'ProductController@show');
+Route::get('/products/{id}', 'ProductController@show')->middleware('auth');
 Route::delete('/products/{id}', 'ProductController@destroy')->name('seller.products.delete')->middleware('auth');
 Route::get('/search', 'ProductController@search')->middleware('auth');
 Route::get('/category/{id}', 'ProductController@products')->name('category.index')->middleware('auth');
@@ -74,23 +79,10 @@ Route::post('/payment/placeorder/{id}', 'CheckoutController@placeorder')->name('
 Route::get('/payment/form/{id}', 'StripePaymentController@form')->name('payment.form')->middleware('auth');
 Route::post('/payment/form/{id}', 'StripePaymentController@makePayment')->name('make.payment')->middleware('auth');
 
-
-// Route::get('/payment/form', 'StripePaymentController@form')->name('payment.form')->middleware('auth');
-// Route::post('/payment/form/{id}', 'CheckoutController@placeorder')->name('payment.make')->middleware('auth');
-
-
 //Order
 Route::get('/order', 'OrderController@index')->name('order.index')->middleware('auth');
 Route::get('/order/{id}', 'OrderController@show')->name('order.show')->middleware('auth');
 Route::get('/cancel/{id}', 'OrderController@cancel')->name('order.cancel')->middleware('auth');
 
-//Chat
-Route::get('/chat', function () {
-    return view('chat');
-});
 
-
-Route::get('admin/reports', function () {
-    return view('admin.reports.index');
-});
 

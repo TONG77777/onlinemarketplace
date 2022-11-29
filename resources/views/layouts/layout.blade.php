@@ -36,13 +36,13 @@
 
     <header id="header" class="header d-flex align-items-center">
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-            <a href="{{ route('products.index') }}" class="logo d-flex align-items-center">
+            <a href="{{ route('home') }}" class="logo d-flex align-items-center">
 
                 <h1>{{ __('Online Marketplace') }}<span>.</span></h1>
             </a>
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a href="{{ route('home') }}">{{ __('Home') }}<i class="bi bi-house-fill"></i></a></li>
+                    <li><a href="{{ route('products.index') }}"">{{ __('Products') }}<i class="bi bi-house-fill"></i></a></li>
                     <li class="dropdown"><a href=""><span>{{ __('Category') }}</span> <i
                         class="bi bi-chevron-down dropdown-indicator"></i></a>
                 <ul>

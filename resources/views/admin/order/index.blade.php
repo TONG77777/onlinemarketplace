@@ -14,48 +14,64 @@
                         <input type="text" class="form-control" placeholder="Search Order Id" name="query">
                         <div class="input-group-append">
                             <button class="btn btn-submit-secondary" type="submit"><i class="bi bi-search"></i></button>
-                        </div>
-                </form>
 
+                </form>
+                <form action="{{ route('admin.order.status') }}" method="GET">
             </div>
-            @if (Session::has('success'))
-                <div class="alert alert-success" role="alert">
-                    {{ Session::get('success') }}
-                </div>
-            @endif
-            @if(Session::has('error'))
+            @csrf
+            <select class="form-select" aria-label="Default select example" name="status" id="status">
+                <option value="pending">Pending</option>
+                <option value="confirmed">Confirmed</option>
+                <option value="shipping">Shipping</option>
+                <option value="completed">Completed</option>
+                <option value="cancelled">Cancelled</option>
+            </select>
+            <div class="input-group-append">
+                <button class="btn btn-submit-secondary" type="submit"><i class="bi bi-filter"></i></button>
+            </div>
+            </form>
+        </div>
+        @if (Session::has('success'))
+            <div class="alert alert-success" role="alert">
+                {{ Session::get('success') }}
+            </div>
+        @endif
+        @if (Session::has('error'))
             <div class="alert alert-danger" role="alert">
                 {{ Session::get('error') }}
             </div>
-            @endif
-        </div>
-        {{-- <div class="dataTable-top">
-            <div class="dataTable-dropdown"><label><select class="dataTable-selector">
-                        <option value="5">5</option>
-                        <option value="10" selected="">10</option>
-                        <option value="15">15</option>
-                        <option value="20">20</option>
-                        <option value="25">25</option>
-                    </select> entries per page</label></div>
-            <div class="dataTable-search"><input class="dataTable-input" placeholder="Search..." type="text"></div>
-        </div> --}}
+        @endif
+    </div>
+    <div class="dataTable-top">
+        <div class="dataTable-dropdown"><label>
+                <select class="dataTable-selector" name="number">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                    <option value="25">25</option>
+                </select>
+            </label></div>
+           
+
+
         <div class="dataTable-container">
             <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Ordered By</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Product</a></th>
-                        <th scope="col">Status</a></th>
-                        <th scope="col">Price</a></th>
-                        <th scope="col">Action</a></th>
+                        <th scope="col">Ordered Date</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
 
-
+                     
                         @foreach ($orders as $or)
                             <th scope="row"><a href="#">#{{ $or->id }}</a></th>
 
@@ -69,7 +85,9 @@
 
                             @foreach ($products as $product)
                                 @if ($product->id == $or->product_id)
-                                    <td><a href="#" class="text-primary">{{ $product->name }}</td>
+                                    <td>
+                                        <p style="color: #008374">{{ $product->name }}</p>
+                                    </td>
                                 @endif
                             @endforeach
                             {{-- //pending, confirmed, shipping, completed, cancelled --}}
@@ -102,19 +120,7 @@
         <section id="blog" class="blog">
             <div class="blog-pagination">
                 <ul class="justify-content-center">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
+                    {{$orders->links()}}
                 </ul>
             </div><!-- End Product -->
 

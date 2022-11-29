@@ -9,6 +9,9 @@ use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Image;
+use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Database\Eloquent\Model;
+
 
 
 class OrderController extends Controller
@@ -17,7 +20,7 @@ class OrderController extends Controller
     {
         $users = User::all();
         $products = Product::all();
-        $orders = Order::all();
+        $orders = Order::paginate(10);
         return view('admin.order.index', ['orders' => $orders, 'users' => $users, 'products' => $products]);
     }
 
@@ -41,6 +44,22 @@ class OrderController extends Controller
             $products = Product::all();
             return view('admin.order.index', ['orders' => $orders, 'users' => $users, 'products' => $products]);
         }
+    }
+
+    public function adminStatus() //pending, confirmed, shipping, completed, cancelled
+    {
+
+        if ($status = $_GET['status'])
+            $orders = Order::where('status', $status)->get();
+        $users = User::all();
+        $products = Product::all();
+
+        if ($orders->isEmpty()) {
+            return redirect()->route('admin.order.index')->with('error', 'No order found');
+        }
+        
+
+        return view('admin.order.index', ['orders' => $orders, 'users' => $users, 'products' => $products]);
     }
 
     public function update($id, Request $request)
