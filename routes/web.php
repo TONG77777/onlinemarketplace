@@ -66,14 +66,21 @@ Route::post('/wishlist/store/{id}', 'WishlistController@store')->name('wishlist.
 Route::delete('/wishlist/{id}', 'WishlistController@destroy')->middleware('auth')->name('wishlist.destroy');
 
 
-//Payment & Checkout
+//Checkout
 Route::post('/payment/checkout/{id}', 'CheckoutController@checkout')->name('checkout.store')->middleware('auth');
-Route::post('/payment/placeorder', 'CheckoutController@placeorder')->name('place.order')->middleware('auth');
-
+Route::post('/payment/placeorder/{id}', 'CheckoutController@placeorder')->name('place.order')->middleware('auth');
 
 //Payment
-Route::get('/payment/form', 'StripePaymentController@form')->name('payment.form');
-Route::post('/payment/form', 'StripePaymentController@makePayment')->name('make.payment');
+Route::get('/payment/form/{id}', 'StripePaymentController@form')->name('payment.form')->middleware('auth');
+Route::post('/payment/form/{id}', 'StripePaymentController@makePayment')->name('make.payment')->middleware('auth');
+
+
+// Route::get('/payment/form', 'StripePaymentController@form')->name('payment.form')->middleware('auth');
+// Route::post('/payment/form/{id}', 'CheckoutController@placeorder')->name('payment.make')->middleware('auth');
+
+// //Payment
+// Route::get('/payment/form/{order}', 'CheckoutController@form')->name('payment.form');
+// Route::post('/payment/form/', 'StripePaymentController@makePayment')->name('make.payment');
 
 //Order
 Route::get('/order', 'OrderController@index')->name('order.index')->middleware('auth');

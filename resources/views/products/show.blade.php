@@ -39,7 +39,7 @@
                                 @endphp
 
                                 @foreach ($images as $image)
-                                    <div class="carousel-item active">
+                                    <div class="carousel-item @if($loop->first) active @endif">
                                         <img src="/img/products/{{ $image->url }}" class="d-block w-100"
                                             style="width:400px;min-height:500px; max-height:500px;" alt="image">
                                     </div>

@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Stripe\Payout;
 use Stripe\Stripe;
 
 
@@ -14,35 +15,44 @@ use Stripe\Stripe;
 
 class StripePaymentController extends Controller
 {
-  
-  public function form()
+
+  public function order()
   {
-    return view('payment.form');
+    return $this->belongsTo(Order::class);
   }
 
-  public function makePayment(Request $request)
+  public function success($order_id)
   {
-    
-    $input = $request->all();
-    // $payment = new Payment();
-    // $payment->order_id = $id;
-    // $payment->amount = $input['amount'];
-    // $payment->payment_status = $input['payment_status'];
-    // $payment->save();
+    return view('payment.success', $order_id);
+  }
 
+  public function makePayment(Request $request, $order_id)
+  {
+    $order = Order::find($order_id);
+    if (!$order) {
+      return redirect()->back();
+    }
 
-    \Stripe\Stripe::setApiKey('sk_test_51M51nyFaj0TxPMzIrMoy0fNdUdKsKy0pxzozHVvnqXZy5dkx1if9HkvmAAXsm7QWYAhUTHqxyiaPArBy5IEBUb6A006nVhrJxt');
+    $total = $order->amount_to_pay + $order->shipping_fee;
+
+    $payment = Payment::create([
+      'order_id' => $order->id,
+      'status' => 'pending',
+      'amount' => $total,
+      'user_id' => $order->user_id,
+    ]);
+
+    \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
 
     $charge = \Stripe\Charge::create([
       'source' => $_POST['stripeToken'],
-      'amount' => 2000,
+      'amount' => $total * 100,
       'currency' => 'myr',
     ]);
 
-    
 
-    if ($charge->status == 'succeeded') {
-      return redirect()->route('payment.form')->with('success', 'Payment successfully.');
+    if ($payment->status == 'succeeded') {
+      return redirect()->route('payment.form',['order' => $order_id])->with('success', 'Payment successfully.');
     }
   }
 }

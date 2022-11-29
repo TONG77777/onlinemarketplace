@@ -9,7 +9,7 @@
         $total = 0;
     @endphp
 
-    <form action="{{ route('make.payment') }}" method="POST">
+    <form action="{{route('make.payment', $order)}}" method="POST">
         @csrf
     
         <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
