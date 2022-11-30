@@ -171,12 +171,14 @@ class ProductController extends Controller
 
     public function products($category)
     {
-        $products = Product::where('category', $category)->get();
+        $products = Product::where('mark_as_sold', '=', '0')->where('category', '=', $category)->get();
         $data['categories'] = Category::all();
+
         return view('products.index', ['products' => $products], $data);
     }
 
-    public function markAsSold($id){
+    public function markAsSold($id)
+    {
         $product = Product::find($id);
         $product->mark_as_sold = 1;
         $product->save();

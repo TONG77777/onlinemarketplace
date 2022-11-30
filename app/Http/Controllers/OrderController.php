@@ -79,7 +79,7 @@ class OrderController extends Controller
 
     public function show($id)
     {
-        $address = Address::where('user_id', auth()->user()->id)->first();
+        $address = Address::where('user_id', auth()->user()->id)->get();
         $users = User::all();
         $image['image'] = Image::find($id);
         $products = Product::all();

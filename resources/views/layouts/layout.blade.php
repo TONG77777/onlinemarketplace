@@ -49,6 +49,7 @@
                     @php
                         $categories = App\Models\Category::all();
                     @endphp
+
                     @foreach ($categories as $category)
                         <li><a href="/category/{{ $category->id }}">{{ $category->name }}</a></li>
                     @endforeach
