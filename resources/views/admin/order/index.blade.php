@@ -1,11 +1,9 @@
 @extends('layouts.admin_layout')
+<link rel="stylesheet" type="text/css" href="/DataTables/datatables.css">
 
+<script type="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css"></script>
+<script type="text/javascript" charset="utf8" src="/DataTables/datatables.js"></script>
 @section('content')
-    <link rel="stylesheet" type="text/css" href="/DataTables/datatables.css">
-
-    <script type="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css"></script>
-    <script type="text/javascript" charset="utf8" src="/DataTables/datatables.js"></script>
-
     <div class="container" data-aos="fade-up" style="height:auto; min-height:700px;">
         <br>
         <br>

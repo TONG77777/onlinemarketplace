@@ -1,4 +1,8 @@
 @extends('layouts.admin_layout')
+<link rel="stylesheet" type="text/css" href="/DataTables/datatables.css">
+
+<script type="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css"></script>
+<script type="text/javascript" charset="utf8" src="/DataTables/datatables.js"></script>
 @section('content')
     <div class="breadcrumbs">
         <nav>
@@ -18,27 +22,28 @@
         @endif
         <button type="submit" class="float-end btn" style="background: #00b6a1"><a href="/admin/category/create"
                 style="color: azure">{{ __('+ Add New Category') }}</a></button>
-        <table class="table">
-
-
+        <h2 class="mb-5">{{ __('Category List') }}</h2>
+        <hr>
+        <table id="example" class="display" style="width:100%">
             <thead>
-
                 <tr>
-                    <th scope="col">{{ __('#') }}</th>
-                    <th scope="col">{{ __('Category Name') }}</th>
-                    <th scope="col">{{ __('Description') }}</th>
-                    <th scope="col">{{ __('Updated At') }}</th>
-                    <th scope="col">{{ __('Edit') }}</th>
-                    <th scope="col">{{ __('Delete') }}</th>
+                    <th>{{ __('#ID') }}</th>
+                    <th>{{ __('Category Name') }}</th>
+                    <th>{{ __('Description') }}</th>
+                    <th>{{ __('Updated At') }}</th>
+                    <th>{{ __('Edit') }}</th>
+                    <th>{{ __('Delete') }}</th>
                 </tr>
-            </thead>
+                <thead>
+
+                </thead>
             <tbody>
                 <tr>
                     @foreach ($category as $category)
-                        <th scope="row">{{ $category->id }}</th>
+                        <td>{{ $category->id }}</td>
                         <td>{{ $category->name }}</td>
                         <td>{{ $category->description }}</td>
-                        <td scope="row">{{ $category->updated_at }}</td>
+                        <td>{{ $category->updated_at }}</td>
                         <td><a href="{{ route('admin.category.edit', $category->id) }}">{{ __('Edit') }}</a></td>
                         <td>
                             <form action="/admin/category/{{ $category->id }}" method="POST">
@@ -46,11 +51,16 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">{{ __('Delete') }}</button>
                             </form>
-                        <td>
-
+                        </td>
                 </tr>
                 @endforeach
+
             </tbody>
         </table>
     </div>
 @endsection
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    });
+</script>
