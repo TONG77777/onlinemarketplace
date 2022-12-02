@@ -31,4 +31,9 @@ class Product extends Model
 
         return $this->hasMany(Image::class, 'product_id', 'id');
     }
+
+    public function counters()
+    {
+        return $this->belongsTo(Counter::class, 'id');
+    }
 }

@@ -7,6 +7,7 @@ use App\Models\Product;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\UploadedFile;
 use App\Models\Category;
+use App\Models\Counter;
 use App\Models\Image;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -27,7 +28,20 @@ class ProductController extends Controller
         $image['image'] = Image::find($id);
         $product = Product::find($id);
         $data['categories'] = Category::all();
-        return view('products.show', ['product' => $product], $data, $image);
+        //counter
+        $counter = Counter::where('id', $id)->first();
+        if ($counter) {
+            $counter->views = $counter->views + 1 ;
+            $counter->save();
+        } else {
+            $counter = new Counter();
+            $counter->id = $id;
+            $counter->views = 1;
+            $counter->save();
+        }
+
+        return view('products.show', ['product' => $product], $data, $image, $counter);
+
     }
 
     public function edit(Product $product, $id)

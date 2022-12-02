@@ -182,11 +182,21 @@
                                         </li>
                                 @endif
                             </ul>
-                            {{-- <h3>
-                                @foreach ($projects as $project)
-                                    <li>{{ $project->views }}</li>
-                                @endforeach
-                            </h3> --}}
+                            <h3>
+                        
+                            @php
+                                $count = App\Models\Counter::where('id', $product->id)->get();
+                            @endphp
+                        
+                            @foreach ($count as $c)
+                            @if($c->id == $product->id)
+                                {{ __('Total Views : ') }} {{ $c->views }}
+                            @endif
+                            @endforeach
+                      
+
+                                
+                            </h3>
                             {{-- <ul> 
                                     <u><li><a href="{{route('seller.products.edit', $product->id)}}" class="btn-"> Edit Product <i class="bi bi-pencil-square"></i></a></li></u>
                                     <u><li><a href="#" class="btn-"> Mask as Sold <i class="bi bi-check-square-fill"></i></a></li></u>
