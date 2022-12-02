@@ -98,7 +98,7 @@ class AdminController extends Controller
 
     public function payments()
     {
-        $payments = DB::table('payments')->get();
+        $payments = Payment::all();
         return view('admin.payments.index', compact('payments'));
     }
 }
