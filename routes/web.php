@@ -93,3 +93,6 @@ Route::get('/cancel/{id}', 'OrderController@cancel')->name('order.cancel')->midd
 
 
 
+Route::get('/admin/charts', function () {
+   return view('admin.charts');
+});
