@@ -30,9 +30,9 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 //Admin Dashboard
 Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     //Dashboard
-    Route::get('/dashboard', 'AdminController@index');
+    Route::get('/', 'AdminController@index')->name('admin.index');
     //categories
-    Route::get('category', 'CategoryController@index');
+    Route::get('category', 'CategoryController@index')->name('admin.category.index');
     Route::get('category/create', 'CategoryController@create')->name('admin.category.create')->middleware('auth');
     Route::post('category', 'CategoryController@store');
     Route::get('category/edit/{id}', 'CategoryController@edit')->name('admin.category.edit')->middleware('auth');
@@ -43,9 +43,16 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/update/{id}', 'OrderController@adminUpdate')->name('admin.order.update')->middleware('auth');
     Route::get('/search', 'OrderController@adminSearch')->name('admin.order.search')->middleware('auth');
     Route::get('/status', 'OrderController@adminStatus')->name('admin.order.status')->middleware('auth');
-});
-Route::get('admin/reports', function () {
-    return view('admin.reports.index');
+    //Dashboard
+    Route::get('dashboard', 'AdminController@dashboard')->name('admin.dashboard.index')->middleware('auth');
+    //Users List
+    Route::get('users', 'AdminController@users')->name('admin.users.index')->middleware('auth');
+    //Admins List
+    Route::get('admins', 'AdminController@admins')->name('admin.admins.index')->middleware('auth');
+    //Products List
+    Route::get('products', 'AdminController@products')->name('admin.products.index')->middleware('auth');
+    //Payments List
+    Route::get('payments', 'AdminController@payments')->name('admin.payments.index')->middleware('auth');
 });
 
 

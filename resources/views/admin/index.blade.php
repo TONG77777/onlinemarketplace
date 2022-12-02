@@ -33,8 +33,8 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="service-item position-relative">
                             <div class="icon"> <i class="bi bi-easel"></i></div>
-                            <h3>Report</h3>
-                            <p>Describing in detail an event, situation, or the like, usually as the result of observation.</p> <a href="#" class="readmore stretched-link">Read more
+                            <h3>Dashboard</h3>
+                            <p>More Feature</p> <a href="/admin/dashboard" class="readmore stretched-link">Details
                                 <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>

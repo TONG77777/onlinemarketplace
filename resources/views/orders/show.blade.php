@@ -147,6 +147,7 @@
                                 data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
                                     Debit Card
+                                    payment status:asdasd
                                 </div>
                             </div>
                         </div>

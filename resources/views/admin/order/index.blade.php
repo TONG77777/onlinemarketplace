@@ -4,11 +4,22 @@
 <script type="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css"></script>
 <script type="text/javascript" charset="utf8" src="/DataTables/datatables.js"></script>
 @section('content')
+<div class="breadcrumbs">
+    <nav>
+        <div class="container">
+            <ol>
+                <li><a href="{{ route('admin.index') }}">{{ __('Home') }}</a></li>
+                <li>{{ __('Orders') }}</li>
+            </ol>
+        </div>
+    </nav>
+</div><!-- End Breadcrumbs -->
     <div class="container" data-aos="fade-up" style="height:auto; min-height:700px;">
         <br>
         <br>
         <div class="card-body">
             <h5 class="card-title">Order Details</h5>
+            <hr>
             <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
                 <form action="{{ route('admin.order.search') }}" method="GET">
                     @csrf
@@ -78,7 +89,7 @@
                         <td><span class="badge bg-primary">{{ $order->status }}</span></td>
                     @endif
                     <td>RM {{ $total = $order->amount_to_pay + $order->shipping_fee }}</td>
-                    <td><a href="{{ route('admin.order.update', $order->id) }}">Complte</a></td>
+                    <td><a href="{{ route('admin.order.update', $order->id) }}">Completed</a></td>
                 </tr>
             @endforeach
 
