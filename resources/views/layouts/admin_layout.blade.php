@@ -30,6 +30,9 @@
     <!-- Template Main CSS File -->
     <link href="/css/main.css" rel="stylesheet">
 
+   <link href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" rel="stylesheet">
+
+
 </head>
 
 <body>
@@ -117,7 +120,12 @@
     @stack('javascript')
     <!-- Template Main JS File -->
     <script src="/js/main.js"></script>
-
+<script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function () {
+      $('#example').DataTable();
+  });
+  </script>
 </body>
 
 </html>

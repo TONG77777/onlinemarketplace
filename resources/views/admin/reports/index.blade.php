@@ -61,7 +61,7 @@
                             <h5 class="card-title">Total <span>| Order</span></h5>
                             <div class="d-flex align-items-center">
 
-                                <i class="bi bi-person-fill"></i>
+                                <i class="bi bi-list-check"></i>
 
                                 <div class="ps-3">
                                     <h6>145</h6> 

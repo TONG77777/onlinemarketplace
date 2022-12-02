@@ -20,7 +20,8 @@ class OrderController extends Controller
     {
         $users = User::all();
         $products = Product::all();
-        $orders = Order::paginate(10);
+        $orders = Order::all();
+        // $orders = Order::paginate(10);
         return view('admin.order.index', ['orders' => $orders, 'users' => $users, 'products' => $products]);
     }
 
@@ -57,7 +58,7 @@ class OrderController extends Controller
         if ($orders->isEmpty()) {
             return redirect()->route('admin.order.index')->with('error', 'No order found');
         }
-        
+
 
         return view('admin.order.index', ['orders' => $orders, 'users' => $users, 'products' => $products]);
     }
