@@ -122,13 +122,12 @@
                             <h3>{{ __('Product Infromation') }}</h3>
                             <ul>
                                 <li><strong>{{ __('Category') }}</strong> <span>
-                                       
+
 
                                         @foreach ($categories as $category)
                                             @if ($category->id == $product->category)
-                                              
-                                            <a href="/category/{{ $category->id }}">{{ $category->name }}</a></li>
-                                            @endif
+                                                <a href="/category/{{ $category->id }}">{{ $category->name }}</a></li>
+                                @endif
                                 @endforeach
                                 </span></li>
                                 <li><strong>{{ __('Publish Date') }}</strong>
@@ -183,6 +182,11 @@
                                         </li>
                                 @endif
                             </ul>
+                            {{-- <h3>
+                                @foreach ($projects as $project)
+                                    <li>{{ $project->views }}</li>
+                                @endforeach
+                            </h3> --}}
                             {{-- <ul> 
                                     <u><li><a href="{{route('seller.products.edit', $product->id)}}" class="btn-"> Edit Product <i class="bi bi-pencil-square"></i></a></li></u>
                                     <u><li><a href="#" class="btn-"> Mask as Sold <i class="bi bi-check-square-fill"></i></a></li></u>
