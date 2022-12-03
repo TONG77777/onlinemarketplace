@@ -11,7 +11,7 @@
             </div>
         </nav>
     </div><!-- End Breadcrumbs -->
-    <div class="container pt-5 my-5" style="height:auto;">
+    <div class="container pt-5 my-5" style="height:auto; min-height:450px">
         @if (session()->get('success'))
             <div class="alert alert-success">
                 {{ session()->get('success') }}
@@ -64,9 +64,6 @@
                                 @csrf
                                 <td><button type="submit" class="btn btn-outline-secondary">Details</button></td>
                             </form>
-
-
-
                     </tr>
         @endforeach
 

@@ -42,13 +42,12 @@
                                             @endphp
 
                                             @foreach ($categories as $category)
-                                           
-                                            @if($product->category == $category->id)
-                                                <div
-                                                    class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                                    <p class="text-muted mb-0 small">{{ $category->name }}</p>
-                                                </div>
-                                         @endif
+                                                @if ($product->category == $category->id)
+                                                    <div
+                                                        class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                                        <p class="text-muted mb-0 small">{{ $category->name }}</p>
+                                                    </div>
+                                                @endif
                                             @endforeach
 
                                             <div
@@ -146,8 +145,14 @@
                             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                                 data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    Debit Card
-                                    payment status:asdasd
+
+                                    @foreach ($payment as $payment)
+                                        {{ __('Paid Date : ') }}{{ $payment->updated_at }}
+                                        @if ($order->id == $payment->id)
+                                            <br>
+                                            <p>{{ __('Status : ') }} "{{ $payment->status }}"</p>
+                                        @endif
+                                    @endforeach
                                 </div>
                             </div>
                         </div>

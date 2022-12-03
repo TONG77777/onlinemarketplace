@@ -26,7 +26,7 @@
         </div><!-- End Breadcrumbs -->
 
         <!-- ======= Portfolio Details Section ======= -->
-        <section id="portfolio-details" class="portfolio-details">
+        <section id="portfolio-details" class="portfolio-details" style="height: auto">
             <div class="container" data-aos="fade-up">
                 <div class="mx-auto" style="width: 400px">
                     <div class="card-body">
@@ -183,31 +183,17 @@
                                 @endif
                             </ul>
                             <h3>
-                        
-                            @php
-                                $count = App\Models\Counter::where('id', $product->id)->get();
-                            @endphp
-                        
-                            @foreach ($count as $c)
-                            @if($c->id == $product->id)
-                                {{ __('Total Views : ') }} {{ $c->views }}
-                            @endif
-                            @endforeach
-                      
 
-                                
+                                @php
+                                    $count = App\Models\Counter::where('id', $product->id)->get();
+                                @endphp
+
+                                @foreach ($count as $c)
+                                    @if ($c->id == $product->id)
+                                        {{ __('Total Views : ') }} {{ $c->views }}
+                                    @endif
+                                @endforeach
                             </h3>
-                            {{-- <ul> 
-                                    <u><li><a href="{{route('seller.products.edit', $product->id)}}" class="btn-"> Edit Product <i class="bi bi-pencil-square"></i></a></li></u>
-                                    <u><li><a href="#" class="btn-"> Mask as Sold <i class="bi bi-check-square-fill"></i></a></li></u>
-                                    <u><li>
-                                    <form action="/products/{{$product->id}}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button>Delete Product </i></button>
-                                    </form>
-                                </li></u>
-                                </ul> --}}
                             </ul>
                         </div>
                     </div>

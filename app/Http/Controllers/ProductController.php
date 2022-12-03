@@ -18,7 +18,8 @@ class ProductController extends Controller
     //
     public function index()
     {
-        $products = Product::with('users')->where('mark_as_sold', '=', '0')->get();
+        //pagnation for products
+        $products = Product::with('users', 'categories')->paginate(10);
         $data['categories'] = Category::all();
         return view('products.index', ['products' => $products], $data);
     }
@@ -31,7 +32,7 @@ class ProductController extends Controller
         //counter
         $counter = Counter::where('id', $id)->first();
         if ($counter) {
-            $counter->views = $counter->views + 1 ;
+            $counter->views = $counter->views + 1;
             $counter->save();
         } else {
             $counter = new Counter();
@@ -41,7 +42,6 @@ class ProductController extends Controller
         }
 
         return view('products.show', ['product' => $product], $data, $image, $counter);
-
     }
 
     public function edit(Product $product, $id)
@@ -182,12 +182,11 @@ class ProductController extends Controller
             return redirect('/products')->with('status', 'No Products Found');
         }
     }
-
-    public function products($category)
+ 
+    public function category($id)
     {
-        $products = Product::where('mark_as_sold', '=', '0')->where('category', '=', $category)->get();
+        $products = Product::where('category', $id)->paginate(10);
         $data['categories'] = Category::all();
-
         return view('products.index', ['products' => $products], $data);
     }
 

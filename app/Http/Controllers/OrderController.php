@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Image;
+use App\Models\Payment;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Model;
 
@@ -86,7 +87,8 @@ class OrderController extends Controller
         $products = Product::all();
         $order = Order::find($id);
         $data['categories'] = Category::all();
-        return view('orders.show', ['order' => $order, 'users' => $users, 'products' => $products, 'address' => $address], $data, $image);
+        $payment = Payment::where('order_id', $id)->get();
+        return view('orders.show', ['order' => $order, 'users' => $users, 'products' => $products, 'address' => $address, 'payment' => $payment], $data, $image);
     }
 
     public function cancel($id)

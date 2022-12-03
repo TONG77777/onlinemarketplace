@@ -12,7 +12,7 @@
     </div><!-- End Breadcrumbs -->
 
 
-    <div class="container pt-5 my-5" style="height:400px;">
+    <div class="container pt-5 my-5" style="min-height:500px;height:auto;">
         @if (session()->get('success'))
             <div class="alert alert-success">
                 {{ session()->get('success') }}
