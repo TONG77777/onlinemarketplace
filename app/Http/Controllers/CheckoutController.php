@@ -47,11 +47,11 @@ class CheckoutController extends Controller
             'user_id' => Auth::user()->id,
         ]);
 
-        //when order create auto trigger mark as sold to 1
-        $product = Product::find($id);
-        $product->mark_as_sold = 1;
-        $product->update();
-        $product->save();
+        // //when order create auto trigger mark as sold to 1
+        // $product = Product::find($id);
+        // $product->mark_as_sold = 1;
+        // $product->update();
+        // $product->save();
 
         
         return view('payment.form', ['order' => $order->id]);

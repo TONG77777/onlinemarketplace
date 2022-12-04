@@ -91,6 +91,8 @@ Route::get('/order', 'OrderController@index')->name('order.index')->middleware('
 
 Route::get('/cancel/{id}', 'OrderController@cancel')->name('order.cancel')->middleware('auth');
 Route::get('/order/update/{id}', 'OrderController@orderCompleted')->name('order.completed')->middleware('auth');
+Route::get('/shipping/{id}', 'OrderController@orderShipping')->name('order.shipping')->middleware('auth');
+Route::get('/confrim/{id}', 'OrderController@orderConfirmed')->name('order.confrim')->middleware('auth');
 Route::get('/order/{id}', 'OrderController@show')->name('order.show')->middleware('auth');
 
 //Reviews Product

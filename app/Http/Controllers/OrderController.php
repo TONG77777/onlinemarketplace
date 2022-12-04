@@ -105,7 +105,28 @@ class OrderController extends Controller
         //pending, confirmed, shipping, completed, cancelled
         $order = Order::find($id);
         $order->status = 'completed';
+        $product = Product::find($order->product_id);
+        $product->mark_as_sold = 1;
+        $product->save();
         $order->save();
         return redirect('/order')->with('success', 'Your Order has been Completed!');
+    }
+
+    public function orderShipping($id)
+    {
+        //pending, confirmed, shipping, completed, cancelled
+        $order = Order::find($id);
+        $order->status = 'shipping';
+        $order->save();
+        return redirect('/dashbroad')->with('success', 'Your Order has been Shipping!');
+    }
+
+    public function orderConfirmed($id)
+    {
+        //pending, confirmed, shipping, completed, cancelled
+        $order = Order::find($id);
+        $order->status = 'confirmed';
+        $order->save();
+        return redirect('/dashbroad')->with('success', 'Your Order has been Confirmed!');
     }
 }
