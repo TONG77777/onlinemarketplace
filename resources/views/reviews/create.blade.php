@@ -1,11 +1,6 @@
 @extends('layouts.layout')
 
 @section('content')
-    {{-- Template of fa-star --}}
-    {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> --}}
 
     <div class="breadcrumbs">
         <nav>
@@ -62,19 +57,6 @@
                         {{-- {{ route('reviews.store') }} --}}
                         @csrf
                         <div class="rating-css">
-
-                            {{-- <div class="star-icon">
-                                <input type="radio" value="1" name="rating" checked id="rating1">
-                                <label for="rating1" class="fa fa-star"></label>
-                                <input type="radio" value="2" name="rating" id="rating2">
-                                <label for="rating2" class="fa fa-star"></label>
-                                <input type="radio" value="3" name="rating" id="rating3">
-                                <label for="rating3" class="fa fa-star"></label>
-                                <input type="radio" value="4" name="rating" id="rating4">
-                                <label for="rating4" class="fa fa-star"></label>
-                                <input type="radio" value="5" name="rating" id="rating5">
-                                <label for="rating5" class="fa fa-star"></label>
-                            </div> --}}
                             <input type="radio" id="rating-1" name="rating" value="1" /><label
                                 for="rating-1">1</label>
                             <input type="radio" id="rating-2" name="rating" value="2" /><label
@@ -86,8 +68,6 @@
                             <input type="radio" id="rating-5" name="rating" value="5" /><label
                                 for="rating-5">5</label>
                         </div>
-
-
 
                         <label for="review">{{ __('Review') }}</label>
                         <textarea class="form-control" name="comment" id="review" rows="3" placeholder="Enter your comment..."></textarea>

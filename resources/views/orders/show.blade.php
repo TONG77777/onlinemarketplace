@@ -1,6 +1,12 @@
 @extends('layouts.layout')
 
 @section('content')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .checked {
+            color: orange;
+        }
+    </style>
     <section class="h-100 gradient-custom">
         <div class="container pt-5 my-5">
             <div class="card" style="border-radius: 10px;">
@@ -173,7 +179,13 @@
                                             aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                                             <div class="accordion-body">
                                                 <p>Order Id : #{{ $review->order_id }}</p>
-                                                <p>Rating : {{ $review->rating }}</p>
+                                                
+                                                <p>Rating : @if ($review->rating == $review->rating)
+                                                    @for ($i = 0; $i < $review->rating; $i++)
+                                                    <span class="fa fa-star checked"></span>
+                                                    @endfor
+                                                    
+                                                @endif</p>
                                                 <p>Comment : {{ $review->comment }}</p>
                                             </div>
                                         </div>
@@ -229,16 +241,16 @@
 
 
                 @if ($order->status == 'completed')
-                    @if($review->order_id != $order->id)
-                    <div class="d-flex justify-content-between pt-2">
+                    @if ($review->order_id != $order->id)
+                        <div class="d-flex justify-content-between pt-2">
 
-                        <form action="{{ route('reviews.create', $order->id) }}" method="POST">
-                            @csrf
-                            <button type="submit" class="btn float-left"
-                                style="background-color: #008374; color:aliceblue; ">Review Product
-                            </button>
-                        </form>
-                    </div>
+                            <form action="{{ route('reviews.create', $order->id) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn float-left"
+                                    style="background-color: #008374; color:aliceblue; ">Review Product
+                                </button>
+                            </form>
+                        </div>
                     @endif
                 @endif
 

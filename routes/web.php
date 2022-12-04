@@ -88,8 +88,10 @@ Route::post('/payment/form/{id}', 'StripePaymentController@makePayment')->name('
 
 //Order
 Route::get('/order', 'OrderController@index')->name('order.index')->middleware('auth');
-Route::get('/order/{id}', 'OrderController@show')->name('order.show')->middleware('auth');
+
 Route::get('/cancel/{id}', 'OrderController@cancel')->name('order.cancel')->middleware('auth');
+Route::get('/order/update/{id}', 'OrderController@orderCompleted')->name('order.completed')->middleware('auth');
+Route::get('/order/{id}', 'OrderController@show')->name('order.show')->middleware('auth');
 
 //Reviews Product
 Route::post('/reviews/{id}', 'ReviewController@create')->name('reviews.create')->middleware('auth');
@@ -99,6 +101,3 @@ Route::post('/review/{id}', 'ReviewController@store')->name('review.store')->mid
 // Route::get('/admin/charts', function () {
 //    return view('admin.charts');
 // });
-Route::get('/reviews/create', function () {
-    return view('/reviews/create');
- });

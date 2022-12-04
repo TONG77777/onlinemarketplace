@@ -38,7 +38,10 @@
                         <th scope="col">{{ __('Order Id') }}</th>
                         <th scope="col">{{ __('Status') }}</th>
                         <th scope="col">{{ __('Total Price') }}</th>
+                        <th scope="col">{{ __('Order Details') }}</th>
+                        <th scope="col">{{ __('Completed At') }}</th>
                         <th scope="col">{{ __('Action') }}</th>
+                       
                     </tr>
                 </thead>
                 <tbody>
@@ -60,13 +63,30 @@
                                 <td><span class="badge bg-primary">{{ $order->status }}</span></td>
                             @endif
                             <td>RM {{ $total = $order->amount_to_pay + $order->shipping_fee }}</td>
+
                             <form action="{{ route('order.show', $order->id) }}" method="GET">
                                 @csrf
-                                <td><button type="submit" class="btn btn-outline-secondary">Details</button></td>
+                                <td><button type="submit" class="btn btn-outline-success">Details</button></td>
                             </form>
+                            @if ($order->status == 'completed')
+                                <td>{{ $order->updated_at }}</td>
+                            @else
+                                <td></td>
+                            @endif
+                            {{-- //button complete order --}}
+                            @if ($order->status == 'shipping')
+                                <form action="{{ route('order.completed', $order->id) }}" method="GET">
+                                    @csrf
+                                    <td><button type="submit" class="btn btn-outline-secondary">Complete Order</button>
+                                    </td>
+                                </form>
+                            @else
+                                <td><button type="submit" class="btn btn-outline-secondary" disabled>Complete
+                                        Order</button></td>
+                            @endif
+
                     </tr>
         @endforeach
-
         </tbody>
         </table>
     @else

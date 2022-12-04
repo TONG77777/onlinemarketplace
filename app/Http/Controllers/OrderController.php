@@ -99,4 +99,13 @@ class OrderController extends Controller
         $order->save();
         return redirect('/order')->with('success', 'Your Order has been Cancelled!');
     }
+
+    public function orderCompleted($id)
+    {
+        //pending, confirmed, shipping, completed, cancelled
+        $order = Order::find($id);
+        $order->status = 'completed';
+        $order->save();
+        return redirect('/order')->with('success', 'Your Order has been Completed!');
+    }
 }
