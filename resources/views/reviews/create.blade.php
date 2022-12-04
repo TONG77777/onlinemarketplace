@@ -36,13 +36,23 @@
                     <div class="my-3 p-3 bg-body rounded shadow-sm">
                         <h6 class="border-bottom pb-2 mb-0">Reivew of product</h6>
                         <div class="d-flex text-muted pt-3">
-                            <img src="https://www.shutterstock.com/image-vector/hi-sticker-social-media-content-260nw-1138004576.jpg"
-                                alt="" width="100px" height="100px">
+                            @php
+                                $product = App\Models\Product::find($order->product_id);
+                                $images = App\Models\Image::where('product_id', $order->product_id)->get();
+                            @endphp
 
+                        @foreach ($images as $image)
+                            @if ($loop->first)
+                                <img src="/img/products/{{ $image->url }}" class="img-fluid" alt="image"
+                                width="100px" height="100px">
+                            @endif
+                        @endforeach
 
                             <p>
                                 <strong class="d-block text-gray-dark">Order Id : #{{ $order->product_id }}</strong>
-                                product description
+                                @if ($order->product_id == $product->id)
+                                    <strong class="d-block text-gray-dark">Product Name : {{ $product->name }}</strong>
+                                @endif
                             </p>
                         </div>
                     </div>
@@ -79,15 +89,15 @@
 
 
 
-                            <label for="review">{{ __('Review') }}</label>
-                            <textarea class="form-control" name="comment" id="review" rows="3" placeholder="Enter your comment..."></textarea>
-                            <br>
-                            <button type="submit" class="btn btn-submit">{{ __('Submit') }}</button>
-                        </div>
-                    </form>
+                        <label for="review">{{ __('Review') }}</label>
+                        <textarea class="form-control" name="comment" id="review" rows="3" placeholder="Enter your comment..."></textarea>
+                        <br>
+                        <button type="submit" class="btn btn-submit">{{ __('Submit') }}</button>
                 </div>
+                </form>
             </div>
         </div>
+    </div>
     </div>
 
     </div>

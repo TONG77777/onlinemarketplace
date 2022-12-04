@@ -17,7 +17,7 @@
                                 @php
                                     $products = App\Models\Product::all();
                                     $orders = App\Models\Order::find($order->id);
-                                    $images = App\Models\Image::all();
+                                    $images = App\Models\Image::where('product_id', $order->product_id)->get();
                                     $addresses = App\Models\Address::all();
                                 @endphp
                                 <div class="row">
@@ -156,6 +156,31 @@
                                 </div>
                             </div>
                         </div>
+                        @php
+                            $review = App\Models\Review::all();
+                            
+                        @endphp
+                        @if ($order->status == 'completed')
+                            @foreach ($review as $review)
+                                @if ($review->order_id == $order->id)
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingThree"> <button
+                                                class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                                aria-expanded="false" aria-controls="collapseTwo">Reviews Product</button>
+                                        </h2>
+                                        <div id="collapseThree" class="accordion-collapse collapse"
+                                            aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                            <div class="accordion-body">
+                                                <p>Order Id : #{{ $review->order_id }}</p>
+                                                <p>Rating : {{ $review->rating }}</p>
+                                                <p>Comment : {{ $review->comment }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                            @endforeach
+                        @endif
                     </div>
                 </div>
                 @php
@@ -202,7 +227,9 @@
                     </form>
                 @endif
 
+
                 @if ($order->status == 'completed')
+                    @if($review->order_id != $order->id)
                     <div class="d-flex justify-content-between pt-2">
 
                         <form action="{{ route('reviews.create', $order->id) }}" method="POST">
@@ -212,6 +239,7 @@
                             </button>
                         </form>
                     </div>
+                    @endif
                 @endif
 
             </div>
