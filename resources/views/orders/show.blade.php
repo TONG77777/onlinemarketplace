@@ -188,7 +188,7 @@
                     <p class="text-muted mb-0"><span class="fw-bold me-4"></span> RM {{ $order->shipping_fee }}</p>
                 </div>
 
-                @if ($order->status != 'cancelled')
+                @if ($order->status != 'cancelled' && $order->status != 'completed')
                     <form action="{{ route('order.cancel', $order->id) }}" method="PUT">
                         @csrf
                         @method('PUT')
@@ -202,9 +202,17 @@
                     </form>
                 @endif
 
+                @if ($order->status == 'completed')
+                    <div class="d-flex justify-content-between pt-2">
 
-
-
+                        <form action="{{ route('reviews.create', $order->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn float-left"
+                                style="background-color: #008374; color:aliceblue; ">Review Product
+                            </button>
+                        </form>
+                    </div>
+                @endif
 
             </div>
             <div class="card-footer border-0 pt-3 py-3"

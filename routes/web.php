@@ -91,8 +91,14 @@ Route::get('/order', 'OrderController@index')->name('order.index')->middleware('
 Route::get('/order/{id}', 'OrderController@show')->name('order.show')->middleware('auth');
 Route::get('/cancel/{id}', 'OrderController@cancel')->name('order.cancel')->middleware('auth');
 
+//Reviews Product
+Route::post('/reviews/{id}', 'ReviewController@create')->name('reviews.create')->middleware('auth');
+Route::post('/review/{id}', 'ReviewController@store')->name('review.store')->middleware('auth');
 
 
-Route::get('/admin/charts', function () {
-   return view('admin.charts');
-});
+// Route::get('/admin/charts', function () {
+//    return view('admin.charts');
+// });
+Route::get('/reviews/create', function () {
+    return view('/reviews/create');
+ });

@@ -27,7 +27,6 @@ class Product extends Model
     }
 
 
-
     public function images()
     {
 
@@ -37,5 +36,10 @@ class Product extends Model
     public function counters()
     {
         return $this->belongsTo(Counter::class, 'id');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'product_id', 'id');
     }
 }
