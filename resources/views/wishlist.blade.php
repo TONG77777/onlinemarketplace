@@ -54,14 +54,24 @@
                             </div>
                             <td>{{ __('RM') }} {{ $wish->product->price }}</td>
                             <td scope="row">{{ $wish->product->condition }}</td>
-                            <td>
-                                <form action="{{ route('checkout.store', $wish->product_id) }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="btn" style="background: #00b6a1;color:azure"><i
-                                            class="bi bi-bag-fill"></i></button>
-                                </form>
-                            </td>
 
+
+                            @if ($wish->product->user_id != Auth::user()->id)
+                                <td>
+                                    <form action="{{ route('checkout.store', $wish->product_id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn" style="background: #00b6a1;color:azure"><i
+                                                class="bi bi-bag-fill"></i></button>
+                                    </form>
+                                </td>
+                            @else
+                                <td>
+
+                                    <button type="submit" class="btn" style="background:#293d3d;color:azure" disabled><i
+                                            class="bi bi-bag-fill"></i></button>
+
+                                </td>
+                            @endif
                             </td>
                             <td>
                                 <form action="{{ route('wishlist.destroy', $wish->id) }}" method="POST">

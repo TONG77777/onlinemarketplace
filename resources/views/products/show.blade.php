@@ -148,18 +148,9 @@
                                                 </p>
                                             </div>
                                         @endforeach
-                                        <small class="d-block text-end mt-3">
-                                            <a href="#">All Reviews</a>
-                                        </small>
                                     </div>
                                 </div>
                             </div>
-
-                            {{-- <h3>{{ __('Delivery  :') }}</h3>
-                            <p>{{ __('Option 1') }}</p>
-                            <p>{{ __('Option 2') }}</p>
-                            </p> --}}
-
                         </div>
                     </div>
 
@@ -243,7 +234,7 @@
                             </ul>
                         </div>
                     </div>
-                </div><!-- End Pricing Item -->
+                </div>
 
             </div>
 

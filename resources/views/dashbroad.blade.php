@@ -93,7 +93,8 @@
                                                                     method="PUT">
                                                                     @csrf
 
-                                                                    <button type="submit" class="btn btn-success"><i
+                                                                    <button type="submit" class="btn btn-success"
+                                                                        style="background:#DED8C2"><i
                                                                             class="bi bi-clipboard2-check"></i></button>
                                                                 </form>
                                                             </div>
@@ -117,7 +118,7 @@
                                                                     method="GET">
                                                                     @csrf
                                                                     <button type="submit" class="btn"
-                                                                        style="background: #ffff99"><i
+                                                                        style="background: #9ACAA5"><i
                                                                             class="bi bi-box-seam-fill"></i></button>
                                                                 </form>
                                                             </div>
@@ -142,7 +143,7 @@
                                                             method="GET">
                                                             @csrf
                                                             <button type="submit" class="btn"
-                                                                style="background: #009999"><i class="bi bi-brush"
+                                                                style="background: #75B79E"><i class="bi bi-brush"
                                                                     style="color: azure"></i></button>
                                                         </form>
                                                     </div>
@@ -155,7 +156,8 @@
                                                             method="PUT">
                                                             @csrf
 
-                                                            <button type="submit" class="btn btn-success"><i
+                                                            <button type="submit" class="btn"
+                                                                style="background:#55A597;color:azure"><i
                                                                     class="bi bi-check-circle-fill"></i></button>
                                                         </form>
                                                     </div>
@@ -166,7 +168,8 @@
                                                             method="POST">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger"><i
+                                                            <button type="submit" class="btn"
+                                                                style="background: #3F8290;color:azure"><i
                                                                     class="bi bi-trash-fill"></i></button>
                                                         </form>
                                                     </div>
