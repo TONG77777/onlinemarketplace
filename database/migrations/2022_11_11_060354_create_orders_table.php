@@ -21,6 +21,8 @@ class CreateOrdersTable extends Migration
             $table->double('shipping_fee', 8, 2);
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
+            // $table->foreignId('product_id')->constrained('products');
+            // $table->foreignId('user_id')->constrained('users');
         });
     }
 

@@ -9,6 +9,8 @@ use Illuminate\Http\UploadedFile;
 use App\Models\Category;
 use App\Models\Counter;
 use App\Models\Image;
+use App\Models\Order;
+use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
@@ -19,29 +21,35 @@ class ProductController extends Controller
     public function index()
     {
         //pagnation for products
-        $products = Product::with('users', 'categories')->paginate(10);
+        $products = Product::with('user', 'categories')->paginate(10);
         $data['categories'] = Category::all();
         return view('products.index', ['products' => $products], $data);
     }
 
-    public function show($id)
+    public function show(Product $product)
     {
-        $image['image'] = Image::find($id);
-        $product = Product::find($id);
+        $data['images'] = Image::where('product_id',$product->id)->get();
+        $data['user'] = $product->user;
+        $data['product'] = $product;
         $data['categories'] = Category::all();
+        $data['reviews'] = $product->user->products()->with('order.review')->get();
+        $user_products = $product->user->products;
+        $user_orders = Order::whereIn('product_id', $user_products->pluck('id'))->get();
+        $data['reviews'] = Review::whereIn('order_id', $user_orders->pluck('id'))->get();
         //counter
-        $counter = Counter::where('id', $id)->first();
-        if ($counter) {
-            $counter->views = $counter->views + 1;
-            $counter->save();
+        $data['counter'] = Counter::find($product->id);
+        if ($data['counter']) {
+            $data['counter']->views = $data['counter']->views + 1;
+            $data['counter']->save();
         } else {
-            $counter = new Counter();
-            $counter->id = $id;
-            $counter->views = 1;
-            $counter->save();
+            $data['counter'] = Counter::create([
+                'id' => $product->id,
+                'views' => 1,
+            ]);
         }
 
-        return view('products.show', ['product' => $product], $data, $image, $counter);
+     
+        return view('products.show', $data);
     }
 
     public function edit(Product $product, $id)

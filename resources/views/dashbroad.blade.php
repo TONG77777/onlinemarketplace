@@ -87,7 +87,7 @@
                                                         $order = App\Models\Order::all();
                                                     @endphp
                                                     @foreach ($order as $item)
-                                                        @if ($product->id == $item->product_id)
+                                                        @if ($product->id == $item->product_id && $item->status != 'confirmed' && $item->status != 'shipping')
                                                             <div class="btn-">
                                                                 <form action="{{ route('order.confrim', $item->id) }}"
                                                                     method="PUT">
@@ -100,7 +100,7 @@
                                                             </div>
                                                         @endif
                                                     @endforeach
-                                                    @if ($product->id != $item->product_id)
+                                                    @if ($product->id != $item->product_id || $item->status == 'confirmed' || $item->status == 'shipping')
                                                         <div class="btn-">
                                                             <button type="submit" class="btn "
                                                                 style="background:#293d3d;color:azure" disabled><i
@@ -112,7 +112,7 @@
                                                 {{-- //Deliver --}}
                                                 <td>
                                                     @foreach ($order as $item)
-                                                        @if ($product->id == $item->product_id)
+                                                        @if ($product->id == $item->product_id && $item->status == 'confirmed')
                                                             <div class="btn-">
                                                                 <form action="{{ route('order.shipping', $item->id) }}"
                                                                     method="GET">
@@ -124,7 +124,7 @@
                                                             </div>
                                                         @endif
                                                     @endforeach
-                                                    @if ($product->id != $item->product_id)
+                                                    @if ($product->id != $item->product_id || $item->status != 'confirmed')
                                                         <div class="btn-">
                                                             <form action="{{ route('order.shipping', $product->id) }}"
                                                                 method="GET">
@@ -247,6 +247,10 @@
             {{ __('You have no products yet. Try to add some...') }}
         </div>
         @endif
+    </div>
+    </div>
+    </div>
+    </div>
     </div>
     </div>
 @endsection

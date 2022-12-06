@@ -40,9 +40,6 @@
                         <!-- Slides with controls -->
                         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
-                                @php
-                                    $images = App\Models\Image::where('product_id', $product->id)->get();
-                                @endphp
 
                                 @foreach ($images as $image)
                                     <div class="carousel-item @if ($loop->first) active @endif">
@@ -89,65 +86,53 @@
                                 <div>
                                     <img src="/img/p1.png" class="testimonial-img" alt="">
 
-                                    @php
-                                        $user = App\Models\User::where('id', $product->user_id)->get();
-                                        
-                                    @endphp
+                                    <h3>{{ $user->name }}</h3>
 
-                                    @foreach ($user as $u)
-                                        <h3>{{ $u->name }}</h3>
-                                    @endforeach
+                                    <h4> <a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ $user->email }}&su={{ $product->name }}&body={{ __('I am interested in your product...') }}"
+                                            target="_blank">{{ $user->email }}</a></h4>
 
-                                    @foreach ($user as $u)
-                                        <h4> <a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ $u->email }}&su={{ $product->name }}&body={{ __('I am interested in your product...') }}"
-                                                target="_blank">{{ $u->email }}</a></h4>
-                                    @endforeach
-
-                                    @foreach ($user as $u)
-                                        @php
-                                            $now = Carbon\Carbon::now();
-                                            $date = Carbon\Carbon::parse($u->created_at);
-                                            $diff = $now->diffInDays($date);
-                                        @endphp
-                                        <h4>{{ __('Joined ') }}{{ $diff }}{{ __(' days ago') }}</h4>
-                                    @endforeach
+                                    <h4>{{ __('Joined ') }}{{ $user->created_at->diffForHumans() }}</h4>
                                     <div class="my-3 p-3 bg-body rounded shadow-sm">
-                                        @foreach ($user as $u)
-                                            <h6 class="border-bottom pb-2 mb-0">{{ __('Reivew of @') }}{{ $u->name }}
-                                            </h6>
+                                        <h6 class="border-bottom pb-2 mb-0">{{ __('Reivew of @') }}{{ $user->name }}
+                                        </h6>
 
-                                            <div class="d-flex text-muted pt-3">
+                                        <div class="d-flex text-muted pt-3">
 
-                                                <p class="pb-3 mb-0 small lh-sm border-bottom">
-                                                    @php
-                                                        $review = App\Models\Review::all();
-                                                        $order = App\Models\Order::all();
-                                                        
-                                                    @endphp
+                                            <p class="pb-3 mb-0 small lh-sm border-bottom">
+                                                {{-- @php
+                                                    $review = App\Models\Review::all();
+                                                    $order = App\Models\Order::all();
+                                                @endphp --}}
 
-                                                    @foreach ($review as $r)
-                                                        @foreach ($order as $o)
-                                                            @if ($r->order_id == $o->id)
-                                                                @if ($o->user_id != $product->user_id && $product->user_id == $u->id)
-                                                                    @for ($i = 0; $i < $r->rating; $i++)
-                                                                        <span class="fa fa-star checked"></span>
-                                                                    @endfor
-                                                                        <strong class="d-block text-gray-dark">@incognito</strong>
+                                                {{-- @foreach ($review as $r)
+                                                    @foreach ($order as $o)
+                                                        @if ($r->order_id == $o->id)
+                                                            @if ($o->user_id != $product->user_id)
+                                                                @for ($i = 0; $i < $r->rating; $i++)
+                                                                    <span class="fa fa-star checked"></span>
+                                                                @endfor
+                                                                    <strong class="d-block text-gray-dark">@incognito</strong>
 
-                                                                        {{ $r->comment }}
-                                                                        <br>
-                                                                        <br>
+                                                                    {{ $r->comment }}
+                                                                    <br>
+                                                                    <br>
                                                                 @endif
-                                                            @endif
-                                                        @endforeach
+                                                        @endif
+                                                        
                                                     @endforeach
+                                                @endforeach --}}
+                                                @foreach($reviews as $r)
+                                                    @for ($i = 0; $i < $r->rating; $i++)
+                                                        <span class="fa fa-star checked"></span>
+                                                    @endfor
+                                                    <strong class="d-block text-gray-dark">@incognito</strong>
 
-
-
-
-                                                </p>
-                                            </div>
-                                        @endforeach
+                                                    {{ $r->comment }}
+                                                <br>
+                                                <br>
+                                                @endforeach
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -159,11 +144,9 @@
                             <h3>{{ __('Product Infromation') }}</h3>
                             <ul>
                                 <li><strong>{{ __('Category') }}</strong> <span>
-
-
-                                        @foreach ($categories as $category)
-                                            @if ($category->id == $product->category)
-                                                <a href="/category/{{ $category->id }}">{{ $category->name }}</a></li>
+                                @foreach ($categories as $category)
+                                    @if ($category->id == $product->category)
+                                        <a href="/category/{{ $category->id }}">{{ $category->name }}</a></li>
                                 @endif
                                 @endforeach
                                 </span></li>
@@ -172,11 +155,8 @@
                                 </li>
 
                                 @if ($product->user_id != Auth::user()->id)
-                                    @foreach ($user as $u)
-                                        <li><a href="/chatify/{{ $u->id }}" class="btn-contact">
-                                                {{ __('Contact ') }}<i class="bi bi-person-lines-fill"></i></a></li>
-                                    @endforeach
-
+                                    <li><a href="/chatify/{{ $user->id }}" class="btn-contact">
+                                        {{ __('Contact ') }}<i class="bi bi-person-lines-fill"></i></a></li>
                                     <li>
                                         <form action="{{ route('checkout.store', $product->id) }}" method="POST">
                                             @csrf
@@ -185,7 +165,7 @@
                                     </li></button>
 
                                     </form>
-                                @elseif ($product->user_id == Auth::user()->id)
+                                @else
                                     <ul>
                                         <li class="dropdown">
                                             <form action="{{ route('seller.products.edit', $product->id) }}"
@@ -220,16 +200,7 @@
                                 @endif
                             </ul>
                             <h3>
-
-                                @php
-                                    $count = App\Models\Counter::where('id', $product->id)->get();
-                                @endphp
-
-                                @foreach ($count as $c)
-                                    @if ($c->id == $product->id)
-                                        {{ __('Total Views : ') }} {{ $c->views }}
-                                    @endif
-                                @endforeach
+                                {{ __('Total Views : ') }} {{ $counter->views }}
                             </h3>
                             </ul>
                         </div>

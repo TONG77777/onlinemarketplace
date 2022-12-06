@@ -11,14 +11,14 @@ class Product extends Model
         'name', 'condition', 'category', 'price', 'description', 'user_id'
     ];
 
-    public function users()
-    {
-        return $this->belongsTo(User::class, 'id');
-    }
+    // public function users()
+    // {
+    //     return $this->belongsTo(User::class, 'id');
+    // }
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class);
     }
 
     public function categories()
@@ -42,4 +42,10 @@ class Product extends Model
     {
         return $this->hasMany(Review::class, 'product_id', 'id');
     }
+
+    public function order()
+    {
+        return $this->hasOne(Order::class, 'product_id', 'id');
+    }
+
 }

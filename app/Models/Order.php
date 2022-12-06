@@ -37,5 +37,9 @@ class Order extends Model
         return $this->belongsTo(Payment::class, 'id');
     }
 
+    public function review(){
+        return $this->hasOne(Review::class);
+    }
+
     
 }

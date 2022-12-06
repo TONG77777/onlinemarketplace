@@ -15,7 +15,7 @@ class DashbroadController extends Controller
     {
         $user = Auth::user();
         $data['categories'] = Category::all();
-        $products = Product::with('users')->where('user_id', '=', Auth::user()->id)->where('mark_as_sold', '=', '0')->get();
+        $products = Product::with('user')->where('user_id', '=', Auth::user()->id)->where('mark_as_sold', '=', '0')->get();
 
         return view('dashbroad', ['products' => $products], $data)->with('status', 'Product has been updated!');
     }

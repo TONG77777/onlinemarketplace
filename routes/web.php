@@ -63,7 +63,7 @@ Route::post('/products', 'ProductController@store')->middleware('auth');
 Route::get('/markAsSold/{id}', 'ProductController@markAsSold')->name('seller.products.markAsSold')->middleware('auth');
 Route::get('/products/edit/{id}', 'ProductController@edit')->name('seller.products.edit')->middleware('auth');
 Route::put('/products/update/{id}', 'ProductController@update')->name('seller.products.update')->middleware('auth');
-Route::get('/products/{id}', 'ProductController@show')->middleware('auth')->name('products.show');
+Route::get('/products/{product}', 'ProductController@show')->middleware('auth')->name('products.show');
 Route::delete('/products/{id}', 'ProductController@destroy')->name('seller.products.delete')->middleware('auth');
 Route::get('/search', 'ProductController@search')->middleware('auth');
 Route::get('/category/{id}', 'ProductController@category')->middleware('auth');
