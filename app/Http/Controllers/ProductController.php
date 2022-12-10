@@ -28,7 +28,7 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
-        $data['images'] = Image::where('product_id',$product->id)->get();
+        $data['images'] = Image::where('product_id', $product->id)->get();
         $data['user'] = $product->user;
         $data['product'] = $product;
         $data['categories'] = Category::all();
@@ -47,8 +47,9 @@ class ProductController extends Controller
                 'views' => 1,
             ]);
         }
-
-     
+        //similar products
+        $data['similar_products'] = Product::where('category', $product->category)->where('id', '!=', $product->id)->take(5)->get();
+        $data['similar_price'] = Product::where('price', '>=', $product->price - 200)->where('price', '<=', $product->price + 200)->where('id', '!=', $product->id)->take(5)->get();
         return view('products.show', $data);
     }
 
@@ -76,18 +77,13 @@ class ProductController extends Controller
 
         $product->name = request('name');
 
-
-
-        if ($request->hasFile('images')) {
+ 
+        $images = Image::where('product_id', $id)->get();
+        foreach ($images as $image) {
+            File::delete('img/products/' . $image->url);
             Image::where('product_id', $id)->delete();
-            $image = Image::where('product_id', $id)->get();
-            foreach ($image as $img) {
-                $file_path = 'img/products/' . $img->url;
-                if (File::exists($file_path)) {
-                    File::delete($file_path);
-                }
-            }
         }
+
         $image = array();
         if ($files = $request->file('image')) {
             foreach ($files as $file) {
@@ -190,7 +186,7 @@ class ProductController extends Controller
             return redirect('/products')->with('status', 'No Products Found');
         }
     }
- 
+
     public function category($id)
     {
         $products = Product::where('category', $id)->paginate(10);

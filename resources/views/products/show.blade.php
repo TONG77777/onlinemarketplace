@@ -99,42 +99,86 @@
                                         <div class="d-flex text-muted pt-3">
 
                                             <p class="pb-3 mb-0 small lh-sm border-bottom">
-                                                {{-- @php
-                                                    $review = App\Models\Review::all();
-                                                    $order = App\Models\Order::all();
-                                                @endphp --}}
-
-                                                {{-- @foreach ($review as $r)
-                                                    @foreach ($order as $o)
-                                                        @if ($r->order_id == $o->id)
-                                                            @if ($o->user_id != $product->user_id)
-                                                                @for ($i = 0; $i < $r->rating; $i++)
-                                                                    <span class="fa fa-star checked"></span>
-                                                                @endfor
-                                                                    <strong class="d-block text-gray-dark">@incognito</strong>
-
-                                                                    {{ $r->comment }}
-                                                                    <br>
-                                                                    <br>
-                                                                @endif
-                                                        @endif
-                                                        
-                                                    @endforeach
-                                                @endforeach --}}
-                                                @foreach($reviews as $r)
+                                                @foreach ($reviews as $r)
                                                     @for ($i = 0; $i < $r->rating; $i++)
                                                         <span class="fa fa-star checked"></span>
                                                     @endfor
                                                     <strong class="d-block text-gray-dark">@incognito</strong>
 
                                                     {{ $r->comment }}
-                                                <br>
-                                                <br>
+                                                    <br>
+                                                    <br>
                                                 @endforeach
                                             </p>
                                         </div>
                                     </div>
                                 </div>
+
+                                <body class="vsc-initialized">
+                                    <div class="container-xl">
+                                        <div class="row">
+                                            <h3 class="text-center">{{ __('Similar Products') }}</h3>
+                                            <div class="col-md-10 mx-auto">
+                                                <div id="myCarousel" class="carousel slide pointer-event"
+                                                    data-ride="carousel" data-interval="0">
+
+                                                    <!-- Wrapper for carousel items -->
+                                                    <div class="carousel-inner">
+                                                        <div class="carousel-item active">
+                                                            <div class="row">
+                                                                @foreach ($similar_products as $similar_product)
+                                                                    <div class="col-sm-4">
+                                                                        <div class="thumb-wrapper">
+                                                                            @php
+                                                                                $similar_products_img = DB::table('images')
+                                                                                    ->where('product_id', $similar_product->id)
+                                                                                    ->get();
+                                                                            @endphp
+
+                                                                            @foreach ($similar_products_img as $similar_product_img)
+                                                                                <div class="img-box">
+                                                                                    @if ($loop->first)
+                                                                                        <img src="/img/products/{{ $similar_product_img->url }}"
+                                                                                            class="img-fluid" alt="image" style="height:250px;width:250100px">
+                                                                                    @endif
+
+                                                                                </div>
+                                                                            @endforeach
+                                                                            <div class="thumb-content">
+                                                                                <h4>{{ $similar_product->name }}</h4>
+                                                                                <p>{{ $similar_product->description }}</p>
+                                                                                <p class="item-price"><span>RM
+                                                                                        {{ $similar_product->price }}</span>
+                                                                                </p>
+                                                                                <a href="/products/{{ $similar_product->id }}"
+                                                                                    class="btn "
+                                                                                    style="background: #75B79E;color:azure">View
+                                                                                    <i class="fa fa-angle-right"></i></a>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                @endforeach
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Carousel controls -->
+                                                    <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+                                                        <i class="fa fa-angle-left"
+                                                            style="color: black;font-size:300%;"></i>
+                                                    </a>
+                                                    <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+                                                        <i class="fa fa-angle-right"
+                                                            style="color: black;font-size:300%;"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </body>
+
                             </div>
                         </div>
                     </div>
@@ -144,9 +188,9 @@
                             <h3>{{ __('Product Infromation') }}</h3>
                             <ul>
                                 <li><strong>{{ __('Category') }}</strong> <span>
-                                @foreach ($categories as $category)
-                                    @if ($category->id == $product->category)
-                                        <a href="/category/{{ $category->id }}">{{ $category->name }}</a></li>
+                                        @foreach ($categories as $category)
+                                            @if ($category->id == $product->category)
+                                                <a href="/category/{{ $category->id }}">{{ $category->name }}</a></li>
                                 @endif
                                 @endforeach
                                 </span></li>
@@ -156,7 +200,7 @@
 
                                 @if ($product->user_id != Auth::user()->id)
                                     <li><a href="/chatify/{{ $user->id }}" class="btn-contact">
-                                        {{ __('Contact ') }}<i class="bi bi-person-lines-fill"></i></a></li>
+                                            {{ __('Contact ') }}<i class="bi bi-person-lines-fill"></i></a></li>
                                     <li>
                                         <form action="{{ route('checkout.store', $product->id) }}" method="POST">
                                             @csrf
@@ -211,6 +255,7 @@
 
             </div>
         </section>
+
 
     </main><!-- End #main -->
 @endsection

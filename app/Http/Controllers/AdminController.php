@@ -47,7 +47,7 @@ class AdminController extends Controller
         $product = DB::table('products')->count();
         $order = DB::table('orders')->count();
         $user = DB::table('users')->where('role_as', '!=', '1')->count();
-        $admin = DB::table('users')->where('role_as', '==', '1')->count();
+        $admin = DB::table('users')->where('role_as', 1)->count();
         $payment = DB::table('payments')->count();
 
         //Payment status chart //success, failed, pending with color
