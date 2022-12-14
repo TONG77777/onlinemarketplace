@@ -9,6 +9,10 @@ class Counter extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'id', 'views'
+    ];
+
     public function products()
     {
         return $this->belongsTo(Product::class, 'id');

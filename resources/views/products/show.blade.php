@@ -139,14 +139,14 @@
                                                                                 <div class="img-box">
                                                                                     @if ($loop->first)
                                                                                         <img src="/img/products/{{ $similar_product_img->url }}"
-                                                                                            class="img-fluid" alt="image" style="height:250px;width:250100px">
+                                                                                            class="img-fluid" alt="image" style="height:250px;width:250px">
                                                                                     @endif
 
                                                                                 </div>
                                                                             @endforeach
                                                                             <div class="thumb-content">
-                                                                                <h4>{{ $similar_product->name }}</h4>
-                                                                                <p>{{ $similar_product->description }}</p>
+                                                                                <h4>{{ Str::limit($similar_product->name, 27)}}</h4>
+                                                                                <p>{{ Str::limit($similar_product->description, 50) }}</p>
                                                                                 <p class="item-price"><span>RM
                                                                                         {{ $similar_product->price }}</span>
                                                                                 </p>
