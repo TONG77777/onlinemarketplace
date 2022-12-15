@@ -78,6 +78,7 @@ class ProductController extends Controller
         $product->name = request('name');
 
  
+        if($request->hasFile('image')){
         $images = Image::where('product_id', $id)->get();
         foreach ($images as $image) {
             File::delete('img/products/' . $image->url);
@@ -101,7 +102,7 @@ class ProductController extends Controller
                 $image->save();
             }
         }
-
+    }
         $product->condition = request('condition');
         $product->category = request('category');
         $product->price = request('price');
@@ -203,24 +204,5 @@ class ProductController extends Controller
     }
 
 
-    public function users()
-    {
-
-        return $this->belongsTo(User::class, 'id');
-    }
-
-    public function wishlist()
-    {
-        return $this->hasMany(Wishlist::class);
-    }
-
-    public function order()
-    {
-        return $this->hasMany(Order::class);
-    }
-
-    public function images()
-    {
-        return $this->hasMany(Image::class, 'product_id');
-    }
+    
 }

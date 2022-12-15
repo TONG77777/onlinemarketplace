@@ -3,20 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
 
 
+
 class DashbroadController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
+        $data['users'] = User::all();
         $data['categories'] = Category::all();
-        $products = Product::with('user')->where('user_id', '=', Auth::user()->id)->where('mark_as_sold', '=', '0')->get();
+        $data['products'] = Product::where('user_id', '=', Auth::user()->id)->where('mark_as_sold', '=', 0)->get();
+        $data['soldProducts'] = Product::where('user_id', '=', Auth::user()->id)->where('mark_as_sold', '=', 1)->get();
 
-        return view('dashbroad', ['products' => $products], $data)->with('status', 'Product has been updated!');
+        return view('dashbroad', $data)->with('status', 'Product has been updated!');
     }
 }

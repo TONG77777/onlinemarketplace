@@ -10,8 +10,10 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Image;
 use App\Models\Payment;
+use App\Models\Review;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Model;
+
 
 
 
@@ -81,14 +83,15 @@ class OrderController extends Controller
 
     public function show($id)
     {
-        $address = Address::where('user_id', auth()->user()->id)->get();
-        $users = User::all();
-        $image['image'] = Image::find($id);
-        $products = Product::all();
-        $order = Order::find($id);
+        $data['addresses'] = Address::where('user_id', auth()->user()->id)->get();
+        $data['users'] = User::all();
+        $data['image'] = Image::all();
+        $data['products'] = Product::all();
+        $data['order'] = Order::find($id);
         $data['categories'] = Category::all();
-        $payment = Payment::where('order_id', $id)->get();
-        return view('orders.show', ['order' => $order, 'users' => $users, 'products' => $products, 'address' => $address, 'payment' => $payment], $data, $image);
+        $data['payment'] = Payment::where('order_id', $id)->get();
+        $data['review'] = Review::all();
+        return view('orders.show', $data);
     }
 
     public function cancel($id)

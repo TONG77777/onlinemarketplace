@@ -18,6 +18,7 @@
                 {{ session()->get('success') }}
             </div>
         @endif
+
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Dashbroad List</h5>
@@ -99,14 +100,16 @@
                                                                 </form>
                                                             </div>
                                                         @endif
+
+
+                                                        @if ($product->id != $item->product_id || $item->status == 'confirmed' || $item->status == 'shipping')
+                                                            <div class="btn-">
+                                                                <button type="submit" class="btn "
+                                                                    style="background:#293d3d;color:azure" disabled><i
+                                                                        class="bi bi-clipboard2-check"></i></button>
+                                                            </div>
+                                                        @endif
                                                     @endforeach
-                                                    @if ($product->id != $item->product_id || $item->status == 'confirmed' || $item->status == 'shipping')
-                                                        <div class="btn-">
-                                                            <button type="submit" class="btn "
-                                                                style="background:#293d3d;color:azure" disabled><i
-                                                                    class="bi bi-clipboard2-check"></i></button>
-                                                        </div>
-                                                    @endif
                                                 </td>
 
                                                 {{-- //Deliver --}}
@@ -123,18 +126,20 @@
                                                                 </form>
                                                             </div>
                                                         @endif
+
+                                                        @if ($product->id != $item->product_id || $item->status != 'confirmed')
+                                                            <div class="btn-">
+                                                                <form action="{{ route('order.shipping', $product->id) }}"
+                                                                    method="GET">
+                                                                    @csrf
+                                                                    <button type="submit" class="btn"
+                                                                        style="background:#293d3d;color:azure" disabled><i
+                                                                            class="bi bi-box-seam-fill"></i></button>
+                                                                </form>
+                                                            </div>
+                                                        @endif
                                                     @endforeach
-                                                    @if ($product->id != $item->product_id || $item->status != 'confirmed')
-                                                        <div class="btn-">
-                                                            <form action="{{ route('order.shipping', $product->id) }}"
-                                                                method="GET">
-                                                                @csrf
-                                                                <button type="submit" class="btn"
-                                                                    style="background:#293d3d;color:azure" disabled><i
-                                                                        class="bi bi-box-seam-fill"></i></button>
-                                                            </form>
-                                                        </div>
-                                                    @endif
+
 
                                                 </td>
                                                 <td>
@@ -157,7 +162,8 @@
                                                             @csrf
 
                                                             <button type="submit" class="btn"
-                                                                style="background:#55A597;color:azure"><i
+                                                                style="background:#55A597;color:azure"
+                                                                onclick="markAsSold()"><i
                                                                     class="bi bi-check-circle-fill"></i></button>
                                                         </form>
                                                     </div>
@@ -176,19 +182,22 @@
                                                     </div>
                                                 </td>
                                         </tr>
+                                    </tbody>
+                                </table>
+                                
                             @endforeach
-                            </tbody>
-                            </table>
+                            @else
+                            <div class="alert alert-info">
+                                {{ __('You have no products yet. Try to add some...') }}
+                            </div>
+                            @endif
+
                         </div>
                     </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                         <div class="container pt-5 my-5" style="min-height: 400px;height:auto;">
-                            {{-- //when product mark_as_sold --}}
-                            @php
-                                $soldProducts = App\Models\Product::where('user_id', Auth::user()->id)
-                                    ->where('mark_as_sold', 1)
-                                    ->get();
-                            @endphp
+
+                            {{-- {{dd($soldProducts)}} --}}
                             @if ($soldProducts->count() > 0)
                                 <table class="table">
 
@@ -205,9 +214,9 @@
                                     <tbody>
                                         <tr>
 
-                                            @foreach ($soldProducts as $product)
+                                            @foreach ($soldProducts as $soldProduct)
                                                 @php
-                                                    $images = App\Models\Image::where('product_id', $product->id)->get();
+                                                    $images = App\Models\Image::where('product_id', $soldProduct->id)->get();
                                                     
                                                 @endphp
                                                 @foreach ($images as $image)
@@ -219,35 +228,32 @@
 
 
                                                 <div class="portfolio-info">
-                                                    <td>{{ $product->name }}</a></td>
+                                                    <td>{{ $soldProduct->name }}</a></td>
                                                 </div>
-                                                <td>{{ __('RM') }} {{ $product->price }}</td>
-                                                <td scope="row">{{ $product->updated_at }}</td>
-                                                <td>{{ $product->condition }}</td>
+                                                <td>{{ __('RM') }} {{ $soldProduct->price }}</td>
+                                                <td scope="row">{{ $soldProduct->updated_at }}</td>
+                                                <td>{{ $soldProduct->condition }}</td>
                                                 <td>
                                                     @foreach ($categories as $category)
-                                                        @if ($category->id == $product->category)
+                                                        @if ($category->id == $soldProduct->category)
                                                             {{ $category->name }}
                                                         @endif
                                                     @endforeach
                                                 </td>
 
                                         </tr>
-                            @endforeach
-
-                            </tbody>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                           
                             @endif
-                            </table>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    @else
-        <div class="alert alert-info">
-            {{ __('You have no products yet. Try to add some...') }}
-        </div>
-        @endif
+   
     </div>
     </div>
     </div>
@@ -275,11 +281,39 @@
                     'Your product has been deleted.',
                     'success'
                 )
-            }
-            else {
+            } else {
                 Swal.fire(
                     'Cancelled',
                     'Your product is safe :)',
+                    'error'
+                )
+            }
+        })
+    }
+
+    function markAsSold() {
+        event.preventDefault();
+        var form = event.target.form;
+        Swal.fire({
+            title: 'Are you sure you want to mark this product as sold?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Marked product!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+                Swal.fire(
+                    'Success!',
+                    'Your product has been marked as sold.',
+                    'success'
+                )
+            } else {
+                Swal.fire(
+                    'Cancelled',
+                    'Your product is not marked as sold :)',
                     'error'
                 )
             }
