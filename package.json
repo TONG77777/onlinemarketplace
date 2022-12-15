@@ -24,6 +24,7 @@
         "datatables.net": "^1.13.1",
         "datatables.net-autofill": "^2.5.1",
         "datatables.net-autofill-dt": "^2.5.1",
-        "datatables.net-dt": "^1.13.1"
+        "datatables.net-dt": "^1.13.1",
+        "sweetalert2": "^11.6.15"
     }
 }

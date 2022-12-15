@@ -31,6 +31,7 @@
     <link href="/css/main.css" rel="stylesheet">
     <link href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" rel="stylesheet">
 
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -146,6 +147,7 @@
             $('#example').DataTable();
         });
     </script>
+
 </body>
 
 </html>

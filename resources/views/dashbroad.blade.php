@@ -169,7 +169,8 @@
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn"
-                                                                style="background: #3F8290;color:azure"><i
+                                                                style="background: #3F8290;color:azure"
+                                                                onclick="deleteProduct()"><i
                                                                     class="bi bi-trash-fill"></i></button>
                                                         </form>
                                                     </div>
@@ -254,3 +255,34 @@
     </div>
     </div>
 @endsection
+<script>
+    function deleteProduct() {
+        event.preventDefault();
+        var form = event.target.form;
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+                Swal.fire(
+                    'Deleted!',
+                    'Your product has been deleted.',
+                    'success'
+                )
+            }
+            else {
+                Swal.fire(
+                    'Cancelled',
+                    'Your product is safe :)',
+                    'error'
+                )
+            }
+        })
+    }
+</script>

@@ -50,16 +50,6 @@
                                     </div>
 
                                     <div class="col-12">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="remember" id="remember"
-                                                {{ old('remember') ? 'checked' : '' }}>
-
-                                            <label class="form-check-label" for="remember">
-                                                {{ __('Remember Me') }}
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
                                         <button class="btn btn-login w-100" type="submit">{{ __('Login') }}</button>
                                         @if (Route::has('password.request'))
                                             <a class="btn-" href="{{ route('password.request') }}">
