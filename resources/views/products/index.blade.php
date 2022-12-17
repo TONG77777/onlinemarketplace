@@ -62,7 +62,7 @@
                                             title="More Details">{{ $product->name }}</a>
                                     </h4>
                                     <p>{{ __('RM') }} {{ $product->price }}</p>
-                                    <p style="font-size:90%;">{{ $product->description }}</p>
+                                    <p style="font-size:90%;">{{ Str::limit($product->description, 170) }}</p>
 
                                     <form action="{{ route('wishlist.store', $product->id) }}" method="POST">
                                         @csrf

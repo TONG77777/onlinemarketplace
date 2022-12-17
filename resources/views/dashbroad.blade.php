@@ -182,10 +182,11 @@
                                                     </div>
                                                 </td>
                                         </tr>
-                                    </tbody>
-                                </table>
+                                    
                                 
                             @endforeach
+                        </tbody>
+                    </table>
                             @else
                             <div class="alert alert-info">
                                 {{ __('You have no products yet. Try to add some...') }}

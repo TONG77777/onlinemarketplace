@@ -11,7 +11,6 @@
         </nav>
     </div><!-- End Breadcrumbs -->
 
-
     <div class="container pt-5 my-5" style="min-height:500px;height:auto;">
         @if (session()->get('success'))
             <div class="alert alert-success">
@@ -30,11 +29,9 @@
                 </tr>
             </thead>
             <tbody>
-
                 @if ($wishlist->count() > 0)
                     @foreach ($wishlist as $wish)
                         <tr>
-
                             <td>
                                 <a href="products/{{ $wish->product_id }}">
                                     @php
@@ -52,8 +49,6 @@
                                                 @endif
                                             @endif
                                         @endforeach
-
-
                                 </a>
                             </td>
                             <div class="portfolio-info">
@@ -62,7 +57,6 @@
                             </div>
                             <td>{{ __('RM') }} {{ $wish->product->price }}</td>
                             <td scope="row">{{ $wish->product->condition }}</td>
-
 
                             @if ($wish->product->user_id != Auth::user()->id)
                                 <td>
@@ -96,8 +90,6 @@
                 @endif
 
             </tbody>
-
-
         </table>
     </div>
 @endsection
