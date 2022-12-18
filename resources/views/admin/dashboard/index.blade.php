@@ -182,19 +182,20 @@
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Line Chart - Total Register User</h5>
+                            <h5 class="card-title">Line Chart - Total Monthly Sales</h5>
 
                             <!-- Line Chart -->
                             <canvas id="lineChart" style="max-height: 400px;"></canvas>
-                            <script>
+                            <script> 
+                            // _xdata==month
                                 document.addEventListener("DOMContentLoaded", () => {
                                     new Chart(document.querySelector('#lineChart'), {
                                         type: 'line',
                                         data: {
                                             labels: _xdata,
                                             datasets: [{
-                                                label: 'Line Chart - Total User (Monthly)',
-                                                data: _ydata,
+                                                label: 'Line Chart - Total Amount (Monthly)',
+                                                data: totalamount,
                                                 fill: false,
                                                 borderColor: 'rgb(75, 192, 192)',
                                                 tension: 0.1
@@ -292,9 +293,11 @@
     </div>
 
     </div>
-    {{-- {{dd($pie_x)}} --}}
+    {{-- {{dd($_xdata)}} --}}
     {{-- {{dd($month)}}
             {{$monthCount}} --}}
+   {{-- {{dd($totalamount)}} --}}
+   {{-- {{dd($monthCount)}} --}}
     </div>
     </div>
 @endsection
@@ -309,4 +312,5 @@
     var dou_color = @json($dou_color);
     var pie_x = @json($pie_x);
     var pie_y = @json($pie_y);
+    var totalamount = @json($totalamount);
 </script>

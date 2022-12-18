@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        
+
         //Create Admin account
         DB::table('users')->insert([
             'name' => 'Admin',
@@ -88,7 +88,7 @@ class DatabaseSeeder extends Seeder
             'description' => 'Acer Aspire 5 A515-54-51DJ 15.6" Laptop Computer - Black; Intel Core i7-1035G1 Price can negotation',
             'price' => 1000,
             'category' => 1,
-            'condition'=> 'Heavily Used',
+            'condition' => 'Heavily Used',
             'created_at' => now(),
             'user_id' => 2,
         ]);
@@ -112,7 +112,7 @@ class DatabaseSeeder extends Seeder
             'description' => '100cm x 60cm x 75cm (L x W x H) Price can negotation ',
             'price' => 100,
             'category' => 1,
-            'condition'=> 'Like New',
+            'condition' => 'Like New',
             'created_at' => now(),
             'user_id' => 2,
         ]);
@@ -136,7 +136,7 @@ class DatabaseSeeder extends Seeder
             'description' => 'NZXT x Vertagear SL5000, from 2019 color black',
             'price' => 799,
             'category' => 2,
-            'condition'=> 'Lightly Used',
+            'condition' => 'Lightly Used',
             'created_at' => now(),
             'user_id' => 3,
         ]);
@@ -160,7 +160,7 @@ class DatabaseSeeder extends Seeder
             'description' => 'clean and good condition, color black',
             'price' => 699,
             'category' => 2,
-            'condition'=> 'Lightly Used',
+            'condition' => 'Lightly Used',
             'created_at' => now(),
             'user_id' => 3,
         ]);
@@ -185,7 +185,7 @@ class DatabaseSeeder extends Seeder
             Width: 80 cm Depth: 40 cm Height: 180 cm',
             'price' => 799,
             'category' => 3,
-            'condition'=> 'Well Used',
+            'condition' => 'Well Used',
             'created_at' => now(),
             'user_id' => 2,
         ]);
@@ -210,7 +210,7 @@ class DatabaseSeeder extends Seeder
             'description' => 'A novel by Rhonda Byrne',
             'price' => 15.99,
             'category' => 6,
-            'condition'=> 'Like New',
+            'condition' => 'Like New',
             'created_at' => now(),
             'user_id' => 2,
         ]);
@@ -234,7 +234,7 @@ class DatabaseSeeder extends Seeder
             'description' => 'Novel Book By J.R.R Tolkien',
             'price' => 12,
             'category' => 6,
-            'condition'=> 'Heavily Used',
+            'condition' => 'Heavily Used',
             'created_at' => now(),
             'user_id' => 3,
         ]);
@@ -263,7 +263,7 @@ class DatabaseSeeder extends Seeder
             'description' => 'English Grammar In Use, Fourth Edition by Raymond Murphy.',
             'price' => 55,
             'category' => 6,
-            'condition'=> 'Like New',
+            'condition' => 'Like New',
             'created_at' => now(),
             'user_id' => 2,
         ]);
@@ -292,7 +292,7 @@ class DatabaseSeeder extends Seeder
             'description' => 'Second hand book for diploma students, price negotiable',
             'price' => 50,
             'category' => 6,
-            'condition'=> 'Like New',
+            'condition' => 'Like New',
             'created_at' => now(),
             'user_id' => 2,
         ]);
@@ -316,7 +316,7 @@ class DatabaseSeeder extends Seeder
             'description' => 'FIA/ CAT FMA-MA (Management Accounting) Revision Kit',
             'price' => 79,
             'category' => 6,
-            'condition'=> 'Never Used',
+            'condition' => 'Never Used',
             'created_at' => now(),
             'user_id' => 3,
         ]);
@@ -334,7 +334,7 @@ class DatabaseSeeder extends Seeder
             'description' => 'by SC Chuah - Second Edition',
             'price' => 35,
             'category' => 6,
-            'condition'=> 'Lightly Used',
+            'condition' => 'Lightly Used',
             'created_at' => now(),
             'user_id' => 2,
         ]);
@@ -352,7 +352,7 @@ class DatabaseSeeder extends Seeder
             'description' => 'The new version of MUET - English for Malaysian Students last year bought 2021 edition',
             'price' => 25,
             'category' => 6,
-            'condition'=> 'Lightly Used',
+            'condition' => 'Lightly Used',
             'created_at' => now(),
             'user_id' => 2,
         ]);
@@ -372,15 +372,15 @@ class DatabaseSeeder extends Seeder
             'url' => 'book_15.jpg',
             'created_at' => now(),
         ]);
-        
+
         //13 Sports
         //Create default product
         DB::table('products')->insert([
             'name' => 'Yonex Astrox 88s',
-            'description' => 'Brand - Yonex, Model - Astrox 88s, Condition - 9/10, Grip - 4 1/4 Weight - 88g, Color : Red ' ,
+            'description' => 'Brand - Yonex, Model - Astrox 88s, Condition - 9/10, Grip - 4 1/4 Weight - 88g, Color : Red ',
             'price' => 385,
             'category' => 5,
-            'condition'=> 'Lightly Used',
+            'condition' => 'Lightly Used',
             'created_at' => now(),
             'user_id' => 3,
         ]);
@@ -395,15 +395,15 @@ class DatabaseSeeder extends Seeder
             'url' => 'sport_2.jpg',
             'created_at' => now(),
         ]);
-        
+
         //14
         //Create default product
         DB::table('products')->insert([
             'name' => 'Nike Shoes Bag',
-            'description' => 'Brand - Nike, Condition - 9/10, Color : Black and red ' ,
+            'description' => 'Brand - Nike, Condition - 9/10, Color : Black and red ',
             'price' => 89,
             'category' => 5,
-            'condition'=> 'Lightly Used',
+            'condition' => 'Lightly Used',
             'created_at' => now(),
             'user_id' => 2,
         ]);
@@ -424,14 +424,14 @@ class DatabaseSeeder extends Seeder
             'created_at' => now(),
         ]);
 
-         //15
+        //15
         //Create default product
         DB::table('products')->insert([
             'name' => 'Cycling Helmet',
-            'description' => 'Abus X Canyon Airbreaker Road Cycling Helmet, Color : Black' ,
+            'description' => 'Abus X Canyon Airbreaker Road Cycling Helmet, Color : Black',
             'price' => 179,
             'category' => 5,
-            'condition'=> 'Lightly Used',
+            'condition' => 'Lightly Used',
             'created_at' => now(),
             'user_id' => 2,
         ]);
@@ -448,13 +448,13 @@ class DatabaseSeeder extends Seeder
         ]);
 
         //16 Hobbies
-         //Create default product
-         DB::table('products')->insert([
-            'name' => 'Gibson Les Paul Custom 2019  - Electric Guitar', 
-            'description' => 'based on the mid-1950s model with several modern , Color : Black' ,
+        //Create default product
+        DB::table('products')->insert([
+            'name' => 'Gibson Les Paul Custom 2019  - Electric Guitar',
+            'description' => 'based on the mid-1950s model with several modern , Color : Black',
             'price' => 878,
             'category' => 4,
-            'condition'=> 'Lightly Used',
+            'condition' => 'Lightly Used',
             'created_at' => now(),
             'user_id' => 3,
         ]);
@@ -473,11 +473,11 @@ class DatabaseSeeder extends Seeder
         //17
         //Create default product
         DB::table('products')->insert([
-            'name' => 'CD + VCD Jay Chou', 
-            'description' => 'Fantasy Plus is the first EP by Taiwanese singer Jay Chou, released on 24 December 2001' ,
+            'name' => 'CD + VCD Jay Chou',
+            'description' => 'Fantasy Plus is the first EP by Taiwanese singer Jay Chou, released on 24 December 2001',
             'price' => 55,
             'category' => 4,
-            'condition'=> 'Like New',
+            'condition' => 'Like New',
             'created_at' => now(),
             'user_id' => 3,
         ]);
@@ -491,11 +491,11 @@ class DatabaseSeeder extends Seeder
         //18
         //Create default product
         DB::table('products')->insert([
-            'name' => 'Paul Simon & Art garfunkel Greatest ', 
-            'description' => 'FGreatest Hits: Original Stories of Assassins, Hit Men, and Hired Guns' ,
+            'name' => 'Paul Simon & Art garfunkel Greatest ',
+            'description' => 'FGreatest Hits: Original Stories of Assassins, Hit Men, and Hired Guns',
             'price' => 50,
             'category' => 4,
-            'condition'=> 'Like New',
+            'condition' => 'Like New',
             'created_at' => now(),
             'user_id' => 3,
         ]);
@@ -509,12 +509,12 @@ class DatabaseSeeder extends Seeder
         //19 Camera
         //Create default product
         DB::table('products')->insert([
-            'name' => 'Kodak Ultra F9 - Camera', 
+            'name' => 'Kodak Ultra F9 - Camera',
             'description' => 'Kodak Ultra F9 Reusable 35mm Camera (Dark Night Green); 
-            Lightweight, Pocket-Size Design' ,
+            Lightweight, Pocket-Size Design',
             'price' => 50,
             'category' => 4,
-            'condition'=> 'Like New',
+            'condition' => 'Like New',
             'created_at' => now(),
             'user_id' => 3,
         ]);
@@ -537,11 +537,11 @@ class DatabaseSeeder extends Seeder
 
         //20
         DB::table('products')->insert([
-            'name' => 'HP - Printer', 
-            'description' => 'HP Color Laser 150nw Printer (4ZB95A), Color : White, Condition - 9/10, can use USB or wifi' ,
+            'name' => 'HP - Printer',
+            'description' => 'HP Color Laser 150nw Printer (4ZB95A), Color : White, Condition - 9/10, can use USB or wifi',
             'price' => 455,
             'category' => 4,
-            'condition'=> 'Like New',
+            'condition' => 'Like New',
             'created_at' => now(),
             'user_id' => 2,
         ]);
@@ -561,6 +561,43 @@ class DatabaseSeeder extends Seeder
             'url' => 'com_8.jpg',
             'created_at' => now(),
         ]);
-    }
 
+        //Create default monthly sales
+        DB::table('payments')->insert([
+            'amount' => 109,
+            'status' => 'success',
+            'created_at' => '2022-11-16 21:12:17',
+            'order_id' => 1,
+        ]);
+
+        DB::table('payments')->insert([
+            'amount' => 407,
+            'status' => 'success',
+            'created_at' => '2022-11-16 21:12:17',
+            'order_id' => 2,
+        ]);
+
+        DB::table('payments')->insert([
+            'amount' => 802,
+            'status' => 'success',
+            'created_at' => '2022-12-16 21:12:17',
+            'order_id' => 3,
+        ]);
+
+        DB::table('payments')->insert([
+            'amount' => 500,
+            'status' => 'failed',
+            'created_at' => '2022-12-16 21:12:17',
+            'order_id' => 4,
+        ]);
+
+        DB::table('orders')->insert([
+            'product_id' => 1,
+            'status'=> 'pending',
+            'amount_to_pay' => 109,
+            'shipping_fee' =>3.99,
+            'user_id' => 2,
+            'created_at' => '2022-11-16 21:12:17',
+        ]);
+    }
 }

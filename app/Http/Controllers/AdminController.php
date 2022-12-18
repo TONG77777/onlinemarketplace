@@ -59,19 +59,30 @@ class AdminController extends Controller
         $pie_x = ['Pending', 'Confirmed', 'Shipping', 'Completed', 'Cancelled'];
         $pie_y = [Order::where('status', 'pending')->count(), Order::where('status', 'confirmed')->count(), Order::where('status', 'shipping')->count(), Order::where('status', 'completed')->count(), Order::where('status', 'cancelled')->count()];
 
-        $data = User::select('id', 'created_at')->get()->groupBy(function ($date) {
+        // $data = User::select('id', 'created_at')->get()->groupBy(function ($date) {
+        //     return \Carbon\Carbon::parse($date->created_at)->format('F'); // grouping by months
+        // });
+
+       //select total payment by month with status success
+        $data = Payment::select('id', 'created_at')->where('status', 'success')->get()->groupBy(function ($date) {
             return \Carbon\Carbon::parse($date->created_at)->format('F'); // grouping by months
         });
+
+        // //select total payment by month with status success
+        // $totalamount = Payment::select('amount')->where('status', 'success')->get()->sum('amount');
+        
+        $totalamount = [];
         $month = [];
         $monthCount = [];
         foreach ($data as $key => $value) {
             $month[] = $key;
-            $monthCount[] = count($value);
+            // $monthCount[] = count($value);
+            $totalamount[] = Payment::select('amount')->where('status', 'success')->whereMonth('created_at', Carbon::parse($key)->month)->get()->sum('amount');
         }
         return view(
             'admin.dashboard.index',
             compact('category', 'product', 'order', 'user', 'admin', 'payment'),
-            ['data' => $data, 'month' => $month, 'monthCount' => $monthCount, 
+            ['data' => $data, 'month' => $month, 'monthCount' => $monthCount, 'totalamount' => $totalamount, 
             'bar_x' => $bar_x, 'bar_y' => $bar_y, 'dou_x' => $dou_x, 'dou_y' => $dou_y, 
             'dou_color' => $dou_color, 'pie_x' => $pie_x, 'pie_y' => $pie_y]
         );
