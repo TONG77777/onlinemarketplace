@@ -14,6 +14,6 @@
     
         <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
             data-key="pk_test_51M51nyFaj0TxPMzIhA29LFxM4KO0v783LldfgwvhVzwQfHcPgYk93QhcU1zVRAzo9IdIQQHQgKxkVZgIXtizFnYG00FgbXjrlV"
-            data-name="Online Marketplace" data-description="" data-amount=""></script>
+            data-name="Online Marketplace" ></script>
     </form>
 @endsection

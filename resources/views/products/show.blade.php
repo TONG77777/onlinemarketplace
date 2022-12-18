@@ -147,7 +147,7 @@
                                                                             @endforeach
                                                                             <div class="thumb-content">
                                                                                 <h4>{{ Str::limit($similar_product->name, 27)}}</h4>
-                                                                                <p>{{ Str::limit($similar_product->description, 50) }}</p>
+                                                                                <p>{{ Str::limit($similar_product->description, 20) }}</p>
                                                                                 <p class="item-price"><span>RM
                                                                                         {{ $similar_product->price }}</span>
                                                                                 </p>
@@ -164,15 +164,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <!-- Carousel controls -->
-                                                    <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-                                                        <i class="fa fa-angle-left"
-                                                            style="color: black;font-size:300%;"></i>
-                                                    </a>
-                                                    <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-                                                        <i class="fa fa-angle-right"
-                                                            style="color: black;font-size:300%;"></i>
-                                                    </a>
+                                                    
                                                 </div>
                                             </div>
                                         </div>

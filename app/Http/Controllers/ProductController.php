@@ -48,8 +48,8 @@ class ProductController extends Controller
             ]);
         }
         //similar products
-        $data['similar_products'] = Product::where('category', $product->category)->where('id', '!=', $product->id)->where('mark_as_sold', '=', '0')->take(10)->get();
-        $data['similar_price'] = Product::where('price', '>=', $product->price - 200)->where('price', '<=', $product->price + 200)->where('id', '!=', $product->id)->take(5)->get();
+        $data['similar_products'] = Product::where('category', $product->category)->where('id', '!=', $product->id)->where('mark_as_sold', '=', '0')->take(3)->get();
+        $data['similar_price'] = Product::where('price', '>=', $product->price - 200)->where('price', '<=', $product->price + 200)->where('id', '!=', $product->id)->take(3)->get();
         return view('products.show', $data);
     }
 
