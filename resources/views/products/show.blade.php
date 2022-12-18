@@ -124,6 +124,7 @@
 
                                                     <!-- Wrapper for carousel items -->
                                                     <div class="carousel-inner">
+                                                        
                                                         <div class="carousel-item active">
                                                             <div class="row">
                                                                 @foreach ($similar_products as $similar_product)
@@ -176,7 +177,7 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                   
                                 </body>
 
                             </div>
