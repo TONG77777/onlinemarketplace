@@ -46,6 +46,10 @@ class CheckoutController extends Controller
             'shipping_fee' => request('shipping_fee'),
             'user_id' => Auth::user()->id,
         ]);
+
+        $product->mark_as_sold = 1;
+        $product->save();
+        $product->update();
         
         return view('payment.form', ['order' => $order->id]);
     }

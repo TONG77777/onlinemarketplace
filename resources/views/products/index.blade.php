@@ -41,51 +41,48 @@
         <div class="row gy-4 portfolio-container">
 
             @foreach ($products as $product)
-                @if ($product->mark_as_sold == 0)
-                    <div class="col-xl-4 col-md-6 portfolio-item filter-app" style="height: 800px;">
+                <div class="col-xl-4 col-md-6 portfolio-item filter-app" style="height: 800px;">
 
-                        <div class="portfolio-wrap">
+                    <div class="portfolio-wrap">
 
-                            <a href="/products/{{ $product->id }}">
-                                @php
-                                    $images = App\Models\Image::where('product_id', $product->id)->get();
-                                @endphp
+                        <a href="/products/{{ $product->id }}">
+                            @php
+                                $images = App\Models\Image::where('product_id', $product->id)->get();
+                            @endphp
 
-                                @foreach ($images as $image)
-                                    @if ($loop->first)
-                                        <img src="/img/products/{{ $image->url }}" class="img-fluid" alt="image"
-                                            style="width:400px;min-height:500px; max-height:500px;">
+                            @foreach ($images as $image)
+                                @if ($loop->first)
+                                    <img src="/img/products/{{ $image->url }}" class="img-fluid" alt="image"
+                                        style="width:400px;min-height:500px; max-height:500px;">
+                                @endif
+                            @endforeach
+                            <div class="portfolio-info">
+                                <h4><a href="/products/{{ $product->id }}" title="More Details">{{ $product->name }}</a>
+                                </h4>
+                                <p>{{ __('RM') }} {{ $product->price }}</p>
+                                <p style="font-size:90%;">{{ Str::limit($product->description, 170) }}</p>
+
+                                <form action="{{ route('wishlist.store', $product->id) }}" method="POST">
+                                    @csrf
+                                    @php
+                                        $wishlist = App\Models\Wishlist::where('user_id', Auth::user()->id)->get();
+                                    @endphp
+
+                                    @if ($wishlist->contains('product_id', $product->id))
+                                        <button type="submit" class="btn btn-submit-secondary float-end active">
+                                            <i class="bi bi-heart-fill" style="color: red"></i>
+                                        </button>
+                                    @else
+                                        <button type="submit" class="btn .btn-light btn-rounded float-end"><i
+                                                class="bi bi-heart"></i></button>
                                     @endif
-                                @endforeach
-                                <div class="portfolio-info">
-                                    <h4><a href="/products/{{ $product->id }}"
-                                            title="More Details">{{ $product->name }}</a>
-                                    </h4>
-                                    <p>{{ __('RM') }} {{ $product->price }}</p>
-                                    <p style="font-size:90%;">{{ Str::limit($product->description, 170) }}</p>
 
-                                    <form action="{{ route('wishlist.store', $product->id) }}" method="POST">
-                                        @csrf
-                                        @php
-                                            $wishlist = App\Models\Wishlist::where('user_id', Auth::user()->id)->get();
-                                        @endphp
+                                </form>
 
-                                        @if ($wishlist->contains('product_id', $product->id))
-                                            <button type="submit" class="btn btn-submit-secondary float-end active">
-                                                <i class="bi bi-heart-fill" style="color: red"></i>
-                                            </button>
-                                        @else
-                                            <button type="submit" class="btn .btn-light btn-rounded float-end"><i
-                                                    class="bi bi-heart"></i></button>
-                                        @endif
-
-                                    </form>
-
-                                </div>
-                        </div>
-                    </div><!-- End product Item -->
-                    @endif
-                @endforeach
+                            </div>
+                    </div>
+                </div><!-- End product Item -->
+            @endforeach
         </div>
     </div><!-- End Product -->
     @empty($product)

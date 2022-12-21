@@ -62,7 +62,6 @@ class OrderController extends Controller
             return redirect()->route('admin.order.index')->with('error', 'No order found');
         }
 
-
         return view('admin.order.index', ['orders' => $orders, 'users' => $users, 'products' => $products]);
     }
 

@@ -91,6 +91,7 @@ class DatabaseSeeder extends Seeder
             'condition' => 'Heavily Used',
             'created_at' => now(),
             'user_id' => 2,
+            'mark_as_sold' => 1,
         ]);
 
         //Create default product images
@@ -115,6 +116,7 @@ class DatabaseSeeder extends Seeder
             'condition' => 'Like New',
             'created_at' => now(),
             'user_id' => 2,
+            'mark_as_sold' => 1,
         ]);
 
         //Create default product images
@@ -139,6 +141,7 @@ class DatabaseSeeder extends Seeder
             'condition' => 'Lightly Used',
             'created_at' => now(),
             'user_id' => 3,
+            'mark_as_sold' => 1,
         ]);
 
         //Create default product images
@@ -163,6 +166,7 @@ class DatabaseSeeder extends Seeder
             'condition' => 'Lightly Used',
             'created_at' => now(),
             'user_id' => 3,
+            'mark_as_sold' => 1,
         ]);
 
         //Create default product images
@@ -188,6 +192,7 @@ class DatabaseSeeder extends Seeder
             'condition' => 'Well Used',
             'created_at' => now(),
             'user_id' => 2,
+            'mark_as_sold' => 1,
         ]);
 
         //Create default product images
@@ -566,38 +571,156 @@ class DatabaseSeeder extends Seeder
         DB::table('payments')->insert([
             'amount' => 109,
             'status' => 'success',
-            'created_at' => '2022-11-16 21:12:17',
+            'updated_at' => '2022-11-16 21:12:17',
             'order_id' => 1,
         ]);
 
         DB::table('payments')->insert([
             'amount' => 407,
             'status' => 'success',
-            'created_at' => '2022-11-16 21:12:17',
+            'updated_at' => '2022-11-16 21:12:17',
             'order_id' => 2,
         ]);
 
         DB::table('payments')->insert([
             'amount' => 802,
             'status' => 'success',
-            'created_at' => '2022-12-16 21:12:17',
+            'updated_at' => '2022-12-16 21:12:17',
             'order_id' => 3,
         ]);
 
         DB::table('payments')->insert([
             'amount' => 500,
             'status' => 'failed',
-            'created_at' => '2022-12-16 21:12:17',
+            'updated_at' => '2022-12-16 21:12:17',
             'order_id' => 4,
         ]);
+
+        DB::table('payments')->insert([
+            'amount' => 550,
+            'status' => 'success',
+            'updated_at' => '2022-12-16 21:12:17',
+            'order_id' => 5,
+        ]);
+        
 
         DB::table('orders')->insert([
             'product_id' => 1,
             'status'=> 'pending',
             'amount_to_pay' => 109,
             'shipping_fee' =>3.99,
+            'user_id' => 3,
+            'created_at' => '2022-11-16 21:12:17',
+        ]);
+
+        DB::table('orders')->insert([
+            'product_id' => 2,
+            'status'=> 'completed',
+            'amount_to_pay' => 109,
+            'shipping_fee' =>3.99,
+            'user_id' => 3,
+            'created_at' => '2022-11-16 21:12:17',
+            'updated_at' => '2022-11-16 21:12:17',
+        ]);
+
+        DB::table('orders')->insert([
+            'product_id' => 3,
+            'status'=> 'shipping',
+            'amount_to_pay' => 109,
+            'shipping_fee' =>3.99,
             'user_id' => 2,
             'created_at' => '2022-11-16 21:12:17',
         ]);
+
+        DB::table('orders')->insert([
+            'product_id' => 4,
+            'status'=> 'cancelled',
+            'amount_to_pay' => 109,
+            'shipping_fee' =>3.99,
+            'user_id' => 3,
+            'created_at' => '2022-11-16 21:12:17',
+            'updated_at' => '2022-11-16 21:12:17',
+        ]);
+
+        DB::table('orders')->insert([
+            'product_id' => 5,
+            'status'=> 'pending',
+            'amount_to_pay' => 109,
+            'shipping_fee' =>3.99,
+            'user_id' => 2,
+            'created_at' => '2022-11-16 21:12:17',
+        ]);
+
+        DB::table('addresses')->insert([
+            'id' => 1,
+            'title' => 'Home',
+            'receiver_name' => 'John Doe',
+            'receiver_contact' => '012-3456789',
+            'email' => 'qwer@gmail.com',
+            'address' => '1234, Jalan 1, Taman 1, 12345, Kuala Lumpur',
+            'city' => 'Kuala Lumpur',
+            'state' => 'Setapak',
+            'postal_code' => '53600',
+            'user_id' => 3,
+            'created_at' => now(),
+        ]);
+
+        DB::table('addresses')->insert([
+            'id' => 2,
+            'title' => 'Office',
+            'receiver_name' => 'sadf sdf',
+            'receiver_contact' => '012-3456789',
+            'email' => 'sadf@gmail.com',
+            'address' => '1234, Jalan 1, Taman 1, 12345, Kuala Lumpur',
+            'city' => 'Kuala Lumpur',
+            'state' => 'Setapak',
+            'postal_code' => '53600',
+            'user_id' => 3,
+            'created_at' => now(),
+        ]);
+
+        DB::table('addresses')->insert([
+            'id' => 3,
+            'title' => 'Home',
+            'receiver_name' => 'egt sdf',
+            'receiver_contact' => '012-3456789',
+            'email' => 'sdf@gmail.com',
+            'address' => '1234, Jalan 1, Taman 1, 12345, Kuala Lumpur',
+            'city' => 'Kuala Lumpur',
+            'state' => 'Setapak',
+            'postal_code' => '53600',
+            'user_id' => 3,
+            'created_at' => now(),
+        ]);
+
+        DB::table('addresses')->insert([
+            'id' => 4,
+            'title' => 'Home',
+            'receiver_name' => 'Rte Hj Doe',
+            'receiver_contact' => '012-3456789',
+            'email' => 'rte@gmail.com',
+            'address' => '1234, Jalan 1, Taman 1, 12345, Kuala Lumpur',
+            'city' => 'Kuala Lumpur',
+            'state' => 'Setapak',
+            'postal_code' => '53600',
+            'user_id' => 3,
+            'created_at' => now(),
+        ]);
+
+        DB::table('addresses')->insert([
+            'id' => 5,
+            'title' => 'Home',
+            'receiver_name' => 'Rtyw Doe',
+            'receiver_contact' => '012-3456789',
+            'email' => 'rtyw@gmail.com',
+            'address' => '1234, Jalan 1, Taman 1, 12345, Kuala Lumpur',
+            'city' => 'Kuala Lumpur',
+            'state' => 'Setapak',
+            'postal_code' => '53600',
+            'user_id' => 3,
+            'created_at' => now(),
+        ]);
+
+
     }
 }

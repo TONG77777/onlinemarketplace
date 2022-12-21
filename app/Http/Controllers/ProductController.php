@@ -21,7 +21,7 @@ class ProductController extends Controller
     public function index()
     {
         //pagnation for products
-        $products = Product::with('user', 'categories')->paginate(9);
+        $products = Product::with('user', 'categories')->where('mark_as_sold', '==', 1)->paginate(9);
         $data['categories'] = Category::all();
         return view('products.index', ['products' => $products], $data);
     }

@@ -55,6 +55,7 @@
                                             <th scope="col">{{ __('Delete') }}</th>
                                         </tr>
                                     </thead>
+                                
                                     <tbody>
                                         <tr>
 
@@ -84,11 +85,9 @@
                                                     @endforeach
                                                 </td>
                                                 <td>
-                                                    @php
-                                                        $order = App\Models\Order::all();
-                                                    @endphp
-                                                    @foreach ($order as $item)
-                                                        @if ($product->id == $item->product_id && $item->status != 'confirmed' && $item->status != 'shipping')
+                                                    @foreach ($orders as $item)
+                                                   
+                                                        @if ($product->id == $item->product_id && $item->status == 'pending')
                                                             <div class="btn-">
                                                                 <form action="{{ route('order.confrim', $item->id) }}"
                                                                     method="PUT">
@@ -100,21 +99,12 @@
                                                                 </form>
                                                             </div>
                                                         @endif
-
-
-                                                        @if ($product->id != $item->product_id || $item->status == 'confirmed' || $item->status == 'shipping')
-                                                            <div class="btn-">
-                                                                <button type="submit" class="btn "
-                                                                    style="background:#293d3d;color:azure" disabled><i
-                                                                        class="bi bi-clipboard2-check"></i></button>
-                                                            </div>
-                                                        @endif
                                                     @endforeach
                                                 </td>
 
                                                 {{-- //Deliver --}}
                                                 <td>
-                                                    @foreach ($order as $item)
+                                                    @foreach ($orders as $item)
                                                         @if ($product->id == $item->product_id && $item->status == 'confirmed')
                                                             <div class="btn-">
                                                                 <form action="{{ route('order.shipping', $item->id) }}"
@@ -122,18 +112,6 @@
                                                                     @csrf
                                                                     <button type="submit" class="btn"
                                                                         style="background: #9ACAA5"><i
-                                                                            class="bi bi-box-seam-fill"></i></button>
-                                                                </form>
-                                                            </div>
-                                                        @endif
-
-                                                        @if ($product->id != $item->product_id || $item->status != 'confirmed')
-                                                            <div class="btn-">
-                                                                <form action="{{ route('order.shipping', $product->id) }}"
-                                                                    method="GET">
-                                                                    @csrf
-                                                                    <button type="submit" class="btn"
-                                                                        style="background:#293d3d;color:azure" disabled><i
                                                                             class="bi bi-box-seam-fill"></i></button>
                                                                 </form>
                                                             </div>
@@ -156,16 +134,24 @@
 
                                                 <td>
                                                     <div class="btn-">
-                                                        <form
-                                                            action="{{ route('seller.products.markAsSold', $product->id) }}"
-                                                            method="PUT">
-                                                            @csrf
+                                                        @if ($product->mark_as_sold == 0)
+                                                            <form
+                                                                action="{{ route('seller.products.markAsSold', $product->id) }}"
+                                                                method="PUT">
+                                                                @csrf
 
+
+                                                                <button type="submit" class="btn"
+                                                                    style="background:#55A597;color:azure"
+                                                                    onclick="markAsSold()"><i
+                                                                        class="bi bi-check-circle-fill"></i></button>
+                                                            </form>
+                                                        @else
                                                             <button type="submit" class="btn"
-                                                                style="background:#55A597;color:azure"
-                                                                onclick="markAsSold()"><i
+                                                                style="background:#293d3d;color:azure" disabled><i
                                                                     class="bi bi-check-circle-fill"></i></button>
-                                                        </form>
+                                                        @endif
+
                                                     </div>
                                                 </td>
                                                 <td>
@@ -182,12 +168,10 @@
                                                     </div>
                                                 </td>
                                         </tr>
-                                    
-                                
                             @endforeach
-                        </tbody>
-                    </table>
-                            @else
+                            </tbody>
+                            </table>
+                        @else
                             <div class="alert alert-info">
                                 {{ __('You have no products yet. Try to add some...') }}
                             </div>
@@ -198,63 +182,67 @@
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                         <div class="container pt-5 my-5" style="min-height: 400px;height:auto;">
 
-                            {{-- {{dd($soldProducts)}} --}}
-                            @if ($soldProducts->count() > 0)
-                                <table class="table">
 
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">{{ __('Image') }}</th>
-                                            <th scope="col">{{ __('Product') }}</th>
-                                            <th scope="col">{{ __('Price') }}</th>
-                                            <th scope="col">{{ __('Updated At') }}</th>
-                                            <th scope="col">{{ __('Condition') }}</th>
-                                            <th scope="col">{{ __('Category') }}</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
+                            @foreach ($orders as $order)
+                                @foreach ($soldProducts as $soldProduct)
+                                @if ($order->product_id == $soldProduct->id && $order->status == 'completed')
+                                    @if ($soldProducts->count() > 0)
+                                       
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">{{ __('Image') }}</th>
+                                                        <th scope="col">{{ __('Product') }}</th>
+                                                        <th scope="col">{{ __('Price') }}</th>
+                                                        <th scope="col">{{ __('Updated At') }}</th>
+                                                        <th scope="col">{{ __('Condition') }}</th>
+                                                        <th scope="col">{{ __('Category') }}</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        @php
+                                                            $images = App\Models\Image::where('product_id', $soldProduct->id)->get();
+                                                            
+                                                        @endphp
+                                                        @foreach ($images as $image)
+                                                            @if ($loop->first)
+                                                                <th scope="row"><img
+                                                                        src="/img/products/{{ $image->url }}"
+                                                                        style="width:60px;height:60px;"
+                                                                        alt=""></a></th>
+                                                            @endif
+                                                        @endforeach
 
-                                            @foreach ($soldProducts as $soldProduct)
-                                                @php
-                                                    $images = App\Models\Image::where('product_id', $soldProduct->id)->get();
-                                                    
-                                                @endphp
-                                                @foreach ($images as $image)
-                                                    @if ($loop->first)
-                                                        <th scope="row"><img src="/img/products/{{ $image->url }}"
-                                                                style="width:60px;height:60px;" alt=""></a></th>
-                                                    @endif
-                                                @endforeach
 
-
-                                                <div class="portfolio-info">
-                                                    <td>{{ $soldProduct->name }}</a></td>
-                                                </div>
-                                                <td>{{ __('RM') }} {{ $soldProduct->price }}</td>
-                                                <td scope="row">{{ $soldProduct->updated_at }}</td>
-                                                <td>{{ $soldProduct->condition }}</td>
-                                                <td>
-                                                    @foreach ($categories as $category)
-                                                        @if ($category->id == $soldProduct->category)
-                                                            {{ $category->name }}
-                                                        @endif
-                                                    @endforeach
-                                                </td>
-
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                           
-                            @endif
-
+                                                        <div class="portfolio-info">
+                                                            <td>{{ $soldProduct->name }}</a></td>
+                                                        </div>
+                                                        <td>{{ __('RM') }} {{ $soldProduct->price }}</td>
+                                                        <td scope="row">{{ $soldProduct->updated_at }}</td>
+                                                        <td>{{ $soldProduct->condition }}</td>
+                                                        <td>
+                                                            @foreach ($categories as $category)
+                                                                @if ($category->id == $soldProduct->category)
+                                                                    {{ $category->name }}
+                                                                @endif
+                                                            @endforeach
+                                                        </td>
+                                                       
+                                                    </tr>
+                                                   
+                                        </tbody>
+                                        </table>
+                                        @endif
+                                    @endif
+                                @endforeach
+                                @endforeach
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-   
+
     </div>
     </div>
     </div>
