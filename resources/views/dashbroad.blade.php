@@ -11,7 +11,6 @@
         </nav>
     </div><!-- End Breadcrumbs -->
 
-
     <div class="container pt-5 my-5" style="height:auto;min-height:500px">
         @if (session()->get('success'))
             <div class="alert alert-success">
@@ -55,7 +54,7 @@
                                             <th scope="col">{{ __('Delete') }}</th>
                                         </tr>
                                     </thead>
-                                
+
                                     <tbody>
                                         <tr>
 
@@ -71,7 +70,6 @@
                                                     @endif
                                                 @endforeach
 
-
                                                 <div class="portfolio-info">
                                                     <td>{{ $product->name }}</a></td>
                                                 </div>
@@ -86,7 +84,6 @@
                                                 </td>
                                                 <td>
                                                     @foreach ($orders as $item)
-                                                   
                                                         @if ($product->id == $item->product_id && $item->status == 'pending')
                                                             <div class="btn-">
                                                                 <form action="{{ route('order.confrim', $item->id) }}"
@@ -182,24 +179,22 @@
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                         <div class="container pt-5 my-5" style="min-height: 400px;height:auto;">
 
-
-                            @foreach ($orders as $order)
-                                @foreach ($soldProducts as $soldProduct)
-                                @if ($order->product_id == $soldProduct->id && $order->status == 'completed')
-                                    @if ($soldProducts->count() > 0)
-                                       
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">{{ __('Image') }}</th>
-                                                        <th scope="col">{{ __('Product') }}</th>
-                                                        <th scope="col">{{ __('Price') }}</th>
-                                                        <th scope="col">{{ __('Updated At') }}</th>
-                                                        <th scope="col">{{ __('Condition') }}</th>
-                                                        <th scope="col">{{ __('Category') }}</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">{{ __('Image') }}</th>
+                                        <th scope="col">{{ __('Product') }}</th>
+                                        <th scope="col">{{ __('Price') }}</th>
+                                        <th scope="col">{{ __('Updated At') }}</th>
+                                        <th scope="col">{{ __('Condition') }}</th>
+                                        <th scope="col">{{ __('Category') }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($orders as $order)
+                                        @foreach ($soldProducts as $soldProduct)
+                                            @if ($order->product_id == $soldProduct->id && $order->status == 'completed')
+                                                @if ($soldProducts->count() > 0)
                                                     <tr>
                                                         @php
                                                             $images = App\Models\Image::where('product_id', $soldProduct->id)->get();
@@ -219,7 +214,7 @@
                                                             <td>{{ $soldProduct->name }}</a></td>
                                                         </div>
                                                         <td>{{ __('RM') }} {{ $soldProduct->price }}</td>
-                                                        <td scope="row">{{ $soldProduct->updated_at }}</td>
+                                                        <td scope="row">{{ $order->updated_at }}</td>
                                                         <td>{{ $soldProduct->condition }}</td>
                                                         <td>
                                                             @foreach ($categories as $category)
@@ -228,21 +223,19 @@
                                                                 @endif
                                                             @endforeach
                                                         </td>
-                                                       
+
                                                     </tr>
-                                                   
-                                        </tbody>
-                                        </table>
-                                        @endif
-                                    @endif
-                                @endforeach
-                                @endforeach
+                                                @endif
+                                            @endif
+                                        @endforeach
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
     </div>
     </div>

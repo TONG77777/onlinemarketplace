@@ -7,13 +7,11 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\User;
+
 use Illuminate\Support\Facades\Auth;
-
-
-
-
-
-
+use App\Notifications\ProductSold;
+use Illuminate\Notifications\Events\NotificationSent;
+use Illuminate\Support\Facades\Notification;
 
 class CheckoutController extends Controller
 {
@@ -50,7 +48,10 @@ class CheckoutController extends Controller
         $product->mark_as_sold = 1;
         $product->save();
         $product->update();
-        
+
+        $user = User::find($product->user_id);
+        Notification::sendNow($user, new ProductSold($product));
+
         return view('payment.form', ['order' => $order->id]);
     }
 
