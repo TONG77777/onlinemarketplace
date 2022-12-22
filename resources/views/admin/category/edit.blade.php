@@ -40,7 +40,7 @@
 
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="btn btn-submit">Submit</button>
+                        <button type="submit" class="btn btn-submit" onclick="editCategory()">Submit</button>
                         <button type="reset" class="btn btn-reset">Reset</button>
                     </div>
                     </form><!-- Category Details Form -->
@@ -52,3 +52,24 @@
         </div>
     </section>
 @endsection
+<script>
+    function editCategory() {
+        event.preventDefault();
+        var form = event.target.form;
+        Swal.fire({
+            title: 'Do you want to save the changes?',
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Save',
+            denyButtonText: `Don't save`,
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                form.submit();
+                Swal.fire('Saved!', '', 'success')
+            } else if (result.isDenied) {
+                Swal.fire('Changes are not saved', '', 'info')
+            }
+        })
+    }
+</script>

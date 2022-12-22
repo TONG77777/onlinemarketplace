@@ -49,7 +49,7 @@
                             <form action="/admin/category/{{ $category->id }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">{{ __('Delete') }}</button>
+                                <button type="submit" class="btn btn-danger" onclick="deleteCategory()">{{ __('Delete') }}</button>
                             </form>
                         </td>
                 </tr>
@@ -63,4 +63,35 @@
     $(document).ready(function() {
         $('#example').DataTable();
     });
+
+    function deleteCategory() {
+        event.preventDefault();
+        var form = event.target.form;
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+                Swal.fire(
+                    'Deleted!',
+                    'This Category has been deleted.',
+                    'success'
+                )
+            } else {
+                Swal.fire(
+                    'Cancelled',
+                    'This Category is safe :)',
+                    'error'
+                )
+            }
+        })
+    }
 </script>
+
+    

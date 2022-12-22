@@ -41,6 +41,7 @@
         <div class="row gy-4 portfolio-container">
 
             @foreach ($products as $product)
+            @if($product->mark_as_sold == 0)
                 <div class="col-xl-4 col-md-6 portfolio-item filter-app" style="height: 800px;">
 
                     <div class="portfolio-wrap">
@@ -82,6 +83,7 @@
                             </div>
                     </div>
                 </div><!-- End product Item -->
+                @endif
             @endforeach
         </div>
     </div><!-- End Product -->
