@@ -17,10 +17,10 @@
         <div class="section-header">
             <h2>{{ __('Used Item') }}</h2>
 
-            <form action="{{ url('/search') }}" method="get">
+            <form action="{{ route('products.search')}}" method="get">
                 @csrf
                 <div class="input-group mb-3 mx-auto" style="width: 750px">
-                    <input type="text" class="form-control" name="query" placeholder="Search Product Name...">
+                    <input type="text" class="form-control" name="search" placeholder="Search Product Name...">
                     <div class="input-group-append">
                         <button class="btn btn-submit-secondary" type="submit"><i class="bi bi-search"></i></button>
                     </div>

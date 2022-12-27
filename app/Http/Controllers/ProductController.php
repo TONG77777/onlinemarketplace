@@ -178,13 +178,10 @@ class ProductController extends Controller
 
     public function search()
     {
-        if ($search_text = $_GET['query']) {
-            $products = Product::where('name', 'LIKE', '%' . $search_text . '%')->get();
-            $data['categories'] = Category::all();
-            return view('products.index', ['products' => $products], $data);
-        } else {
-            return redirect('/products')->with('status', 'No Products Found');
-        }
+        $search = request('search');
+        $products = Product::where('name', 'like', '%' . $search . '%')->paginate(10);
+        $data['categories'] = Category::all();
+        return view('products.index', ['products' => $products], $data);
     }
 
     public function category($id)

@@ -65,7 +65,7 @@ Route::get('/products/edit/{id}', 'ProductController@edit')->name('seller.produc
 Route::put('/products/update/{id}', 'ProductController@update')->name('seller.products.update')->middleware('auth');
 Route::get('/products/{product}', 'ProductController@show')->middleware('auth')->name('products.show');
 Route::delete('/products/{id}', 'ProductController@destroy')->name('seller.products.delete')->middleware('auth');
-Route::get('/search', 'ProductController@search')->middleware('auth');
+Route::get('/search', 'ProductController@search')->middleware('auth')->name('products.search');
 Route::get('/category/{id}', 'ProductController@category')->middleware('auth');
 
 

@@ -178,7 +178,7 @@
 
                     <div class="col-lg-3">
                         <div class="portfolio-info">
-                            <h3>{{ __('Product Infromation') }}</h3>
+                            <h3>{{ __('Product Information') }}</h3>
                             <ul>
                                 <li><strong>{{ __('Category') }}</strong> <span>
                                         @foreach ($categories as $category)
