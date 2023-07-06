@@ -10,7 +10,7 @@
 ## How to run the project 
 1. Create a database locally named ``"onlinemarketplace"`` in utf8_general_ci in xampp.
 2. Download composer **(https://getcomposer.org/download/)** and do the installation.
-3. Rename the.env.example file to.env inside the project root and edit the database information based on the environment.
+3. Rename the ``.env.example`` file to ``.env`` inside the project root and edit the database information based on the environment.
 4. Open the console and cd your project root directory ``(ctrl + shift + `)``.
    
    + Install composer ~ ``composer install``
@@ -19,7 +19,7 @@
    
    + Start serve      ~ ``php artisan serve``
    
-6. Use [ctrl + click] open the localhost testing
+6. Use ``[ctrl + click]`` open the localhost testing
 7. Add the path behind the url ``"/login"``
 
 ## Testing Admin Account
