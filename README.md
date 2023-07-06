@@ -1,9 +1,19 @@
 ## User Guide
-1. Notion : <a href="https://xiiaotong.notion.site/xiiaotong/Ukubear-Management-System-a47cd23f8089437e8ca7611a42b02452" alt="notion_usm_guide">USM_user_guide_notion</a>
-2. Host : <a href="http://tong77777.great-site.net/USM/Ukubear%20Management%20System%20a47cd23f8089437e8ca7611a42b02452.html" alt="host_usm_guide">Host_user_guide_notion</a>
+1. Notion : <a href="https://xiiaotong.notion.site/Online-Marketplace-to-sell-and-buy-Used-Item-FYP-e9b01f111e0a456aaa881a70de6a33d3?pvs=4">Notion_user_guide</a>
+2. Host : <a href="http://tong77777.great-site.net/user_guide/Online%20Marketplace%20to%20sell%20and%20buy%20Used%20Item%20(FYP)%20e9b01f111e0a456aaa881a70de6a33d3.html">Host_user_guide</a>
 
 ## About Purpose
-The USM system has a primary objective of providing a comprehensive platform for both internal and external users. The system caters to two main user groups, namely External Users, specifically parents, with the aim of enhancing their experience and providing convenient access to their child's information.
+To 
 
 ## Technology Use
-PHP, CSS, HTML, JSON, AJAX, JQuery, Boostrap, JS, and other related technologies
+Laravel 6, MVC, PHP, CSS, HTML, JSON, AJAX, JQuery, Boostrap 5, JS, Sweetalert 2, Chartjs and other related technologies
+
+## Related link used(Sandbox)
+Mailtrap : <a href="https://mailtrap.io/">link</a>
+
+Stripe : <a href="https://stripe.com/en-my">link</a>
+
+Chatify : <a href="https://chatify.munafio.com/">link</a>
+
+Chartjs : <a href="https://www.chartjs.org/">link</a>
+
