@@ -7,6 +7,42 @@
 - To provide a shorten duration of process transaction.
 - To provide better place to display their used items.
 
+## How to run the project 
+1. Create a database locally named ``"onlinemarketplace"`` in utf8_general_ci in xampp.
+2. Download composer **(https://getcomposer.org/download/)** and do the installation.
+3. Rename the.env.example file to.env inside the project root and edit the database information based on the environment.
+4. Open the console and cd your project root directory ``(ctrl + shift + `)``.
+   
+   +Install composer ~ composer install
+   
+   +Database setting ~ php artisan migrate:fresh
+   
+                     ~ php artisan db:seed
+   
+   +Start serve      ~ php artisan serve
+   
+6. Use [ctrl + click] open the localhost testing
+7. Add the path behind the url "/login"
+
+## Testing Admin Account
+``(Admin)``
+
+username    :admin@gmail.com
+
+pass        :password
+
+``(User)``
+
+username    :asdf@gmail.com
+
+pass        :password
+
+username    :qwer@gmail.com
+
+pass        :password
+
+
+
 ## Technology Use
 Laravel 6, MVC, PHP, CSS, HTML, JSON, AJAX, JQuery, Boostrap 5, JS, Sweetalert 2, Chartjs and other related technologies
 
