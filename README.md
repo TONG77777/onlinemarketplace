@@ -13,16 +13,16 @@
 3. Rename the.env.example file to.env inside the project root and edit the database information based on the environment.
 4. Open the console and cd your project root directory ``(ctrl + shift + `)``.
    
-   +Install composer ~ composer install
+   +Install composer ~ ``composer install``
    
-   +Database setting ~ php artisan migrate:fresh
+   +Database setting ~ ``php artisan migrate:fresh``
    
-                     ~ php artisan db:seed
+                     ~ ``php artisan db:seed``
    
-   +Start serve      ~ php artisan serve
+   +Start serve      ~ ``php artisan serve``
    
 6. Use [ctrl + click] open the localhost testing
-7. Add the path behind the url "/login"
+7. Add the path behind the url ``"/login"``
 
 ## Testing Admin Account
 ``(Admin)``
@@ -44,7 +44,7 @@ pass        :password
 
 
 ## Technology Use
-Laravel 6, MVC, PHP, CSS, HTML, JSON, AJAX, JQuery, Boostrap 5, JS, Sweetalert 2, Chartjs and other related technologies
+``Laravel 6, MVC, PHP, CSS, HTML, JSON, AJAX, JQuery, Boostrap 5, JS, Sweetalert 2, Chartjs and other related technologies.``
 
 ## Related link used(Sandbox)
 Mailtrap : <a href="https://mailtrap.io/">link</a>
