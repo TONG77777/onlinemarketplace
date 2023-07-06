@@ -53,3 +53,7 @@ Chatify : <a href="https://chatify.munafio.com/">link</a>
 
 Chartjs : <a href="https://www.chartjs.org/">link</a>
 
+## If for some reason your project stop working do these:
+``composer install``
+``php artisan migrate``
+
