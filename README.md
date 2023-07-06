@@ -3,7 +3,9 @@
 2. Host : <a href="http://tong77777.great-site.net/user_guide/Online%20Marketplace%20to%20sell%20and%20buy%20Used%20Item%20(FYP)%20e9b01f111e0a456aaa881a70de6a33d3.html">Host_user_guide</a>
 
 ## About Purpose
-To 
+- To provide an easy way to manage used items.
+- To provide a shorten duration of process transaction.
+- To provide better place to display their used items.
 
 ## Technology Use
 Laravel 6, MVC, PHP, CSS, HTML, JSON, AJAX, JQuery, Boostrap 5, JS, Sweetalert 2, Chartjs and other related technologies
